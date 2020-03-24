@@ -40,11 +40,15 @@ This repository provides the following components that are common to our open so
 * Zoom image(Single click/ Double fingure)
 
 // ui design library
+
 https://github.com/thanhtoan1196/awesome-android-ui
+
 https://github.com/vimalcvs/Awesome-Android-UI#UI
+
 https://github.com/XPGSnail/awesome-android-ui.
 
 
 // Coding library
+
 https://github.com/JStumpp/awesome-android
 
