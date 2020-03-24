@@ -37,7 +37,7 @@ This repository provides the following components that are common to our open so
 * Timer using(Handler/Countdown timer)
 * Ecommerce app(Login/Signup/verification/Deshboard/category listing)
 * Navigation drawer(both side left/right)
-* Zoom image(Single click/ Double fingure)
+* Zoom image(Single click/ Double finger)
 
 // ui design library
 
