@@ -12,8 +12,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityCpuBinding
-import com.webaddicted.kotlinproject.global.common.FileUtils.Companion.calculatePercentage
-import com.webaddicted.kotlinproject.global.common.FileUtils.Companion.formatSize
+import com.webaddicted.kotlinproject.global.common.FileHelper.Companion.calculatePercentage
+import com.webaddicted.kotlinproject.global.common.FileHelper.Companion.formatSize
 import com.webaddicted.kotlinproject.model.bean.deviceinfo.CPUBean
 import com.webaddicted.kotlinproject.view.adapter.CPUAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment

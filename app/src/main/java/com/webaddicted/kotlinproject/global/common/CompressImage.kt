@@ -171,7 +171,7 @@ class CompressImage {
             Lg.d(TAG, "SaveImage: " + finalBitmap.toString().length)
             if (imagePath != null) {
                 //            dirFile = new File(Environment.getExternalStorageDirectory() + imagePath);
-                dirFile = FileUtils.subFolder()
+                dirFile = FileHelper.subFolder()
             } else
                 dirFile = File(mContext!!.cacheDir.toString())
             if (!dirFile.exists()) {

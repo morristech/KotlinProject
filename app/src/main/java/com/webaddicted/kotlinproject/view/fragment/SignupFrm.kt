@@ -10,7 +10,6 @@ import com.webaddicted.kotlinproject.global.common.ValidationHelper
 import com.webaddicted.kotlinproject.global.db.entity.UserInfoEntity
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.webaddicted.kotlinproject.viewModel.common.CommonViewModel
-import com.webaddicted.kotlinproject.viewModel.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignupFrm : BaseFragment() {

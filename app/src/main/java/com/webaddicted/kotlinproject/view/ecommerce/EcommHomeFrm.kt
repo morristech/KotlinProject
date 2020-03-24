@@ -53,7 +53,7 @@ class EcommHomeFrm : BaseFragment() {
         ecomFashionAdapter = EcomFashionAdapter(this, ecommFashion)
         ecomMobileAdapter = EcomMobileAdapter(this, ecommMobile)
         ecomHomeDecAdapter = EcomHomeDecoAdapter(this, ecommHomeDeco)
-
+        (activity as EcommHomeActivity).setNavi(mBinding.imgNavi)
         setAdapter(mBinding.rvFashion, ecomFashionAdapter)
         setAdapter(mBinding.rvMobileElec, ecomMobileAdapter)
         setAdapter(mBinding.rvHomeDesc, ecomHomeDecAdapter)
@@ -180,7 +180,7 @@ class EcommHomeFrm : BaseFragment() {
 
     private fun changeAnimation(rvFashion: RecyclerView?) {
         val animation = AnimationUtils.loadLayoutAnimation(context, R.anim.rv_anim_left_to_right)
-        rvFashion?.setLayoutAnimation(animation)
+        rvFashion?.layoutAnimation = animation
     }
 
     private fun addBanners() {
@@ -239,7 +239,7 @@ class EcommHomeFrm : BaseFragment() {
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {
-//            R.id.img_navi -> validate()
+            R.id.img_navi -> (activity as EcommHomeActivity).openCloseDrawer(true)
         }
     }
 

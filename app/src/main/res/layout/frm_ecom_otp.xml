@@ -60,7 +60,6 @@
                                 android:layout_marginLeft="@dimen/dp34"
                                 android:layout_marginTop="0dp"
                                 android:layout_weight="1"
-                                android:background="@color/transprant"
                                 android:hint="@string/otp"
                                 android:inputType="number"
                                 android:maxLength="6"
@@ -74,14 +73,6 @@
                                 android:tint="@color/app_color" />
 
                     </LinearLayout>
-
-                    <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginLeft="27.8dp"
-                            android:layout_marginTop="11dp"
-                            android:layout_marginRight="43.8dp"
-                            android:background="@color/gray_EAEBED" />
 
                     <TextView
                             style="@style/txt_black_normal"
@@ -101,82 +92,89 @@
                             android:text="@string/edit_mobile_no"
                             android:textColor="@color/app_color"
                             android:textSize="@dimen/sp11" />
-                </LinearLayout>
 
-
-                <LinearLayout
-                        android:id="@+id/layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="95dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="@drawable/gradiant"
-                        android:orientation="vertical">
-
-                    <TextView
-                            style="@style/txt_white_normal"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="@dimen/dp34"
-                            android:text="@string/we_are_verifying"
-                            android:textColor="@color/white"
-                            android:textSize="12.5dp" />
+                    <ImageView
+                            android:id="@+id/img_next"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp50"
+                            android:layout_above="@+id/txt_ResendOTP"
+                            android:layout_marginTop="@dimen/dp80"
+                            android:layout_marginBottom="@dimen/dp22"
+                            android:src="@drawable/next" />
 
                     <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="19.7dp"
-                            android:layout_marginBottom="15dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                            android:layout_height="match_parent"
+                            android:gravity="bottom"
+                            android:orientation="vertical">
 
-                        <ImageView
-                                android:layout_width="6dp"
-                                android:layout_height="6dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_circular" />
+                        <TextView
+                                android:id="@+id/txt_ResendOTP"
+                                style="@style/txt_white_normal"
+                                android:layout_above="@+id/layout"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/dp16"
+                                android:text="@string/resend_otp"
+                                android:textColor="@color/gray_818181"
+                                android:textSize="@dimen/sp13" />
 
-                        <ImageView
-                                android:layout_width="6dp"
-                                android:layout_height="6dp"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="7dp"
-                                android:layout_marginRight="7dp"
-                                android:src="@drawable/ic_circular" />
+                        <LinearLayout
+                                android:id="@+id/layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="95dp"
+                                android:layout_alignParentBottom="true"
+                                android:background="@drawable/gradiant"
+                                android:orientation="vertical">
 
-                        <ImageView
-                                android:layout_width="6dp"
-                                android:layout_height="6dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_circular" />
+                            <TextView
+                                    style="@style/txt_white_normal"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="@dimen/dp34"
+                                    android:text="@string/we_are_verifying"
+                                    android:textColor="@color/white"
+                                    android:textSize="12.5dp" />
 
+                            <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="19.7dp"
+                                    android:layout_marginBottom="15dp"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                <ImageView
+                                        android:layout_width="6dp"
+                                        android:layout_height="6dp"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/ic_circular" />
+
+                                <ImageView
+                                        android:layout_width="6dp"
+                                        android:layout_height="6dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="7dp"
+                                        android:layout_marginRight="7dp"
+                                        android:src="@drawable/ic_circular" />
+
+                                <ImageView
+                                        android:layout_width="6dp"
+                                        android:layout_height="6dp"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/ic_circular" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
-
-                <ImageView
-                        android:id="@+id/img_next"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp50"
-                        android:layout_above="@+id/txt_ResendOTP"
-                        android:layout_marginBottom="@dimen/dp22"
-                        android:src="@drawable/next" />
-
-                <TextView
-                        android:id="@+id/txt_ResendOTP"
-                        style="@style/txt_white_normal"
-                        android:layout_above="@+id/layout"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="@dimen/dp16"
-                        android:gravity="center"
-                        android:text="@string/resend_otp"
-                        android:textColor="@color/gray_818181"
-                        android:textSize="@dimen/sp13" />
             </RelativeLayout>
 
             <LinearLayout
                     android:id="@+id/bottom_space"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/layout"
                     android:orientation="vertical" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

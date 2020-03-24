@@ -10,6 +10,8 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.PopupMenu
+import androidx.biometric.BiometricPrompt
+import androidx.biometric.BiometricPrompt.PromptInfo
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -23,6 +25,8 @@ import com.webaddicted.kotlinproject.view.adapter.TaskAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.webaddicted.kotlinproject.view.ecommerce.EcommLoginFrm
 import java.util.*
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 import kotlin.collections.ArrayList
 
 class TaskFrm : BaseFragment() {
@@ -39,7 +43,7 @@ class TaskFrm : BaseFragment() {
         "Webview",
         "Dialog",
         "Select Multiple Image",
-        "Dynamic Layout",
+        "Dynamic Layout & PDF",
         "Shared Preference",
         "Device Info",
         "Speech to text",
@@ -58,16 +62,21 @@ class TaskFrm : BaseFragment() {
         "Navigation Drawer Both Side",
         "Navigation Drawer",
         "ScreenShot",
+        "Restrict ScreenShot",
         "Digital Signature",
-        "PDF",
-        "Collapse",
+        "Collapse/Expend",
         "UI Design",
         "Fab Button",
         "Bottom Navigation",
         "Bottom Sheet",
         "Coroutines",
         "Splash",
-        "Rate App"
+        "Rate App",
+        "Contacts",
+        "SMS",
+        "Phone Image",
+        "Notification",
+        "Zoom Image(Touch/TwoFinger)"
 
     )
     private lateinit var showSearchView: ShowSearchView
@@ -173,7 +182,7 @@ class TaskFrm : BaseFragment() {
             "Webview" -> navigateScreen(WebViewActivity.TAG)
             "Dialog" -> navigateScreen(DialogFrm.TAG)
             "Select Multiple Image" -> navigateScreen(ProfileFrm.TAG)
-            "Dynamic Layout" -> navigateScreen(DynamicLayoutFrm.TAG)
+            "Dynamic Layout & PDF" -> navigateScreen(DynamicLayoutFrm.TAG)
             "Shared Preference" -> navigateScreen(SharedPrefFrm.TAG)
             "Speech to text" -> navigateScreen(SpeechTextActivity.TAG)
             "Animation" -> navigateScreen(AnimationFrm.TAG)
@@ -185,19 +194,74 @@ class TaskFrm : BaseFragment() {
             "Ecommerce" -> navigateScreen(EcommLoginFrm.TAG)
             "Timer" -> navigateScreen(TimerFrm.TAG)
             "Navigation Drawer Both Side" -> navigateScreen(NavBothSideDrawerActivity.TAG)
-            "Navigation Drawer" -> navigateScreen(NavieDrawerActivity.TAG)
+            "Navigation Drawer" -> navigateScreen(NavDrawerActivity.TAG)
             "BlinkScan" -> navigateScreen(BlinkScanFrm.TAG)
             "Coroutines" -> navigateScreen(CoroutineFrm.TAG)
             "ScreenShot" -> checkStoragePermission()
             "Splash" -> navigateScreen(SplashActivity.TAG)
             "Device Info" -> navigateScreen(DeviceInfoActivity.TAG)
             "Rate App" -> activity?.let { GlobalUtility.rateUsApp(it) }
-            "Barcode"->navigateScreen(BarcodeFrm.TAG)
-            "Bottom Navigation"->navigateScreen(BottomNavigationFrm.TAG)
-            "Bottom Sheet"->navigateScreen(BottomSheetFrm.TAG)
-            "Collapse"->navigateScreen(CollapseExpendFrm.TAG)
+            "Barcode" -> navigateScreen(BarcodeFrm.TAG)
+            "Bottom Navigation" -> navigateScreen(BottomNavigationFrm.TAG)
+            "Bottom Sheet" -> navigateScreen(BottomSheetFrm.TAG)
+            "Collapse/Expend" -> navigateScreen(CollapseExpendFrm.TAG)
+            "Digital Signature" -> navigateScreen(DigitalSignatureFrm.TAG)
+            "Fab Button" -> navigateScreen(FabButtonFrm.TAG)
+            "Viewpager Tab" -> navigateScreen(ViewPagerTabFrm.TAG)
+            "FingerPrint" -> setUpFingrePrint()
+            "Restrict ScreenShot" ->
+                GlobalUtility.showToast("Add window flag before setContentView\nwindow.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)")
+            "Contacts"->navigateScreen(ContactFrm.TAG)
+            "SMS"->navigateScreen(SmsFrm.TAG)
+            "Phone Image"->navigateScreen(PhoneImageFrm.TAG)
+            "Notification"->navigateScreen(NotificationFrm.TAG)
+            "Zoom Image(Touch/TwoFinger)" ->navigateScreen(ZoomImageFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
+    }
+
+    private fun setUpFingrePrint() {
+        val newExecutor: Executor =
+            Executors.newSingleThreadExecutor()
+        val myBiometricPrompt =
+            BiometricPrompt(
+                activity!!,
+                newExecutor,
+                object : BiometricPrompt.AuthenticationCallback() {
+                    override fun onAuthenticationError(
+                        errorCode: Int,
+                        errString: CharSequence
+                    ) {
+                        super.onAuthenticationError(errorCode, errString)
+                        activity?.runOnUiThread {
+                            if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON)
+                                GlobalUtility.showToast(errString.toString())
+                            else GlobalUtility.showToast("You try too many time.\nAn unrecoverable error occurred")
+                        }
+                    }
+
+                    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                        super.onAuthenticationSucceeded(result)
+                        activity?.runOnUiThread {
+                            GlobalUtility.showToast("Fingerprint recognised successfully")
+                        }
+                    }
+
+                    override fun onAuthenticationFailed() {
+                        super.onAuthenticationFailed()
+                        activity?.runOnUiThread {
+                            GlobalUtility.showToast("Fingerprint not recognised")
+                        }
+                    }
+                })
+
+        val promptInfo = PromptInfo.Builder()
+            .setTitle(getString(R.string.app_name))
+            .setSubtitle("Subtitle goes here")
+            .setDescription(getString(R.string.dummyText))
+            .setNegativeButtonText(getString(R.string.cancel))
+            .build()
+        myBiometricPrompt.authenticate(promptInfo)
     }
 
     /**
@@ -230,7 +294,7 @@ class TaskFrm : BaseFragment() {
             TimerFrm.TAG -> frm = TimerFrm.getInstance(Bundle())
             BlinkScanFrm.TAG -> frm = BlinkScanFrm.getInstance(Bundle())
             NavBothSideDrawerActivity.TAG -> activity?.let { NavBothSideDrawerActivity.newIntent(it) }
-            NavieDrawerActivity.TAG -> activity?.let { NavieDrawerActivity.newIntent(it) }
+            NavDrawerActivity.TAG -> activity?.let { NavDrawerActivity.newIntent(it) }
             CoroutineFrm.TAG -> frm = CoroutineFrm.getInstance(Bundle())
             SplashActivity.TAG -> activity?.let { SplashActivity.newIntent(it) }
             DeviceInfoActivity.TAG -> activity?.let { DeviceInfoActivity.newIntent(it) }
@@ -238,7 +302,14 @@ class TaskFrm : BaseFragment() {
             BottomNavigationFrm.TAG -> frm = BottomNavigationFrm.getInstance(Bundle())
             BottomSheetFrm.TAG -> frm = BottomSheetFrm.getInstance(Bundle())
             CollapseExpendFrm.TAG -> frm = CollapseExpendFrm.getInstance(Bundle())
-
+            DigitalSignatureFrm.TAG -> frm = DigitalSignatureFrm.getInstance(Bundle())
+            FabButtonFrm.TAG -> frm = FabButtonFrm.getInstance(Bundle())
+            ViewPagerTabFrm.TAG -> frm = ViewPagerTabFrm.getInstance(Bundle())
+            ContactFrm.TAG -> frm = ContactFrm.getInstance(Bundle())
+            SmsFrm.TAG -> frm = SmsFrm.getInstance(Bundle())
+            PhoneImageFrm.TAG -> frm = PhoneImageFrm.getInstance(Bundle())
+            ZoomImageFrm.TAG -> frm = ZoomImageFrm.getInstance("",false)
+            NotificationFrm.TAG -> frm = NotificationFrm.getInstance(Bundle())
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }

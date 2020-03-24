@@ -52,6 +52,11 @@
                 style="@style/Button"
                 android:layout_marginTop="@dimen/dp15"
                 android:text="@string/send_image_text_email" />
+            <Button
+                    android:id="@+id/btn_open_pdf"
+                    style="@style/Button"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:text="@string/download_open_pdf" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
     </LinearLayout>

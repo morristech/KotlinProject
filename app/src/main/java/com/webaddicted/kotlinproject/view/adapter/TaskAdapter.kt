@@ -1,5 +1,9 @@
 package com.webaddicted.kotlinproject.view.adapter
 
+import android.graphics.Color
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
@@ -11,8 +15,8 @@ import java.util.*
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: ArrayList<String>?) : BaseAdapter() {
-    public var searchText: String? = null
+class TaskAdapter(private var taskFrm: TaskFrm, private var mTaskList: ArrayList<String>?) : BaseAdapter() {
+    private var searchText: String? = null
     private val searchArray: List<String>
 
     init {
@@ -35,7 +39,8 @@ class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: ArrayList<String>
 //                val completeText = mTaskList?.get(position)
 //                val spannableString = SpannableString(mTaskList?.get(position))
 //                var i = -1
-//                while ((i = completeText.indexOf(searchText!!, i + 1)) != -1) {
+//                while (completeText?.indexOf(searchText!!, i + 1).also { i = it!! } != -1) {
+////                while ((i = completeText.indexOf(searchText!!, i + 1)) != -1) {
 //                    val endText = searchText?.length!! + i
 //                    val foregroundSpan = ForegroundColorSpan(Color.GREEN)
 //                    spannableString.setSpan(

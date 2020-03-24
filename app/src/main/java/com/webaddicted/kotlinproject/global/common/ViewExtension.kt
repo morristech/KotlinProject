@@ -98,7 +98,10 @@ fun <T> getPlaceHolder(
     } else if (imageLoadersArray[1] == imageLoaderType) {
         drawableTypeRequest.error(R.drawable.ic_flag)
         drawableTypeRequest.placeholder(R.drawable.ic_flag)
-    }  else {
+    } else if (imageLoadersArray[2] == imageLoaderType) {
+        drawableTypeRequest.error(R.drawable.girl)
+        drawableTypeRequest.placeholder(R.drawable.girl)
+    } else {
         drawableTypeRequest.error(R.color.app_color)
         drawableTypeRequest.placeholder(R.color.app_color)
     }
@@ -115,7 +118,7 @@ fun <T> getPlaceHolder(
 fun Context.isNetworkAvailable(): Boolean {
     val connMgr =
         getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    val activeNetwork = connMgr?.activeNetworkInfo
+    val activeNetwork = connMgr.activeNetworkInfo
     return activeNetwork != null && activeNetwork.isAvailable && activeNetwork.isConnected
 }
 

@@ -8,8 +8,8 @@ import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmLoginBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.global.common.ValidationHelper
-import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.webaddicted.kotlinproject.view.activity.HomeActivity
+import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.webaddicted.kotlinproject.viewModel.common.CommonViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -62,7 +62,7 @@ class LoginFrm : BaseFragment() {
     private fun validate() {
         if (ValidationHelper.validateEmail(mBinding.edtEmail, mBinding.wrapperEmail) &&
             ValidationHelper.validatePwd(mBinding.edtPassword, mBinding.wrapperPassword)) {
-            var userInfo = commonViewModel.getCouponsBySize(mBinding.edtEmail.text.toString())
+            val userInfo = commonViewModel.getCouponsBySize(mBinding.edtEmail.text.toString())
             when {
                 userInfo==null -> GlobalUtility.showToast(resources.getString(R.string.create_an_account))
                 userInfo.password.equals(mBinding.edtPassword.text.toString()) -> activity?.let { HomeActivity.newIntent(it) }

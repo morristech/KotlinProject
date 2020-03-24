@@ -11,9 +11,12 @@ import androidx.lifecycle.Observer
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmBlinkScanBinding
 import com.webaddicted.kotlinproject.global.blink.CameraActivity
-import com.webaddicted.kotlinproject.global.common.*
 import com.webaddicted.kotlinproject.global.common.CommonDataRespo.Companion.dlMutableImg
 import com.webaddicted.kotlinproject.global.common.CommonDataRespo.Companion.selfieMutableImg
+import com.webaddicted.kotlinproject.global.common.DialogUtil
+import com.webaddicted.kotlinproject.global.common.FileHelper
+import com.webaddicted.kotlinproject.global.common.showImage
+import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import java.io.File
 
@@ -51,7 +54,7 @@ class BlinkScanFrm : BaseFragment() {
         selfieMutableImg.observe(this, object : Observer<Bitmap> {
             override fun onChanged(bitmap: Bitmap?) {
                 if (bitmap != null) {
-                    selfieImg = FileUtils.saveBitmapImage(bitmap)
+                    selfieImg = FileHelper.saveBitmapImage(bitmap)
                     mBinding.imgCapturePic.showImage(selfieImg, getPlaceHolder(0))
                 }
             }
@@ -59,7 +62,7 @@ class BlinkScanFrm : BaseFragment() {
         dlMutableImg.observe(this, object : Observer<Bitmap> {
             override fun onChanged(bitmap: Bitmap?) {
                 if (bitmap != null) {
-                    dlFrontImg = FileUtils.saveBitmapImage(bitmap)
+                    dlFrontImg = FileHelper.saveBitmapImage(bitmap)
                     mBinding.imgScanDl.showImage(dlFrontImg, getPlaceHolder(0))
                 }
             }

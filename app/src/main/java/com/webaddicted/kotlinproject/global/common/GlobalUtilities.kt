@@ -192,6 +192,17 @@ class GlobalUtility {
             return formatter.format(initDate)
         }
 
+        fun getMilisecToDate(
+            milliSeconds: Long,
+            dateFormat: String?
+        ): String? { // Create a DateFormatter object for displaying date in specified format.
+            val formatter = SimpleDateFormat(dateFormat)
+            // Create a calendar object that will convert the date and time value in milliseconds to date.
+            val calendar = Calendar.getInstance()
+            calendar.timeInMillis = milliSeconds
+            return formatter.format(calendar.time)
+        }
+
         /**
          * convertTime formate
          *
@@ -499,7 +510,7 @@ class GlobalUtility {
             val bmp: Bitmap = Bitmap.createBitmap(v.drawingCache)
             v.isDrawingCacheEnabled = false
             try {
-                val sd = FileUtils.appFolder()
+                val sd = FileHelper.appFolder()
                 val dest = File(
                     sd, "SCREEN"
                             + System.currentTimeMillis() + ".png"
@@ -619,7 +630,7 @@ class GlobalUtility {
 
         fun rateUsApp(mActivity: Activity) {
 //            var packageName= "com.quixom.deviceinfo"
-            var packageName= mActivity.packageName
+            var packageName = mActivity.packageName
             val uri = Uri.parse("market://details?id=$packageName")
             val goToMarket = Intent(Intent.ACTION_VIEW, uri)
             goToMarket.addFlags(

@@ -34,21 +34,16 @@ class HomeActivity : BaseActivity() {
         mBinding = binding as ActivityCommonBinding
         Lg.d(TAG, "ok token - "+FirebaseInstanceId.getInstance().token)
         navigateScreen(TaskFrm.TAG)
-
-//        navigateScreen(NavigationDrawerActivity.TAG)
     }
 
     /**
      * navigate on fragment
-     *
-     *
      * @param tag represent navigation activity
      */
     private fun navigateScreen(tag: String) {
         var frm: Fragment? = null
         when (tag) {
             TaskFrm.TAG -> frm = TaskFrm.getInstance(Bundle())
-            NavBothSideDrawerActivity.TAG ->NavBothSideDrawerActivity.newIntent(this)
         }
         if (frm != null) navigateFragment(R.id.container, frm, false)
     }

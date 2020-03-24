@@ -4,15 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.databinding.FrmDynamicLayoutBinding
 import com.webaddicted.kotlinproject.databinding.FrmExpendViewBinding
-import com.webaddicted.kotlinproject.databinding.RowDynamicLayoutBinding
-import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.global.common.gone
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.adapter.ExpendableListAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
-import java.util.ArrayList
+import java.util.*
 
 class ExpendableFrm : BaseFragment() {
     private var mSpinnerAdapter: SpinnerListAdapter? = null

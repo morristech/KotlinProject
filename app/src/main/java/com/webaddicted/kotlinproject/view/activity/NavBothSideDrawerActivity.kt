@@ -3,8 +3,6 @@ package com.webaddicted.kotlinproject.view.activity
 import android.app.Activity
 import android.content.Intent
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.databinding.ViewDataBinding
@@ -12,15 +10,12 @@ import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityNavBothDrawerBinding
 import com.webaddicted.kotlinproject.global.common.AppApplication.Companion.context
 import com.webaddicted.kotlinproject.view.base.BaseActivity
-
+import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
 class NavBothSideDrawerActivity : BaseActivity() {
-
-    private var isLeftDrawer: Boolean = false
-    lateinit var animRotate: Animation
     private lateinit var mBinding: ActivityNavBothDrawerBinding
 
     companion object {
@@ -41,71 +36,54 @@ class NavBothSideDrawerActivity : BaseActivity() {
     }
 
     private fun init() {
-        setNavigationColor(ContextCompat.getColor(context!!,R.color.app_color))
-        mBinding.toolbar.imgProfile?.visibility = View.VISIBLE
-        mBinding.toolbar.imgBack?.visibility = View.VISIBLE
-        mBinding.toolbar.txtToolbarTitle?.text = resources.getString(R.string.navigation_drawer)
-        mBinding.toolbar.imgProfile?.setImageResource(R.drawable.nevigaiton)
-        mBinding.toolbar.imgBack?.setImageResource(R.drawable.nevigaiton)
-        animRotate = AnimationUtils.loadAnimation(this, R.anim.rotate)
+        setNavigationColor(ContextCompat.getColor(context, R.color.app_color))
+        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.navigation_drawer)
+        mBinding.txtSuggest.text =
+            "Swipe left for left navigation \nor\n Swipe right for right navigation"
     }
 
     private fun clickListener() {
-        mBinding.toolbar.imgProfile.setOnClickListener(object : View.OnClickListener{
-            override fun onClick(view: View?) {
-                isLeftDrawer = false
-                openCloseDrawer(true)
-            }
-        })
-        mBinding.toolbar.imgBack.setOnClickListener(object : View.OnClickListener{
-            override fun onClick(view: View?) {
-                isLeftDrawer = true
-                openCloseDrawer(true)
-            }
-        })
-        animRotate.setAnimationListener(object :
-            Animation.AnimationListener {
-            override fun onAnimationRepeat(animation: Animation) {}
-            override fun onAnimationStart(animation: Animation) {}
-            override fun onAnimationEnd(animation: Animation) {
-//                if (isLeftDrawer) mBinding.drawerLeftLayout.openDrawer(GravityCompat.START)
-//                else mBinding.drawerRightLayout.openDrawer(GravityCompat.END)
-            }
-        })
+        mBinding.toolbar.imgNavLeft.setOnClickListener(this)
+        mBinding.toolbar.imgNavRight.setOnClickListener(this)
+        val navLeftView = mBinding.navLeftView.getHeaderView(0)
+        val navRightView = mBinding.navRightView.getHeaderView(0)
+        setNavClick(navLeftView)
+        setNavClick(navRightView)
+    }
+
+    private fun setNavClick(navView: View) {
+        navView.txt_create_lead.setOnClickListener(this)
+        navView.txt_logout.setOnClickListener(this)
+        navView.txt_home.setOnClickListener(this)
+        navView.txt_profile.setOnClickListener(this)
+        navView.txt_faq.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {
-            R.id.img_back -> {
-                isLeftDrawer = true
-                openCloseDrawer(true)
-            }
-            R.id.img_profile -> {
-                isLeftDrawer = false
-                openCloseDrawer(true)
-            }
+            R.id.img_nav_left -> openCloseDrawer(GravityCompat.START)
+            R.id.img_nav_right -> openCloseDrawer(GravityCompat.END)
+            R.id.txt_create_lead,R.id.txt_logout,R.id.txt_home,
+            R.id.txt_profile,R.id.txt_faq->onBackPressed()
         }
     }
 
-    fun openCloseDrawer(openDrawer: Boolean) {
-//        if (openDrawer) {
-//            if (isLeftDrawer) mBinding.drawerLeftLayout.startAnimation(animRotate)
-//            else mBinding.drawerRightLayout.startAnimation(animRotate)
-//        } else {
-//            if (isLeftDrawer) mBinding.drawerLeftLayout.closeDrawer(GravityCompat.START)
-//            else mBinding.drawerRightLayout.closeDrawer(GravityCompat.END)
-//        }
+    private fun openCloseDrawer(openDrawer: Int) {
+        if (!mBinding.drawerLayout.isDrawerOpen(openDrawer))
+            mBinding.drawerLayout.openDrawer(openDrawer)
+        else mBinding.drawerLayout.closeDrawer(openDrawer)
     }
 
     override fun onBackPressed() {
-        if (mBinding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mBinding.drawerLayout.closeDrawer(GravityCompat.START);
-        } else if (mBinding.drawerLayout.isDrawerOpen(GravityCompat.END)) {  /*Closes the Appropriate Drawer*/
-            mBinding.drawerLayout.closeDrawer(GravityCompat.END);
-        } else {
-            super.onBackPressed();
-            System.exit(0);
+        when {
+            mBinding.drawerLayout.isDrawerOpen(GravityCompat.START) ->
+                mBinding.drawerLayout.closeDrawer(GravityCompat.START)
+            mBinding.drawerLayout.isDrawerOpen(GravityCompat.END) ->
+                mBinding.drawerLayout.closeDrawer(GravityCompat.END)
+            else -> {
+                super.onBackPressed()
+            }
         }
     }
 

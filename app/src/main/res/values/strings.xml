@@ -35,8 +35,9 @@
     <string name="got_it">Got it</string>
     <string name="skip">Skip</string>
     <string-array name="image_loader">
-        <item>app_color</item><!--app color 0 -->
+        <item>app_logo</item><!--app logo 0 -->
         <item>flag</item><!--flag  1 -->
+        <item>girl</item><!--flag  2 -->
         <item>other image</item><!--other image-->
     </string-array>
     <string name="slide_1_title">Hello Food!</string>
@@ -330,4 +331,25 @@
     <string name="bottom_navigation">Bottom Navigation</string>
     <string name="bottom_sheet">Bottom Sheet</string>
     <string name="collapse">Collapse</string>
+    <string name="digital_signature">Digital Signature</string>
+    <string name="clear">Clear</string>
+    <string name="fab_btn">Fab Button</string>
+    <string name="view_pager">View Pager</string>
+    <string name="travel">Travel</string>
+    <string name="food">Food</string>
+    <string name="movie">Movie</string>
+    <string name="edit_text">EditText</string>
+    <string name="button">Button</string>
+    <string name="rating">Rating</string>
+    <string name="image">Image</string>
+    <string name="radio_btn">Radio Button</string>
+    <string name="other_widget">Other Widget</string>
+    <string name="popup_menu">Popup Menu</string>
+    <string name="download_open_pdf">Download and open PDF</string>
+    <string name="create_pdf">Create PDF</string>
+    <string name="contact_title">Contacts</string>
+    <string name="sms_title">SMS</string>
+    <string name="zoom_title">Zoom</string>
+    <string name="phone_image_title">Phone Images</string>
+    <string name="notification_title">Notification</string>
 </resources>

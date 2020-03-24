@@ -34,8 +34,6 @@ class LoginDialog : BaseDialog() {
      * initialize view
      */
     private fun init() {
-        mBinding.txtTitle.text = "this is demo"
-        mBinding.txtMessage.text = resources.getString(R.string.marquee_txt)
     }
 
     /**

@@ -53,7 +53,7 @@ class MediaPickerUtils {
             locationList,
             object : PermissionHelper.Companion.PermissionListener {
                 override fun onPermissionGranted(mCustomPermission: List<String>) {
-                    FileUtils.createApplicationFolder()
+                    FileHelper.createApplicationFolder()
                     selectMediaType(activity, fileType)
                 }
 
@@ -68,8 +68,8 @@ class MediaPickerUtils {
         when (fileType) {
             //            capture image for native camera
             MediaPickerType.CAPTURE_IMAGE -> {
-                captureImageFile = FileUtils.createNewCaptureFile()
-                 intent = FileUtils.getCaptureImageIntent(activity, captureImageFile)
+                captureImageFile = FileHelper.createNewCaptureFile()
+                 intent = FileHelper.getCaptureImageIntent(activity, captureImageFile)
                 activity.startActivityForResult(intent, REQUEST_CAMERA_VIDEO)
             }
             //            pick image from gallery
@@ -97,7 +97,7 @@ class MediaPickerUtils {
                 val bitmap: Bitmap?
                 if (data?.extras != null) {
                     bitmap = data.extras!!.get("data") as Bitmap?
-                    val originalFile = FileUtils.saveImage(bitmap, mfilePath)
+                    val originalFile = FileHelper.saveImage(bitmap, mfilePath)
                     file.add(originalFile)
                 } else if (data?.data != null) {
                     // in case of record video
@@ -119,8 +119,8 @@ class MediaPickerUtils {
                             CompressImage.compressImage(activity, files[i].toString())
                         Lg.d(
                             TAG,
-                            "old Image - ${FileUtils.formatSize(files[i].length())} \n " +
-                                    "compress image - ${FileUtils.formatSize(compressedFiles.length())}"
+                            "old Image - ${FileHelper.formatSize(files[i].length())} \n " +
+                                    "compress image - ${FileHelper.formatSize(compressedFiles.length())}"
                         )
                         files[i] = compressedFiles
                     }

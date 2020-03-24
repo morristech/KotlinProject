@@ -5,7 +5,6 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.databinding.FrmEcomLoginBinding
 import com.webaddicted.kotlinproject.databinding.FrmEcomOtpBinding
 import com.webaddicted.kotlinproject.global.common.ValidationHelper
 import com.webaddicted.kotlinproject.global.common.showToast

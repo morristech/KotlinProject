@@ -19,13 +19,12 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/dp55">
 
-                <ImageView
+                <com.webaddicted.kotlinproject.global.customview.CircleImageView
                         android:id="@+id/img_user"
-                        android:layout_width="@dimen/dp120"
-                        android:layout_height="@dimen/dp120"
+                        android:layout_width="@dimen/dp150"
+                        android:layout_height="@dimen/dp150"
                         android:layout_gravity="center"
                         android:padding="@dimen/dp5"
-                        android:scaleType="fitXY"
                         android:src="@drawable/good_morning_img" />
             </FrameLayout>
 

@@ -24,10 +24,12 @@
                     style="@style/Button"
                     android:layout_marginTop="@dimen/dp10"
                     android:text="@string/collapse" />
+
             <com.webaddicted.kotlinproject.global.customview.expendlayout.ExpandableLayout
                     android:id="@+id/expandable_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp10"
                     android:background="#f00"
                     app:el_duration="1000"
                     app:el_expanded="true"
@@ -35,9 +37,9 @@
 
                 <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp280"
+                        android:layout_height="match_parent"
                         android:scaleType="fitXY"
-                        android:src="@drawable/hunter" />
+                        android:src="@drawable/good_night_img" />
 
             </com.webaddicted.kotlinproject.global.customview.expendlayout.ExpandableLayout>
         </LinearLayout>

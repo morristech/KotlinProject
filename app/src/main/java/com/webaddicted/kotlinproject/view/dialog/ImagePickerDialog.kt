@@ -81,7 +81,7 @@ class ImagePickerDialog : BaseDialog() {
     private fun mediaImagePicker(@MediaPickerType.MediaType captureImage: Int) {
         mediaPicker.selectMediaOption(activity!!,
             captureImage,
-            FileUtils.subFolder(),
+            FileHelper.subFolder(),
             object : MediaPickerUtils.ImagePickerListener {
                 override fun imagePath(filePath: List<File>) {
                     dismiss()

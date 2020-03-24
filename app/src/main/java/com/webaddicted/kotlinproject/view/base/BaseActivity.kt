@@ -37,6 +37,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         supportActionBar?.hide()
 //        setNavigationColor(resources.getColor(R.color.app_color))
        fullScreen()
+        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         GlobalUtility.hideKeyboard(this)
         val layoutResId = getLayout()
         val binding: ViewDataBinding?
@@ -49,8 +50,6 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
             }
         }
         getNetworkStateReceiver()
-        if(!isNetworkAvailable())
-            GlobalUtility.initSnackBar(this@BaseActivity,false)
     }
 
     protected fun fullScreen() {
@@ -78,7 +77,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
      * @return
      */
     protected fun getPlaceHolder(placeholderType: Int): String {
-        val placeholderArray = getResources().getStringArray(R.array.image_loader)
+        val placeholderArray = resources.getStringArray(R.array.image_loader)
         return placeholderArray[placeholderType]
     }
 
@@ -88,6 +87,12 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
     }
 
     override fun onClick(v: View) {}
+
+    override fun onResume() {
+        super.onResume()
+        if(!isNetworkAvailable())
+            GlobalUtility.initSnackBar(this@BaseActivity,false)
+    }
     /**
      * broadcast receiver for check internet connectivity
      *
@@ -107,26 +112,17 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         })
     }
 
+
     fun checkStoragePermission() {
         val multiplePermission = ArrayList<String>()
         multiplePermission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         multiplePermission.add(Manifest.permission.READ_EXTERNAL_STORAGE)
         multiplePermission.add(Manifest.permission.CAMERA)
         if (PermissionHelper.checkMultiplePermission(this, multiplePermission)) {
-            FileUtils.createApplicationFolder()
+            FileHelper.createApplicationFolder()
             onPermissionGranted(multiplePermission)
         } else
             PermissionHelper.requestMultiplePermission(this, multiplePermission, this)
-    }
-
-
-    fun checkLocationPermission() {
-        val multiplePermission = ArrayList<String>()
-        multiplePermission.add(Manifest.permission.ACCESS_FINE_LOCATION)
-        multiplePermission.add(Manifest.permission.ACCESS_COARSE_LOCATION)
-        if (PermissionHelper.checkMultiplePermission(this, multiplePermission)) {
-
-        } else PermissionHelper.requestMultiplePermission(this, multiplePermission, this)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -135,7 +131,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
 
 
     override fun onPermissionGranted(mCustomPermission: List<String>) {
-        FileUtils.createApplicationFolder()
+        FileHelper.createApplicationFolder()
     }
 
     override fun onPermissionDenied(mCustomPermission: List<String>) {

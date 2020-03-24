@@ -4,10 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmEcomProductBinding
-import com.webaddicted.kotlinproject.view.adapter.CategoryPagerAdapterProductGrid
+import com.webaddicted.kotlinproject.global.misc.ViewPagerAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 
 class EcommProductListFrm : BaseFragment() {
@@ -28,35 +29,27 @@ class EcommProductListFrm : BaseFragment() {
 
     override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmEcomProductBinding
-        init()
+        setupViewPager(mBinding.pager)
         clickListener()
-    }
-
-    private fun init() {
-        mBinding.tabLayout.setTabMode(TabLayout.MODE_FIXED)
-        mBinding.tabLayout.addTab(mBinding.tabLayout.newTab().setText("Popular"))
-        mBinding.tabLayout.addTab(mBinding.tabLayout.newTab().setText("Low Price"))
-        mBinding.tabLayout.addTab(mBinding.tabLayout.newTab().setText("Hight Price"))
-        mBinding.tabLayout.addTab(mBinding.tabLayout.newTab().setText("Assured"))
-        mBinding.tabLayout.setTabGravity(TabLayout.GRAVITY_FILL)
-        val adapter = CategoryPagerAdapterProductGrid(activity?.supportFragmentManager!!, 4)
-        mBinding.pager.setAdapter(adapter)
-        mBinding.pager.setOffscreenPageLimit(4)
-        mBinding.pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(mBinding.tabLayout))
-        mBinding.tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                mBinding.pager.setCurrentItem(tab.getPosition())
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {}
-
-            override fun onTabReselected(tab: TabLayout.Tab) {}
-        })
-
     }
 
     private fun clickListener() {
         mBinding.imgBack.setOnClickListener(this)
+        mBinding.tabLayout.setupWithViewPager(mBinding.pager)
+        mBinding.pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                mBinding.pager.setCurrentItem(position, false)
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {}
+        })
     }
 
     override fun onClick(v: View) {
@@ -65,6 +58,16 @@ class EcommProductListFrm : BaseFragment() {
             R.id.img_back -> activity?.onBackPressed()
         }
     }
+
+    private fun setupViewPager(viewPager: ViewPager) {
+        val adapter = ViewPagerAdapter(fragmentManager!!)
+        adapter.addFragment(EcommProductCatTabFrm(), "Popular")
+        adapter.addFragment(EcommProductCatTabFrm(), "Low Price")
+        adapter.addFragment(EcommProductCatTabFrm(), "Hight Price")
+        adapter.addFragment(EcommProductCatTabFrm(), "Assured")
+        viewPager.adapter = adapter
+    }
+
 
 //    override fun onResume() {
 //        super.onResume()

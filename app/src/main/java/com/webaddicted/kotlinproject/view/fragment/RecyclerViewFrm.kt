@@ -2,6 +2,7 @@ package com.webaddicted.kotlinproject.view.fragment
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils.loadLayoutAnimation
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,8 +14,7 @@ import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.adapter.RecyclerListAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.webaddicted.kotlinproject.view.base.ScrollListener
-import java.util.ArrayList
-import android.view.animation.AnimationUtils.loadLayoutAnimation
+import java.util.*
 
 
 class RecyclerViewFrm : BaseFragment() {

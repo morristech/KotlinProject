@@ -1,14 +1,9 @@
 package com.webaddicted.kotlinproject.view.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmCoroutineBinding
 import com.webaddicted.kotlinproject.global.common.gone

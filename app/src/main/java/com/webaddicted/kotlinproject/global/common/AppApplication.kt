@@ -27,7 +27,7 @@ class AppApplication : Application() {
         super.onCreate()
         context = this
         Stetho.initializeWithDefaults(this)
-        FileUtils.createApplicationFolder()
+        FileHelper.createApplicationFolder()
         setupDefaultFont()
         PreferenceUtils.Companion.getInstance(this)
         startKoin {

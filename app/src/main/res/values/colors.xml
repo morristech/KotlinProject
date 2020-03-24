@@ -55,4 +55,9 @@
     <color name="ext_free_memory">#ffecb3</color>
     <color name="ext_used_memory">#ffb300</color>
     <color name="orange">#FF8200</color>
+    <color name="light_grey">#EEEEEE</color>
+    <color name="sent">#ffffe6</color>
+    <color name="inbox">#e6ffff</color>
+
+    <color name="white_transparent">#99FFFFFF</color>
 </resources>

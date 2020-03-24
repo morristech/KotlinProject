@@ -19,7 +19,7 @@ import java.util.*
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class FileUtils {
+class FileHelper {
     companion object {
         private val APP_FOLDER = "kotlinProject"
         private val SUB_PROFILE = "/profile"
@@ -31,9 +31,15 @@ class FileUtils {
          * This method is used to create application specific folder on filesystem
          */
         fun createApplicationFolder() {
-            var f = File(Environment.getExternalStorageDirectory().toString(), File.separator + APP_FOLDER)
+            var f = File(
+                Environment.getExternalStorageDirectory().toString(),
+                File.separator + APP_FOLDER
+            )
             f.mkdirs()
-            f = File(Environment.getExternalStorageDirectory().toString(), File.separator + APP_FOLDER + SUB_PROFILE)
+            f = File(
+                Environment.getExternalStorageDirectory().toString(),
+                File.separator + APP_FOLDER + SUB_PROFILE
+            )
             f.mkdirs()
         }
 
@@ -43,7 +49,10 @@ class FileUtils {
          * @return File object
          */
         fun appFolder(): File {
-            return File(Environment.getExternalStorageDirectory().toString(), File.separator + APP_FOLDER)
+            return File(
+                Environment.getExternalStorageDirectory().toString(),
+                File.separator + APP_FOLDER
+            )
         }
 
         /**
@@ -52,7 +61,10 @@ class FileUtils {
          * @return File object
          */
         fun subFolder(): File {
-            return File(Environment.getExternalStorageDirectory().toString(), File.separator + APP_FOLDER + SUB_PROFILE)
+            return File(
+                Environment.getExternalStorageDirectory().toString(),
+                File.separator + APP_FOLDER + SUB_PROFILE
+            )
         }
 
         /**
@@ -75,6 +87,26 @@ class FileUtils {
 
             return dest
         }
+
+        fun saveBitmapImageCache(activity: Activity, bitmap: Bitmap): File {
+            val cacheDirectory: File = activity.baseContext?.cacheDir!!
+            val tmp =
+                File(cacheDirectory.path + "/_androhub" + System.currentTimeMillis() + ".png")
+            try {
+                val fileOutputStream = FileOutputStream(tmp)
+                bitmap.compress(
+                    Bitmap.CompressFormat.PNG,
+                    100,
+                    fileOutputStream
+                )
+                fileOutputStream.flush()
+                fileOutputStream.close()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            return tmp
+        }
+
         /**
          * Method to save bitmap
          *
@@ -114,6 +146,10 @@ class FileUtils {
         fun getFileName(file: File): String {
             return file.path.substring(file.path.lastIndexOf("/") + 1)
         }
+
+        fun getFileName(url: String): String {
+            return url.substring(url.lastIndexOf('/') + 1, url.length)
+        }
         //    {START CAPTURE IMAGE PROCESS}
         /**
          * Method to create new file of captured image
@@ -124,11 +160,12 @@ class FileUtils {
         fun createNewCaptureFile(): File {
             val mFile = File(
                 Environment.getExternalStorageDirectory().toString(),
-                File.separator + APP_FOLDER + SUB_PROFILE + File.separator + "IMG_"+System.currentTimeMillis() + ".jpg"
+                File.separator + APP_FOLDER + SUB_PROFILE + File.separator + "IMG_" + System.currentTimeMillis() + ".jpg"
             )
             mFile.createNewFile()
             return mFile
         }
+
         /**
          *
          * Method to get Intent
@@ -143,7 +180,7 @@ class FileUtils {
 
             val photoURI = FileProvider.getUriForFile(
                 activity,
-                activity.packageName+ ".provider",
+                activity.packageName + ".provider",
                 photoFile!!
             )
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
@@ -169,6 +206,7 @@ class FileUtils {
 
             return imageFile
         }
+
         /**
          * Method to update phone gallery after capturing file
          *
@@ -187,6 +225,7 @@ class FileUtils {
             val bmOptions = BitmapFactory.Options()
             return BitmapFactory.decodeFile(image.absolutePath, bmOptions)
         }
+
         fun formatSize(size: Long): String {
             if (size <= 0)
                 return "0"
@@ -199,6 +238,7 @@ class FileUtils {
                 )
             ) + " " + units[digitGroups]
         }
+
         fun calculatePercentage(value: Double, total: Double): Int {
             val usage: Double = (value * 100.0f / total)
             return usage.toInt()

@@ -12,7 +12,7 @@ import com.webaddicted.kotlinproject.view.adapter.EcomProductCatAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 
 class EcommProductCatTabFrm : BaseFragment() {
-    private lateinit var mListAdapter: EcomProductCatAdapter
+    //    private lateinit var mListAdapter: EcomProductCatAdapter
     private lateinit var mBinding: FrmEcomProductCatTabBinding
 
     companion object {
@@ -36,11 +36,12 @@ class EcommProductCatTabFrm : BaseFragment() {
     private fun init() {
         setListAdapter()
     }
+
     private fun setListAdapter() {
-        mListAdapter = EcomProductCatAdapter()
-        mBinding.rvProductCat.layoutManager = GridLayoutManager(activity,2)
-        val animation = AnimationUtils.loadLayoutAnimation(context,  R.anim.rv_anim_down_to_up)
-        mBinding.rvProductCat.setLayoutAnimation(animation)
+        val mListAdapter = EcomProductCatAdapter()
+        mBinding.rvProductCat.layoutManager = GridLayoutManager(activity, 2)
+        val animation = AnimationUtils.loadLayoutAnimation(context, R.anim.rv_anim_down_to_up)
+        mBinding.rvProductCat.layoutAnimation = animation
         mBinding.rvProductCat.adapter = mListAdapter
     }
 

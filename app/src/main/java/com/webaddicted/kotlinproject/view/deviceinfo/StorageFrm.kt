@@ -11,8 +11,8 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmDevStorageBinding
-import com.webaddicted.kotlinproject.global.common.FileUtils.Companion.calculatePercentage
-import com.webaddicted.kotlinproject.global.common.FileUtils.Companion.formatSize
+import com.webaddicted.kotlinproject.global.common.FileHelper.Companion.calculatePercentage
+import com.webaddicted.kotlinproject.global.common.FileHelper.Companion.formatSize
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import java.io.File
 import java.text.DecimalFormat

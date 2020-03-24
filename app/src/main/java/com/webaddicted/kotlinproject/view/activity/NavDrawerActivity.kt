@@ -4,8 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.databinding.ViewDataBinding
@@ -13,7 +11,7 @@ import androidx.fragment.app.Fragment
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityNavDrawerBinding
 import com.webaddicted.kotlinproject.global.common.AppApplication.Companion.context
-import com.webaddicted.kotlinproject.global.common.visible
+import com.webaddicted.kotlinproject.global.common.gone
 import com.webaddicted.kotlinproject.view.base.BaseActivity
 import com.webaddicted.kotlinproject.view.fragment.NewsFrm
 import kotlinx.android.synthetic.main.nav_header_main.view.*
@@ -22,14 +20,12 @@ import kotlinx.android.synthetic.main.nav_header_main.view.*
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class NavieDrawerActivity : BaseActivity() {
-
+class NavDrawerActivity : BaseActivity() {
     private lateinit var mBinding: ActivityNavDrawerBinding
-
     companion object {
-        val TAG: String = NavieDrawerActivity::class.java.simpleName
+        val TAG: String = NavDrawerActivity::class.java.simpleName
         fun newIntent(activity: Activity) {
-            activity.startActivity(Intent(activity, NavieDrawerActivity::class.java))
+            activity.startActivity(Intent(activity, NavDrawerActivity::class.java))
         }
     }
 
@@ -44,18 +40,16 @@ class NavieDrawerActivity : BaseActivity() {
     }
 
     private fun init() {
-        setNavigationColor(ContextCompat.getColor(context!!,R.color.app_color))
-        mBinding.toolbar.imgBack?.visible()
-        mBinding.toolbar.txtToolbarTitle?.text = resources.getString(R.string.navigation_drawer)
-        mBinding.toolbar.imgBack?.setImageResource(R.drawable.nevigaiton)
+        setNavigationColor(ContextCompat.getColor(context,R.color.app_color))
+        mBinding.toolbar.imgNavRight.gone()
+        mBinding.txtSuggest.text = "Swipe left for left navigation"
+        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.navigation_drawer)
         navigationDrawer()
-        navigateScreen(NewsFrm.TAG)
     }
 
     private fun navigationDrawer() {
-        var navView = mBinding.navView.getHeaderView(0);
+        val navView = mBinding.navView.getHeaderView(0)
         navView.txt_create_lead.setOnClickListener(this)
-//        navView.txt_my_lead.setOnClickListener(this)
         navView.txt_logout.setOnClickListener(this)
         navView.txt_home.setOnClickListener(this)
         navView.txt_profile.setOnClickListener(this)
@@ -63,21 +57,18 @@ class NavieDrawerActivity : BaseActivity() {
     }
 
     private fun clickListener() {
-        mBinding.toolbar.imgBack.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                openCloseDrawer(true)
-            }
-        })
-
+        mBinding.toolbar.imgNavLeft.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {
-            R.id.img_back -> openCloseDrawer(true)
+            R.id.img_nav_left -> openCloseDrawer(true)
+            R.id.txt_create_lead,R.id.txt_logout,R.id.txt_home,
+            R.id.txt_profile,R.id.txt_faq->onBackPressed()
         }
     }
-    fun openCloseDrawer(openDrawer: Boolean) {
+    private fun openCloseDrawer(openDrawer: Boolean) {
         if (openDrawer) mBinding.drawerLayout.openDrawer(GravityCompat.START)
         else mBinding.drawerLayout.closeDrawer(GravityCompat.START)
     }
@@ -90,8 +81,6 @@ class NavieDrawerActivity : BaseActivity() {
     }
     /**
      * navigate on fragment
-     *
-     *
      * @param tag represent navigation activity
      */
     private fun navigateScreen(tag: String) {
@@ -100,7 +89,7 @@ class NavieDrawerActivity : BaseActivity() {
             NewsFrm.TAG -> frm = NewsFrm.getInstance(Bundle())
         }
         if (frm != null) {
-          navigateFragment(R.id.container, frm!!, false)
+          navigateFragment(R.id.container, frm, false)
         }
     }
 

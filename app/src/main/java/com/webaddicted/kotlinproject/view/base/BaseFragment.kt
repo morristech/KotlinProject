@@ -139,7 +139,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
         multiplePermission.add(Manifest.permission.READ_EXTERNAL_STORAGE)
         multiplePermission.add(Manifest.permission.CAMERA)
         if (PermissionHelper.checkMultiplePermission(activity!!, multiplePermission)) {
-            FileUtils.createApplicationFolder()
+            FileHelper.createApplicationFolder()
             onPermissionGranted(multiplePermission)
         } else
             PermissionHelper.requestMultiplePermission(activity!!, multiplePermission, this)
@@ -158,7 +158,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
     }
 
     override fun onPermissionGranted(mCustomPermission: List<String>) {
-        FileUtils.createApplicationFolder()
+        FileHelper.createApplicationFolder()
     }
 
 
@@ -168,13 +168,9 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
     override fun imagePath(filePath: List<File>) {
     }
 
-    fun checkLocationPermission() {
-        (activity as BaseActivity).checkLocationPermission()
-    }
-
 
     fun getPlaceHolder(imageLoaderPos: Int): String {
-        val imageLoader = getResources().getStringArray(R.array.image_loader)
+        val imageLoader = resources.getStringArray(R.array.image_loader)
         return imageLoader[imageLoaderPos]
     }
     protected fun addBlankSpace(bottomSpace: LinearLayout) {

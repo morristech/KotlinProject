@@ -25,7 +25,7 @@
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_marginLeft="11.7dp"
-                    android:src="@drawable/nevigaiton" />
+                    android:src="@drawable/navigation" />
 
             <TextView
                     style="@style/txt_white_normal"

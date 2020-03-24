@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
-    <!--<data>-->
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--&lt;!&ndash;<variable&ndash;&gt;-->
-    <!--&lt;!&ndash;name="loginActivityCallback"&ndash;&gt;-->
-    <!--&lt;!&ndash;type="com.ryadav3.mvvmsample.view.callback.LoginActivityCallback" />&ndash;&gt;-->
-    <!--</data>-->
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,19 +24,33 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
+                <TextView
+                        android:id="@+id/txt_marquee"
+                        style="@style/txt_black_normal"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:paddingLeft="10dip"
+                        android:paddingRight="10dip"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:text="@string/dummyText"
+                        android:textColor="@color/black" />
+
+                <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="@dimen/dp5"
-                        android:layout_marginTop="@dimen/dp20"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="4dp">
+                        android:layout_marginBottom="@dimen/dp20"
+                        android:orientation="vertical">
 
                     <LinearLayout
+                            android:id="@+id/linear_edittext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/dp20"
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:layout_marginRight="@dimen/dp5"
                             android:orientation="vertical">
 
                         <RelativeLayout
@@ -58,7 +66,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerInParent="true"
-                                    android:text="@string/app_name" />
+                                    android:text="@string/edit_text" />
 
                             <ImageView
                                     android:id="@+id/img_option_menu"
@@ -67,6 +75,159 @@
                                     android:layout_alignParentRight="true"
                                     android:src="@drawable/ic_option" />
                         </RelativeLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/first_name"
+                                app:helperText="@string/enter_first_name"
+                                app:helperTextEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:hint="@string/password"
+                                app:endIconMode="password_toggle"
+                                app:errorEnabled="true"
+                                app:helperText="@string/password"
+                                app:helperTextEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPassword" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:hint="@string/enter_first_name"
+                                app:errorEnabled="true"
+                                app:helperText="@string/enter_first_name"
+                                app:helperTextEnabled="true">
+
+                            <AutoCompleteTextView
+                                    android:id="@+id/filled_exposed_dropdown_editable"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:longClickable="false" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:enabled="false"
+                                android:hint="@string/enter_last_name"
+
+                                app:helperText="@string/enter_last_name"
+                                app:helperTextEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/dp50"
+                                    android:background="@drawable/rectangle_unfill"
+                                    android:paddingLeft="@dimen/dp10" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp45"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:layout_marginBottom="@dimen/dp10"
+                                android:background="@drawable/edt_round_corner"
+                                android:hint="@string/enter_first_name"
+                                android:paddingLeft="@dimen/dp10" />
+
+                        <AutoCompleteTextView
+                                android:id="@+id/autoCompleteTextVie"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp10"
+                                android:drawablePadding="@dimen/dp4"
+                                android:ems="10"
+                                android:hint="Select country"
+                                android:textAppearance="@style/TextAppearance_open_sans_semibold" />
+
+                        <MultiAutoCompleteTextView
+                                android:id="@+id/multiAutoCompleteTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp10"
+                                android:ems="10"
+                                android:hint="Select multiple country"
+                                android:textAppearance="@style/TextAppearance_open_sans_semibold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:id="@+id/linear_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <TextView
+                                style="@style/txt_white_normal"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp50"
+                                android:layout_marginTop="@dimen/dp10"
+                                android:layout_marginBottom="@dimen/dp10"
+                                android:background="@color/app_color"
+                                android:gravity="center"
+                                android:text="@string/button" />
+
+                        <Button
+                                style="@style/Button"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:background="@drawable/rectangle_fill"
+                                android:text="@string/app_name" />
+
+                        <Button
+                                style="@style/Button"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:text="@string/app_name" />
+
+                        <Button
+                                style="@style/Button"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:background="@drawable/edt_round_corner"
+                                android:text="@string/app_name"
+                                android:textColor="@color/black" />
+
+
+                        <Button
+                                style="@style/Button"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:layout_marginBottom="@dimen/dp8"
+                                android:background="@drawable/rectangle_unfill"
+                                android:text="@string/app_name"
+                                android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:id="@+id/linear_rating_bar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <TextView
+                                style="@style/txt_white_normal"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp50"
+                                android:layout_marginTop="@dimen/dp10"
+                                android:layout_marginBottom="@dimen/dp10"
+                                android:background="@color/app_color"
+                                android:gravity="center"
+                                android:text="@string/rating" />
 
                         <TextView
                                 style="@style/txt_black_normal"
@@ -153,114 +314,85 @@
                                 android:paddingTop="@dimen/dp5"
                                 android:paddingBottom="@dimen/dp5"
                                 android:rating="3" />
-
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <com.airbnb.lottie.LottieAnimationView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp150"
-                        android:layout_gravity="center_horizontal"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/sleepy_loading" />
-
-                <TextView
-                        android:id="@+id/txt_spannable"
-                        style="@style/TextView_Regular"
-                        android:layout_marginLeft="@dimen/dp15"
-                        android:layout_marginTop="@dimen/dp10"
-                        android:layout_marginRight="@dimen/dp15"
-                        android:layout_marginBottom="@dimen/dp50"
-                        android:gravity="center" />
-
-                <TextView
-                        android:id="@+id/txt_marquee"
-                        style="@style/txt_black_normal"
-                        android:layout_marginTop="@dimen/dp15"
-                        android:ellipsize="marquee"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:paddingLeft="10dip"
-                        android:paddingRight="10dip"
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
-                        android:text="@string/dummyText"
-                        android:textColor="@color/black" />
-
-
-                <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="@dimen/dp5"
-                        android:layout_marginTop="@dimen/dp20"
-                        app:cardCornerRadius="@dimen/dp4">
 
                     <LinearLayout
+                            android:id="@+id/linear_image"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/dp10"
-                            android:layout_marginRight="@dimen/dp10"
-                            android:layout_marginBottom="@dimen/dp20"
+                            android:gravity="center"
                             android:orientation="vertical">
 
-                        <!--<pl.droidsonroids.gif.GifImageView-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:src="@raw/loader" />-->
-
-                        <AutoCompleteTextView
-                                android:id="@+id/autoCompleteTextVie"
+                        <TextView
+                                style="@style/txt_white_normal"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="@dimen/dp50"
                                 android:layout_marginTop="@dimen/dp10"
-                                android:drawablePadding="@dimen/dp4"
-                                android:ems="10"
-                                android:hint="Select country"
-                                android:textAppearance="@style/TextAppearance_open_sans_semibold">
+                                android:layout_marginBottom="@dimen/dp10"
+                                android:background="@color/app_color"
+                                android:gravity="center"
+                                android:text="@string/image" />
 
-                        </AutoCompleteTextView>
+                        <ImageView
+                                android:layout_width="@dimen/dp120"
+                                android:layout_height="@dimen/dp120"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/man" />
 
+                        <com.webaddicted.kotlinproject.global.customview.CircleImageView
+                                android:layout_width="@dimen/dp120"
+                                android:layout_height="@dimen/dp120"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/man" />
 
-                        <MultiAutoCompleteTextView
-                                android:id="@+id/multiAutoCompleteTextView"
+                        <com.webaddicted.kotlinproject.global.customview.CircleImageView
+                                android:layout_width="@dimen/dp120"
+                                android:layout_height="@dimen/dp120"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/man"
+                                app:civ_border_color="@color/app_color"
+                                app:civ_border_width="5dp" />
+
+                        <com.airbnb.lottie.LottieAnimationView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp10"
-                                android:ems="10"
-                                android:hint="Select multiple country"
-                                android:textAppearance="@style/TextAppearance_open_sans_semibold" />
+                                android:layout_height="@dimen/dp150"
+                                android:layout_gravity="center_horizontal"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/sleepy_loading" />
+                        <com.webaddicted.kotlinproject.global.customview.ZoomImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp350"
+                            android:layout_marginTop="15dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/good_night_img" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
-
-                <LinearLayout
-                        android:id="@+id/wave_form"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp180" />
-
-                <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="@dimen/dp5"
-                        android:layout_marginTop="@dimen/dp20"
-                        app:cardCornerRadius="4dp">
-
                     <LinearLayout
+                            android:id="@+id/linear_check"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/dp10"
+
+                            android:gravity="center"
                             android:orientation="vertical">
+
+                        <TextView
+                                style="@style/txt_white_normal"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp50"
+                                android:layout_marginTop="@dimen/dp10"
+                                android:layout_marginBottom="@dimen/dp10"
+                                android:background="@color/app_color"
+                                android:gravity="center"
+                                android:text="@string/radio_btn" />
 
                         <RadioGroup
                                 android:id="@+id/rg"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
                                 android:layout_marginTop="@dimen/dp20"
                                 android:orientation="horizontal">
 
@@ -284,45 +416,103 @@
                                 android:id="@+id/switch_btn"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
                                 android:layout_marginTop="@dimen/dp18"
                                 android:layout_marginBottom="@dimen/dp5"
                                 android:switchTextAppearance="@style/switch_text_appearance"
                                 android:textOff="OFF"
                                 android:textOn="ON" />
 
-                        <LinearLayout
-                                android:layout_width="match_parent"
+                        <CheckBox
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp18"
+                                android:padding="@dimen/dp8"
+                                android:text="Click Me"
+                                android:textColor="@color/app_color"
+                                android:textSize="@dimen/sp18" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:id="@+id/linear_progress_bar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp10"
+                            android:gravity="center"
+
+                            android:orientation="vertical">
+
+                        <TextView
+                                style="@style/txt_white_normal"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp50"
                                 android:layout_marginTop="@dimen/dp10"
                                 android:layout_marginBottom="@dimen/dp10"
-                                android:orientation="vertical">
+                                android:background="@color/app_color"
+                                android:gravity="center"
+                                android:text="@string/start_progress" />
 
-                            <TextView
-                                    android:id="@+id/txt_date_value"
-                                    style="@style/TextView_Regular" />
+                        <ProgressBar
+                                android:id="@+id/pb_small"
+                                style="?android:attr/progressBarStyleSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:indeterminate="true"
+                                android:outlineSpotShadowColor="@color/gray" />
 
-                            <Button
-                                    android:id="@+id/btn_data_picker"
-                                    style="@style/Button"
-                                    android:text="@string/select_date" />
+                        <ProgressBar
+                                android:id="@+id/pb_medium"
+                                style="?android:attr/progressBarStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:indeterminate="true" />
 
-                            <TextView
-                                    android:id="@+id/txt_time_value"
-                                    style="@style/TextView_Regular"
-                                    android:layout_marginTop="@dimen/dp5" />
+                        <ProgressBar
+                                android:id="@+id/pb_large"
+                                style="?android:attr/progressBarStyleLarge"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:indeterminate="true"
+                                android:outlineSpotShadowColor="@color/gray" />
 
-                            <Button
-                                    android:id="@+id/btn_time_picker"
-                                    style="@style/Button"
-                                    android:text="@string/select_time" />
-                        </LinearLayout>
+                        <ProgressBar
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp25"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:layout_marginRight="@dimen/dp25"
+                                android:indeterminate="true"
+                                android:progress="50" />
+
+                        <ProgressBar
+                                style="@android:style/Widget.ProgressBar.Large.Inverse"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp8" />
+
+                        <ProgressBar
+                                android:id="@+id/pb_hori"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp30"
+                                android:layout_marginLeft="@dimen/dp25"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:layout_marginRight="@dimen/dp25"
+                                android:max="100"
+                                android:minHeight="100dp"
+                                android:padding="6dp"
+                                android:progress="40"
+                                android:progressDrawable="@drawable/pb_custom" />
 
                         <TextView
                                 android:id="@+id/txt_progress"
                                 style="@style/TextView_Regular"
+                                android:layout_marginTop="@dimen/dp8"
                                 android:text="" />
-
 
                         <TextView
                                 android:id="@+id/txt_seekbar"
@@ -331,16 +521,89 @@
                         <SeekBar
                                 android:id="@+id/seekBar"
                                 style="@style/SeekBar"
-                                android:layout_margin="@dimen/dp15"
+                                android:layout_marginTop="@dimen/dp8"
                                 android:progressDrawable="@drawable/seekbar_custom"
                                 android:thumb="@drawable/seekbar_thumb" />
 
-                        <Button
-                                android:id="@+id/btn_start_progress"
-                                style="@style/Button"
-                                android:text="@string/start_progress" />
+                        <ProgressBar
+                                android:id="@+id/pb_circle"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:indeterminate="false"
+                                android:max="100"
+                                android:progressDrawable="@drawable/pb_circular" />
+
+                        <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:padding="8dp">
+
+                            <ProgressBar
+                                    android:id="@+id/pb_circular"
+                                    style="?android:attr/progressBarStyleHorizontal"
+                                    android:layout_width="250dp"
+                                    android:layout_height="250dp"
+                                    android:layout_centerInParent="true"
+                                    android:indeterminate="false"
+                                    android:max="100"
+                                    android:progress="50"
+                                    android:secondaryProgress="100" />
+
+                            <TextView
+                                    android:id="@+id/txt_circular"
+                                    android:layout_width="250dp"
+                                    android:layout_height="250dp"
+                                    android:layout_centerInParent="true"
+                                    android:gravity="center"
+                                    android:text="25%"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textSize="24sp" />
+                        </RelativeLayout>
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                            android:id="@+id/linear_other_widget"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp10"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                        <TextView
+                                style="@style/txt_white_normal"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp50"
+                                android:layout_marginTop="@dimen/dp10"
+                                android:layout_marginBottom="@dimen/dp10"
+                                android:background="@color/app_color"
+                                android:gravity="center"
+                                android:text="@string/other_widget" />
+
+                        <TextView
+                                android:id="@+id/txt_date_value"
+                                style="@style/TextView_Regular" />
+
+                        <Button
+                                android:id="@+id/btn_data_picker"
+                                style="@style/Button"
+                                android:text="@string/select_date" />
+
+                        <TextView
+                                android:id="@+id/txt_time_value"
+                                style="@style/TextView_Regular"
+                                android:layout_marginTop="@dimen/dp5" />
+
+                        <Button
+                                android:id="@+id/btn_time_picker"
+                                style="@style/Button"
+                                android:text="@string/select_time" />
+                    </LinearLayout>
+                </LinearLayout>
+
 
                 <LinearLayout
                         android:id="@+id/bottom_space"
