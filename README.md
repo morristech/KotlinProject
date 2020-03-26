@@ -38,6 +38,37 @@ This repository provides the following components that are common to our open so
 * Ecommerce app(Login/Signup/verification/Deshboard/category listing)
 * Navigation drawer(both side left/right)
 * Zoom image(Single click/ Double fingure)
+* Different Style of Notification
+* Exo player (Single & In List)
+* Fab Button
+* FingerPrint Access
+* Fetch device all image
+* Fetch device all SMS
+* Fetch device all Contact
+* Take Screenshot
+* Restrict Screenshot
+* Tab and ViewPager
+* Rate Your App Feature
+* Create PDF and save
+* Device Info like :
+        Battery detail
+        Bluetooth detail
+        Camera detail
+        Display detail
+        OS detail
+        Storage detail
+        System app detail
+        Installed app detail
+        Processor detail
+
+* Collapse and expend animation
+* Animated Circle
+* Bottom Sheet
+* Bottom Navigation
+* Capture image when user blink
+
+
+
 
 // ui design library
 https://github.com/thanhtoan1196/awesome-android-ui
