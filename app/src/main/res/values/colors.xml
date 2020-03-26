@@ -60,4 +60,5 @@
     <color name="inbox">#e6ffff</color>
 
     <color name="white_transparent">#99FFFFFF</color>
+    <color name="windows_blue">#3495af</color>
 </resources>

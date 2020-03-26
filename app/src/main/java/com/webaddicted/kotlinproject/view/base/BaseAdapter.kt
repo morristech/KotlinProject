@@ -63,7 +63,7 @@ abstract class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
          * @param position current item position
          */
         fun binding(position: Int) {
-            //            sometime adapter position  is -1 that case handle by position
+//            sometime adapter position  is -1 that case handle by position
             if (adapterPosition >= 0) onBindTo(mRowBinding, adapterPosition)
             else onBindTo(mRowBinding, position)
         }

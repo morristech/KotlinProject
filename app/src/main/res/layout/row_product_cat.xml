@@ -4,7 +4,6 @@
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp260"
-            android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
@@ -51,6 +50,7 @@
 
 
                             <TextView
+                                    android:id="@+id/txt_name"
                                     style="@style/txt_black_normal"
                                     android:text="@string/i_phone"
                                     android:textColor="@color/black"
@@ -71,6 +71,7 @@
                                         android:textStyle="bold" />
 
                                 <TextView
+                                        android:id="@+id/txt_price"
                                         style="@style/txt_black_normal"
                                         android:layout_marginLeft="@dimen/dp5"
                                         android:text="@string/price60999"
@@ -78,8 +79,8 @@
                                         android:textStyle="bold" />
 
                                 <TextView
-                                        style="@style/txt_black_normal"
                                         android:id="@+id/offer"
+                                        style="@style/txt_black_normal"
                                         android:layout_marginLeft="@dimen/dp9"
                                         android:text="@string/price60999"
                                         android:textColor="#868791"
@@ -88,6 +89,7 @@
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
+
                     <TextView
                             android:id="@+id/text"
                             style="@style/txt_black_normal"

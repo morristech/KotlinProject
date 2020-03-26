@@ -5,7 +5,6 @@ import android.database.Cursor
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import android.widget.GridLayout
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -15,9 +14,8 @@ import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.global.common.PermissionHelper
 import com.webaddicted.kotlinproject.global.common.gone
 import com.webaddicted.kotlinproject.global.common.visible
-import com.webaddicted.kotlinproject.model.bean.ImagesBean
+import com.webaddicted.kotlinproject.model.bean.common.ImagesBean
 import com.webaddicted.kotlinproject.view.adapter.ImagesAdapter
-import com.webaddicted.kotlinproject.view.adapter.SMSAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import kotlinx.coroutines.*
 
@@ -111,7 +109,8 @@ class PhoneImageFrm : BaseFragment() {
         )!!
         for (i in 0 until cursor.count) {
             cursor.moveToPosition(i)
-            imageBean.add(ImagesBean().apply {
+            imageBean.add(
+                ImagesBean().apply {
                 imgId = cursor.getInt(cursor.getColumnIndex(MediaStore.Images.Media._ID)).toString()
                 imgName =
                     cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME))

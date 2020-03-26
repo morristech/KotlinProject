@@ -76,9 +76,11 @@ class TaskFrm : BaseFragment() {
         "SMS",
         "Phone Image",
         "Notification",
-        "Zoom Image(Touch/TwoFinger)"
+        "Zoom Image(Touch/TwoFinger)",
+        "Exo Player",
+       "Exo Player Recycler View"
 
-    )
+        )
     private lateinit var showSearchView: ShowSearchView
 
     companion object {
@@ -211,57 +213,15 @@ class TaskFrm : BaseFragment() {
             "FingerPrint" -> setUpFingrePrint()
             "Restrict ScreenShot" ->
                 GlobalUtility.showToast("Add window flag before setContentView\nwindow.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)")
-            "Contacts"->navigateScreen(ContactFrm.TAG)
-            "SMS"->navigateScreen(SmsFrm.TAG)
-            "Phone Image"->navigateScreen(PhoneImageFrm.TAG)
-            "Notification"->navigateScreen(NotificationFrm.TAG)
-            "Zoom Image(Touch/TwoFinger)" ->navigateScreen(ZoomImageFrm.TAG)
+            "Contacts" -> navigateScreen(ContactFrm.TAG)
+            "SMS" -> navigateScreen(SmsFrm.TAG)
+            "Phone Image" -> navigateScreen(PhoneImageFrm.TAG)
+            "Notification" -> navigateScreen(NotificationFrm.TAG)
+            "Zoom Image(Touch/TwoFinger)" -> navigateScreen(ZoomImageFrm.TAG)
+            "Exo Player" -> navigateScreen(ExoPlayerFrm.TAG)
+            "Exo Player Recycler View"->navigateScreen(ExoPlayerRecyclerFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
-    }
-
-    private fun setUpFingrePrint() {
-        val newExecutor: Executor =
-            Executors.newSingleThreadExecutor()
-        val myBiometricPrompt =
-            BiometricPrompt(
-                activity!!,
-                newExecutor,
-                object : BiometricPrompt.AuthenticationCallback() {
-                    override fun onAuthenticationError(
-                        errorCode: Int,
-                        errString: CharSequence
-                    ) {
-                        super.onAuthenticationError(errorCode, errString)
-                        activity?.runOnUiThread {
-                            if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON)
-                                GlobalUtility.showToast(errString.toString())
-                            else GlobalUtility.showToast("You try too many time.\nAn unrecoverable error occurred")
-                        }
-                    }
-
-                    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                        super.onAuthenticationSucceeded(result)
-                        activity?.runOnUiThread {
-                            GlobalUtility.showToast("Fingerprint recognised successfully")
-                        }
-                    }
-
-                    override fun onAuthenticationFailed() {
-                        super.onAuthenticationFailed()
-                        activity?.runOnUiThread {
-                            GlobalUtility.showToast("Fingerprint not recognised")
-                        }
-                    }
-                })
-
-        val promptInfo = PromptInfo.Builder()
-            .setTitle(getString(R.string.app_name))
-            .setSubtitle("Subtitle goes here")
-            .setDescription(getString(R.string.dummyText))
-            .setNegativeButtonText(getString(R.string.cancel))
-            .build()
-        myBiometricPrompt.authenticate(promptInfo)
     }
 
     /**
@@ -308,8 +268,11 @@ class TaskFrm : BaseFragment() {
             ContactFrm.TAG -> frm = ContactFrm.getInstance(Bundle())
             SmsFrm.TAG -> frm = SmsFrm.getInstance(Bundle())
             PhoneImageFrm.TAG -> frm = PhoneImageFrm.getInstance(Bundle())
-            ZoomImageFrm.TAG -> frm = ZoomImageFrm.getInstance("",false)
+            ZoomImageFrm.TAG -> frm = ZoomImageFrm.getInstance("", false)
             NotificationFrm.TAG -> frm = NotificationFrm.getInstance(Bundle())
+            ExoPlayerFrm.TAG ->  activity?.let { ExoPlayerActivity.newIntent(it, ExoPlayerFrm.TAG) }
+            ExoPlayerRecyclerFrm.TAG ->  activity?.let { ExoPlayerActivity.newIntent(it, ExoPlayerRecyclerFrm.TAG) }
+
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }
@@ -355,5 +318,49 @@ class TaskFrm : BaseFragment() {
     override fun onResume() {
         super.onResume()
         addBlankSpace(mBinding.bottomSpace)
+    }
+
+    private fun setUpFingrePrint() {
+        val newExecutor: Executor =
+            Executors.newSingleThreadExecutor()
+        val myBiometricPrompt =
+            BiometricPrompt(
+                activity!!,
+                newExecutor,
+                object : BiometricPrompt.AuthenticationCallback() {
+                    override fun onAuthenticationError(
+                        errorCode: Int,
+                        errString: CharSequence
+                    ) {
+                        super.onAuthenticationError(errorCode, errString)
+                        activity?.runOnUiThread {
+                            if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON)
+                                GlobalUtility.showToast(errString.toString())
+                            else GlobalUtility.showToast("You try too many time.\nAn unrecoverable error occurred")
+                        }
+                    }
+
+                    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                        super.onAuthenticationSucceeded(result)
+                        activity?.runOnUiThread {
+                            GlobalUtility.showToast("Fingerprint recognised successfully")
+                        }
+                    }
+
+                    override fun onAuthenticationFailed() {
+                        super.onAuthenticationFailed()
+                        activity?.runOnUiThread {
+                            GlobalUtility.showToast("Fingerprint not recognised")
+                        }
+                    }
+                })
+
+        val promptInfo = PromptInfo.Builder()
+            .setTitle(getString(R.string.app_name))
+            .setSubtitle("Subtitle goes here")
+            .setDescription(getString(R.string.dummyText))
+            .setNegativeButtonText(getString(R.string.cancel))
+            .build()
+        myBiometricPrompt.authenticate(promptInfo)
     }
 }

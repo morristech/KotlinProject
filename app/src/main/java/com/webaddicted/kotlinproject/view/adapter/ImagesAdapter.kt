@@ -1,18 +1,11 @@
 package com.webaddicted.kotlinproject.view.adapter
 
-import android.text.Html
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowGridBinding
-import com.webaddicted.kotlinproject.databinding.RowSimItemBinding
-import com.webaddicted.kotlinproject.databinding.RowSmsBinding
-import com.webaddicted.kotlinproject.global.common.GlobalUtility.Companion.getDate
-import com.webaddicted.kotlinproject.global.common.GlobalUtility.Companion.getMilisecToDate
 import com.webaddicted.kotlinproject.global.common.showImage
-import com.webaddicted.kotlinproject.model.bean.ImagesBean
-import com.webaddicted.kotlinproject.model.bean.SMSBean
-import com.webaddicted.kotlinproject.model.bean.deviceinfo.CPUBean
+import com.webaddicted.kotlinproject.model.bean.common.ImagesBean
 import com.webaddicted.kotlinproject.view.base.BaseAdapter
 import com.webaddicted.kotlinproject.view.fragment.PhoneImageFrm
 import com.webaddicted.kotlinproject.view.fragment.ZoomImageFrm

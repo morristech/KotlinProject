@@ -352,4 +352,13 @@
     <string name="zoom_title">Zoom</string>
     <string name="phone_image_title">Phone Images</string>
     <string name="notification_title">Notification</string>
+    <string name="large_text">Large Text</string>
+    <string name="add_message">Add message</string>
+    <string name="url">Url</string>
+    <string name="action">Action</string>
+    <string name="big_picture">Big Picture</string>
+    <string name="inbox_style">Inbox Style</string>
+    <string name="exo_player_title">Exo Player</string>
+    <string name="media_url_mp4">https://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4</string>
+
 </resources>

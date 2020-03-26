@@ -16,7 +16,7 @@ import com.webaddicted.kotlinproject.databinding.FrmContactsBinding
 import com.webaddicted.kotlinproject.global.common.PermissionHelper
 import com.webaddicted.kotlinproject.global.common.gone
 import com.webaddicted.kotlinproject.global.common.visible
-import com.webaddicted.kotlinproject.model.bean.ContactBean
+import com.webaddicted.kotlinproject.model.bean.common.ContactBean
 import com.webaddicted.kotlinproject.view.adapter.ContactAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import kotlinx.coroutines.*
@@ -290,7 +290,8 @@ class ContactFrm : BaseFragment() {
                     } while (dataCursor.moveToNext()) // Now move to next
                     // cursor
                     contactList.add(
-                        ContactBean().apply {
+                        ContactBean()
+                            .apply {
                             contactId = contctId.toString()
                             contactName = displayName
                             contactNumber = contactNumbers.toString()

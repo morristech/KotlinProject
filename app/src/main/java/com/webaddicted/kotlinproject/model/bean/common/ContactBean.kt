@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.model.bean
+package com.webaddicted.kotlinproject.model.bean.common
 
 import android.graphics.Bitmap
 

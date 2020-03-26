@@ -54,15 +54,42 @@
                 android:name="com.google.android.gms.version"
                 android:value="@integer/google_play_services_version" />
 
+        <service android:name=".global.services.NormalService" />
+
+        <service
+                android:name=".global.fcm.MyFirebaseMessagingService"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <service
                 android:name="com.webaddicted.kotlinproject.global.services.GeofenceTransitionsIntentService"
                 android:exported="true" />
+
         <receiver android:name=".global.common.NetworkChangeReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".global.services.NotificationBroadcastReceiver">
+            <intent-filter>
+                <action android:name="ACTION_CALL" />
+                <action android:name="ACTION_DISMISS" />
+                <action android:name="ACTION_NO_IDEA" />
+            </intent-filter>
+        </receiver>
+        <receiver
+                android:name=".global.services.SMSReceiver"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
+            </intent-filter>
+        </receiver>
+
+
         <provider
                 android:name="androidx.core.content.FileProvider"
                 android:authorities="${applicationId}.provider"
@@ -106,13 +133,6 @@
                 android:name="com.webaddicted.kotlinproject.view.activity.MapActivity"
                 android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
-        <receiver
-                android:name=".global.services.SMSReceiver"
-                android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
-            </intent-filter>
-        </receiver>
 
         <activity android:name=".view.activity.WebViewActivity"></activity>
         <activity
@@ -124,8 +144,8 @@
                 android:name=".global.blink.CameraActivity"
                 android:configChanges="orientation"
                 android:screenOrientation="portrait" />
+        <activity android:name=".view.activity.ExoPlayerActivity"></activity>
 
-        <service android:name=".global.services.NormalService" />
 
         <activity
                 android:name=".view.activity.NavBothSideDrawerActivity"
@@ -137,14 +157,6 @@
                 android:screenOrientation="portrait"
                 android:theme="@style/AppThemeFullScreen"
                 android:windowSoftInputMode="stateAlwaysHidden" />
-
-        <service
-                android:name=".global.fcm.MyFirebaseMessagingService"
-                android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
     </application>
 
 </manifest>

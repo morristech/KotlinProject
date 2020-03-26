@@ -24,29 +24,50 @@
                     android:orientation="vertical">
 
                 <Button
-                        android:id="@+id/btn_launch"
+                        android:id="@+id/btn_normal"
                         style="@style/Button"
                         android:layout_marginTop="@dimen/dp15"
-                        android:text="@string/launch" />
+                        android:text="@string/normal" />
+                <Button
+                        android:id="@+id/btn_large_text"
+                        style="@style/Button"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:text="@string/large_text" />
 
                 <Button
-                        android:id="@+id/btn_sequentially"
+                        android:id="@+id/btn_add_message"
                         style="@style/Button"
                         android:layout_marginTop="@dimen/dp15"
-                        android:text="@string/sequentially" />
+                        android:text="@string/add_message" />
 
                 <Button
-                        android:id="@+id/btn_parallel"
+                        android:id="@+id/btn_url"
                         style="@style/Button"
                         android:layout_marginTop="@dimen/dp15"
-                        android:text="@string/parallel_async" />
+                        android:text="@string/url" />
+                <Button
+                        android:id="@+id/btn_action"
+                        style="@style/Button"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:text="@string/action" />
+                <Button
+                        android:id="@+id/btn_big_picture"
+                        style="@style/Button"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:text="@string/big_picture" />
 
                 <Button
-                        android:id="@+id/btn_cancel"
+                        android:id="@+id/btn_custom"
                         style="@style/Button"
                         android:layout_marginTop="@dimen/dp15"
-                        android:layout_marginBottom="@dimen/dp50"
-                        android:text="@string/cancel" />
+                        android:text="@string/custom" />
+
+                <Button
+                        android:id="@+id/btn_inbox_style"
+                        style="@style/Button"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:text="@string/inbox_style" />
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

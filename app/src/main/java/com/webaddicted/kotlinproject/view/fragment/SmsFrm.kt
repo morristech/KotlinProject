@@ -14,7 +14,7 @@ import com.webaddicted.kotlinproject.databinding.FrmSmsBinding
 import com.webaddicted.kotlinproject.global.common.PermissionHelper
 import com.webaddicted.kotlinproject.global.common.gone
 import com.webaddicted.kotlinproject.global.common.visible
-import com.webaddicted.kotlinproject.model.bean.SMSBean
+import com.webaddicted.kotlinproject.model.bean.common.SMSBean
 import com.webaddicted.kotlinproject.view.adapter.SMSAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 
@@ -114,7 +114,8 @@ class SmsFrm : BaseFragment() {
                 val seen =
                     cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.SEEN)).toString()
                 var smsTypes = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.TYPE))
-                smsBean.add(SMSBean().apply {
+                smsBean.add(
+                    SMSBean().apply {
                     smsId = id
                     smsNo = number
                     smsBody = body

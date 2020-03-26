@@ -1,10 +1,6 @@
 package com.webaddicted.kotlinproject.view.adapter
 
-import android.graphics.Color
 import android.text.Html
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
 import androidx.databinding.ViewDataBinding
@@ -12,7 +8,7 @@ import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowContactBinding
 import com.webaddicted.kotlinproject.global.common.gone
 import com.webaddicted.kotlinproject.global.common.visible
-import com.webaddicted.kotlinproject.model.bean.ContactBean
+import com.webaddicted.kotlinproject.model.bean.common.ContactBean
 import com.webaddicted.kotlinproject.view.base.BaseAdapter
 import java.util.*
 

@@ -5,24 +5,25 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.google.firebase.iid.FirebaseInstanceId
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityCommonBinding
-import com.webaddicted.kotlinproject.global.common.Lg
 import com.webaddicted.kotlinproject.view.base.BaseActivity
-import com.webaddicted.kotlinproject.view.fragment.TaskFrm
+import com.webaddicted.kotlinproject.view.fragment.ExoPlayerFrm
+import com.webaddicted.kotlinproject.view.fragment.ExoPlayerRecyclerFrm
 
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class HomeActivity : BaseActivity() {
-
+class ExoPlayerActivity : BaseActivity() {
     private lateinit var mBinding: ActivityCommonBinding
 
     companion object {
-        val TAG: String = HomeActivity::class.java.simpleName
-        fun newIntent(activity: Activity) {
-            activity.startActivity(Intent(activity, HomeActivity::class.java))
+        val TAG: String = ExoPlayerActivity::class.java.simpleName
+        val OPEN_FRM = "openFrm"
+        fun newIntent(activity: Activity, frmName: String) {
+            var intent = Intent(activity, ExoPlayerActivity::class.java)
+            intent.putExtra(OPEN_FRM, frmName)
+            activity.startActivity(intent)
         }
     }
 
@@ -32,8 +33,13 @@ class HomeActivity : BaseActivity() {
 
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityCommonBinding
-        Lg.d(TAG, "ok token - "+FirebaseInstanceId.getInstance().token)
-        navigateScreen(TaskFrm.TAG)
+        init()
+    }
+
+    private fun init() {
+        val frm = intent.getStringExtra(OPEN_FRM)
+        if (frm.equals(ExoPlayerFrm.TAG)) navigateScreen(ExoPlayerFrm.TAG)
+        else navigateScreen(ExoPlayerRecyclerFrm.TAG)
     }
 
     /**
@@ -43,9 +49,10 @@ class HomeActivity : BaseActivity() {
     private fun navigateScreen(tag: String) {
         var frm: Fragment? = null
         when (tag) {
-            TaskFrm.TAG -> frm = TaskFrm.
-            getInstance(Bundle())
+            ExoPlayerRecyclerFrm.TAG -> frm = ExoPlayerRecyclerFrm.getInstance(Bundle())
+            ExoPlayerFrm.TAG -> frm = ExoPlayerFrm.getInstance(Bundle())
         }
         if (frm != null) navigateFragment(R.id.container, frm, false)
     }
+
 }
