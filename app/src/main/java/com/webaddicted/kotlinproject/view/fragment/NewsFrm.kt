@@ -1,6 +1,7 @@
 package com.webaddicted.kotlinproject.view.fragment
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
@@ -75,13 +76,20 @@ class NewsFrm : BaseFragment() {
         newsAdapter = NewsAdapter(newsList)
         mBinding.rvNewsChannel.layoutManager = LinearLayoutManager(activity)
         mBinding.rvNewsChannel.addOnScrollListener(object :
-            ScrollListener(mBinding.rvNewsChannel.getLayoutManager() as LinearLayoutManager) {
+            ScrollListener(mBinding.rvNewsChannel.layoutManager as LinearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                 mPageCount++
                 callApi()
             }
         })
         mBinding.rvNewsChannel.adapter = newsAdapter
+        mBinding.swipeView.setColorSchemeColors(resources.getColor(R.color.white))
+        mBinding.swipeView.setWaveColor(resources.getColor(R.color.app_color))
+        mBinding.swipeView.setOnRefreshListener {
+            Handler().postDelayed({
+                mBinding.swipeView.isRefreshing = false
+            }, 1000)
+        }
     }
 
     private fun callApi() {

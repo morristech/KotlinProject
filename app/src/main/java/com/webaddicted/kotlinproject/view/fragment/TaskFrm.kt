@@ -3,6 +3,7 @@ package com.webaddicted.kotlinproject.view.fragment
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuInflater
@@ -78,9 +79,9 @@ class TaskFrm : BaseFragment() {
         "Notification",
         "Zoom Image(Touch/TwoFinger)",
         "Exo Player",
-       "Exo Player Recycler View"
+        "Exo Player Recycler View"
 
-        )
+    )
     private lateinit var showSearchView: ShowSearchView
 
     companion object {
@@ -171,6 +172,13 @@ class TaskFrm : BaseFragment() {
             false
         )
         mBinding.recyclerView.adapter = mHomeAdapter
+        mBinding.swipeView.setColorSchemeColors(resources.getColor(R.color.white))
+        mBinding.swipeView.setWaveColor(resources.getColor(R.color.app_color))
+        mBinding.swipeView.setOnRefreshListener {
+            Handler().postDelayed({
+                mBinding.swipeView.isRefreshing = false
+            }, 1800)
+        }
     }
 
     fun onClicks(click: String) {
@@ -219,7 +227,7 @@ class TaskFrm : BaseFragment() {
             "Notification" -> navigateScreen(NotificationFrm.TAG)
             "Zoom Image(Touch/TwoFinger)" -> navigateScreen(ZoomImageFrm.TAG)
             "Exo Player" -> navigateScreen(ExoPlayerFrm.TAG)
-            "Exo Player Recycler View"->navigateScreen(ExoPlayerRecyclerFrm.TAG)
+            "Exo Player Recycler View" -> navigateScreen(ExoPlayerRecyclerFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -270,8 +278,13 @@ class TaskFrm : BaseFragment() {
             PhoneImageFrm.TAG -> frm = PhoneImageFrm.getInstance(Bundle())
             ZoomImageFrm.TAG -> frm = ZoomImageFrm.getInstance("", false)
             NotificationFrm.TAG -> frm = NotificationFrm.getInstance(Bundle())
-            ExoPlayerFrm.TAG ->  activity?.let { ExoPlayerActivity.newIntent(it, ExoPlayerFrm.TAG) }
-            ExoPlayerRecyclerFrm.TAG ->  activity?.let { ExoPlayerActivity.newIntent(it, ExoPlayerRecyclerFrm.TAG) }
+            ExoPlayerFrm.TAG -> activity?.let { ExoPlayerActivity.newIntent(it, ExoPlayerFrm.TAG) }
+            ExoPlayerRecyclerFrm.TAG -> activity?.let {
+                ExoPlayerActivity.newIntent(
+                    it,
+                    ExoPlayerRecyclerFrm.TAG
+                )
+            }
 
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
