@@ -51,7 +51,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp5"
                             android:layout_marginRight="@dimen/dp5"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                           >
 
                         <RelativeLayout
                                 android:layout_width="match_parent"
@@ -211,6 +212,16 @@
                                 android:background="@drawable/rectangle_unfill"
                                 android:text="@string/app_name"
                                 android:textColor="@color/black" />
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:layout_marginBottom="@dimen/dp8"
+                                app:backgroundTint="@color/orange"
+                                app:tint="@color/white"
+                                app:srcCompat="@drawable/fab_add" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -362,12 +373,13 @@
                                 app:lottie_autoPlay="true"
                                 app:lottie_loop="true"
                                 app:lottie_rawRes="@raw/sleepy_loading" />
+
                         <com.webaddicted.kotlinproject.global.customview.ZoomImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp350"
-                            android:layout_marginTop="15dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/good_night_img" />
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp350"
+                                android:layout_marginTop="15dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/good_night_img" />
                     </LinearLayout>
 
                     <LinearLayout

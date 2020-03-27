@@ -67,7 +67,10 @@ This repository provides the following components that are common to our open so
 * Bottom Sheet
 * Bottom Navigation
 * Capture image when user blink
-
+* Swipe to refresh
+* Ripple Effect
+* Arc Layout
+* Collapse Toolbar (With Different behavior)
 
 
 
