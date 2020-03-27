@@ -51,6 +51,7 @@ This repository provides the following components that are common to our open so
 * Rate Your App Feature
 * Create PDF and save
 * Device Info like :
+
         Battery detail
         Bluetooth detail
         Camera detail
