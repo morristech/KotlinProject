@@ -17,6 +17,7 @@ import com.webaddicted.kotlinproject.databinding.FrmWidgetBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.base.BaseFragment
+import kotlinx.android.synthetic.main.frm_dev_battery.view.*
 
 
 class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
@@ -100,6 +101,10 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
                     mBinding.pbCircular.progress = progressBarStatus
                     mBinding.txtCircular.text = String.format("%d%%", progressBarStatus)
                     mBinding.seekBar.progress = progressBarStatus
+                    mBinding.donutInternalStorage.progress = progressBarStatus.toFloat()
+                    mBinding.arcRam.progress = progressBarStatus
+                    mBinding.wavePb.setProgress(progressBarStatus)
+                    mBinding.txtWaveLevel.text = String.format("%d%%", progressBarStatus)
                 }
                 try {
                     Thread.sleep(1600)
