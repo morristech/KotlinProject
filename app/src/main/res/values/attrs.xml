@@ -62,4 +62,16 @@
         <attr name="android:orientation" />
     </declare-styleable>
     <!--    END EXPENDABLE LAYOUT-->
+    <!--    START COLLPASE IMAGE BEHAVIOR-->
+    <attr name="collapsedTarget" format="reference" />
+
+    <declare-styleable name="CollapsingImageBehavior">
+        <attr name="collapsedTarget" />
+    </declare-styleable>
+
+    <declare-styleable name="CollapsingLinearLayoutBehavior">
+        <attr name="collapsedTarget" />
+    </declare-styleable>
+    <!--    END COLLPASE IMAGE BEHAVIOR-->
+
 </resources>
