@@ -79,8 +79,9 @@ class TaskFrm : BaseFragment() {
         "Notification",
         "Zoom Image(Touch/TwoFinger)",
         "Exo Player",
-        "Exo Player Recycler View"
-
+        "Exo Player Recycler View",
+        "Collapse Toolbar",
+        "Collapse Toolbar Behavior"
     )
     private lateinit var showSearchView: ShowSearchView
 
@@ -228,6 +229,9 @@ class TaskFrm : BaseFragment() {
             "Zoom Image(Touch/TwoFinger)" -> navigateScreen(ZoomImageFrm.TAG)
             "Exo Player" -> navigateScreen(ExoPlayerFrm.TAG)
             "Exo Player Recycler View" -> navigateScreen(ExoPlayerRecyclerFrm.TAG)
+            "Collapse Toolbar" ->navigateScreen(CollapseToolbarFrm.TAG)
+            "Collapse Toolbar Behavior" ->navigateScreen(CollapseToolbarBehavFrm.TAG)
+
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -285,6 +289,8 @@ class TaskFrm : BaseFragment() {
                     ExoPlayerRecyclerFrm.TAG
                 )
             }
+            CollapseToolbarFrm.TAG -> frm = CollapseToolbarFrm.getInstance(Bundle())
+            CollapseToolbarBehavFrm.TAG -> frm = CollapseToolbarBehavFrm.getInstance(Bundle())
 
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
