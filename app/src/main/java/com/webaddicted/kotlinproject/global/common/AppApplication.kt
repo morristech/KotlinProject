@@ -8,6 +8,7 @@ import com.facebook.stetho.Stetho
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.koin.*
 import com.webaddicted.kotlinproject.global.sharedpref.PreferenceUtils
+import com.webaddicted.kotlinproject.global.sociallogin.SocialLogin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -19,6 +20,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig
  */
 class AppApplication : Application() {
     private val mNetworkReceiver = NetworkChangeReceiver()
+
     companion object {
         lateinit var context: Context
     }
@@ -29,7 +31,8 @@ class AppApplication : Application() {
         Stetho.initializeWithDefaults(this)
         FileHelper.createApplicationFolder()
         setupDefaultFont()
-        PreferenceUtils.Companion.getInstance(this)
+        PreferenceUtils.getInstance(this)
+        SocialLogin.init(this)
         startKoin {
             androidLogger()
             androidContext(this@AppApplication)
@@ -59,6 +62,7 @@ class AppApplication : Application() {
             dbModule
         )
     }
+
     private fun checkInternetConnection() {
         registerReceiver(mNetworkReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
     }

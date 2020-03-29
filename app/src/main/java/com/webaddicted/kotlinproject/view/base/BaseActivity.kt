@@ -11,8 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.twitter.sdk.android.core.TwitterAuthConfig
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.*
+import com.webaddicted.kotlinproject.global.sociallogin.SocialLogin
+import com.webaddicted.kotlinproject.global.sociallogin.auth.GoogleAuth
 import com.webaddicted.kotlinproject.view.activity.SplashActivity
 import org.koin.android.ext.android.inject
 import java.io.File
@@ -21,12 +24,15 @@ import java.io.File
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, PermissionHelper.Companion.PermissionListener,
+abstract class BaseActivity : AppCompatActivity(), View.OnClickListener,
+    PermissionHelper.Companion.PermissionListener,
     MediaPickerUtils.ImagePickerListener {
     private val mediaPicker: MediaPickerUtils by inject()
-    companion object{
+
+    companion object {
         val TAG = BaseActivity::class.java.simpleName
     }
+
     abstract fun getLayout(): Int
 
     abstract fun initUI(binding: ViewDataBinding)
@@ -36,8 +42,11 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
         supportActionBar?.hide()
 //        setNavigationColor(resources.getColor(R.color.app_color))
-       fullScreen()
-        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
+        fullScreen()
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
         GlobalUtility.hideKeyboard(this)
         val layoutResId = getLayout()
         val binding: ViewDataBinding?
@@ -90,9 +99,10 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
 
     override fun onResume() {
         super.onResume()
-        if(!isNetworkAvailable())
-            GlobalUtility.initSnackBar(this@BaseActivity,false)
+        if (!isNetworkAvailable())
+            GlobalUtility.initSnackBar(this@BaseActivity, false)
     }
+
     /**
      * broadcast receiver for check internet connectivity
      *
@@ -103,9 +113,9 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
             NetworkChangeReceiver.ConnectivityReceiverListener {
             override fun onNetworkConnectionChanged(networkConnected: Boolean) {
                 try {
-                    if(this@BaseActivity !is SplashActivity)
-                        GlobalUtility.initSnackBar(this@BaseActivity,networkConnected)
-                }catch (exception: Exception){
+                    if (this@BaseActivity !is SplashActivity)
+                        GlobalUtility.initSnackBar(this@BaseActivity, networkConnected)
+                } catch (exception: Exception) {
                     Lg.d(TAG, "getNetworkStateReceiver : $exception")
                 }
             }
@@ -125,7 +135,11 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
             PermissionHelper.requestMultiplePermission(this, multiplePermission, this)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         PermissionHelper.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
     }
 
@@ -141,7 +155,9 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             if (requestCode == mediaPicker.REQUEST_CAMERA_VIDEO || requestCode == mediaPicker.REQUEST_SELECT_FILE_FROM_GALLERY) {
-              mediaPicker.onActivityResult(this, requestCode, resultCode, data)
+                mediaPicker.onActivityResult(this, requestCode, resultCode, data)
+            } else if (requestCode == GoogleAuth.RC_SIGN_IN || requestCode == TwitterAuthConfig.DEFAULT_AUTH_REQUEST_CODE) {
+                SocialLogin.onActivityResult(this, requestCode, resultCode, data)
             }
         }
     }

@@ -25,6 +25,7 @@ import com.webaddicted.kotlinproject.view.activity.*
 import com.webaddicted.kotlinproject.view.adapter.TaskAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.webaddicted.kotlinproject.view.ecommerce.EcommLoginFrm
+import com.webaddicted.kotlinproject.view.fcmkit.FcmFoodActivity
 import java.util.*
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -81,8 +82,10 @@ class TaskFrm : BaseFragment() {
         "Exo Player",
         "Exo Player Recycler View",
         "Collapse Toolbar",
-        "Collapse Toolbar Behavior"
-    )
+        "Collapse Toolbar Behavior",
+        "Location Helper",
+        "Firebase"
+        )
     private lateinit var showSearchView: ShowSearchView
 
     companion object {
@@ -231,6 +234,8 @@ class TaskFrm : BaseFragment() {
             "Exo Player Recycler View" -> navigateScreen(ExoPlayerRecyclerFrm.TAG)
             "Collapse Toolbar" ->navigateScreen(CollapseToolbarFrm.TAG)
             "Collapse Toolbar Behavior" ->navigateScreen(CollapseToolbarBehavFrm.TAG)
+            "Location Helper" ->navigateScreen(LocationHelperFrm.TAG)
+            "Firebase"->navigateScreen(FcmFoodActivity.TAG)
 
             else -> navigateScreen(WidgetFrm.TAG)
         }
@@ -291,7 +296,8 @@ class TaskFrm : BaseFragment() {
             }
             CollapseToolbarFrm.TAG -> frm = CollapseToolbarFrm.getInstance(Bundle())
             CollapseToolbarBehavFrm.TAG -> frm = CollapseToolbarBehavFrm.getInstance(Bundle())
-
+            LocationHelperFrm.TAG -> frm = LocationHelperFrm.getInstance(Bundle())
+            FcmFoodActivity.TAG -> activity?.let { FcmFoodActivity.newIntent(it) }
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }

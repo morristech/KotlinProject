@@ -132,9 +132,9 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
         result.setResultCallback(object : ResultCallback<LocationSettingsResult> {
             override fun onResult(locationSettingsResult: LocationSettingsResult) {
 
-                val status = locationSettingsResult.getStatus()
+                val status = locationSettingsResult.status
 
-                when (status.getStatusCode()) {
+                when (status.statusCode) {
                     LocationSettingsStatusCodes.SUCCESS ->
                         // All location settings are satisfied. The client can initialize location requests here
                         Log.d(TAG, "onResult: SUCCESS")
@@ -144,7 +144,6 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
                             // Show the dialog by calling startResolutionForResult(),
                             // and check the result in onActivityResult().
                             status.startResolutionForResult(this@BaseLocation, 2000)
-
                         } catch (e: IntentSender.SendIntentException) {
                             // Ignore the error.
                         }
@@ -226,14 +225,14 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
             LocationServices.GeofencingApi.removeGeofences(
                 mGoogleApiClient,
                 getGeofencePendingIntent()
-            ).setResultCallback({ status ->
+            ).setResultCallback { status ->
                 if (status.isSuccess) {
                     fancyMarker?.remove()
                     geoFenceCircle?.remove()
                     // remove drawing
-//                removeGeofenceDraw()
+        //                removeGeofenceDraw()
                 }
-            })
+            }
     }
 
     override fun onConnected(arg0: Bundle?) {
@@ -250,7 +249,7 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
         //        criteria.setPowerRequirement(Criteria.POWER_LOW);
         //        criteria.setAccuracy(Criteria.ACCURACY_FINE);
         //        criteria.setCostAllowed(true);
-        if (mGoogleApiClient!!.isConnected()) {
+        if (mGoogleApiClient!!.isConnected) {
             LocationServices.FusedLocationApi.requestLocationUpdates(
                 mGoogleApiClient,
                 mLocationRequest,
@@ -262,7 +261,7 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
     }
 
     protected fun stopLocationUpdates() {
-        if (mGoogleApiClient != null && mGoogleApiClient!!.isConnected()) {
+        if (mGoogleApiClient != null && mGoogleApiClient!!.isConnected) {
             LocationServices.FusedLocationApi.removeLocationUpdates(
                 mGoogleApiClient,
                 this as com.google.android.gms.location.LocationListener
@@ -347,7 +346,7 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
         return mLocationRequest
     }
 
-    override fun onLocationChanged(location: android.location.Location) {
+    override fun onLocationChanged(location: Location) {
         if (isShowAddress)
             getAddress(location)
         else
@@ -359,7 +358,7 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
      *
      * @param location
      */
-    private fun getAddress(@NonNull location: android.location.Location) {
+    private fun getAddress(@NonNull location: Location) {
         var strAddress = ""
         val geocoder = Geocoder(this, Locale.getDefault())
         try {
@@ -384,7 +383,7 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
         getCurrentLocation(location, strAddress)
     }
 
-    protected abstract fun getCurrentLocation(@NonNull location: android.location.Location, @NonNull address: String?)
+    protected abstract fun getCurrentLocation(@NonNull location: Location, @NonNull address: String?)
 
     protected fun isAddressEnabled(showAddress: Boolean) {
         isShowAddress = showAddress

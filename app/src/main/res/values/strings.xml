@@ -1,5 +1,8 @@
 <resources>
     <string name="google_key">AIzaSyAbO1hDRhhQKHs945QBsNt0yCzBXG3X5Fk</string>
+    <string name="twitter_consumer_key">euRoJOFhjuSz0PgiDfm87U5y3</string>
+    <string name="twitter_consumer_secret">	ZLMmiM3RL9ftD9uenN3tDFu742P1cwJONzllNjC8KpdvNjZuvJ</string>
+    <string name="facebook_app_id">466359743713130</string>
     <string name="app_name">KotlinProject</string>
     <string name="file_provider_authority" translatable="false">com.webaddicted.kotlinproject.fileprovider</string>
     <string name="network_error">Network Error</string>
@@ -361,5 +364,12 @@
     <string name="exo_player_title">Exo Player</string>
     <string name="media_url_mp4">https://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4</string>
     <string name="collapse_toolbar_title">Collapse Toolbar</string>
+    <string name="fetch_location">Fetch Location</string>
+    <string name="location_helper">Location Helper</string>
+    <string name="continue_location">Continue location</string>
+    <string name="register">Register</string>
+    <string name="connect_with_google">Connect with Google</string>
+    <string name="connect_with_fb">Connect with Facebook</string>
+    <string name="connect_with_twitter">Connect with Twitter</string>
 
 </resources>
