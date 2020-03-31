@@ -104,12 +104,13 @@
 
         <activity
                 android:name="com.webaddicted.kotlinproject.view.activity.SplashActivity"
-                android:windowSoftInputMode="stateAlwaysHidden">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
-
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
+                android:windowSoftInputMode="stateAlwaysHidden">    
+                <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+                   
+           
         </activity>
         <activity
                 android:name="com.webaddicted.kotlinproject.view.activity.OnBoardActivity"
@@ -126,10 +127,11 @@
         <activity
                 android:name="com.webaddicted.kotlinproject.view.activity.HomeActivity"
                 android:windowSoftInputMode="stateAlwaysHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+         <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
         <activity
                 android:name="com.webaddicted.kotlinproject.view.activity.MapActivity"
