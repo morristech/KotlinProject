@@ -656,7 +656,7 @@ class ValidationHelper {
             }
             return false
         }
-        fun validateCode(textInput: TextInputEditText, wrapperCode: TextInputLayout): Boolean {
+        fun validateOTPCode(textInput: TextInputEditText, wrapperCode: TextInputLayout): Boolean {
             if (isBlank(textInput)) {
                  wrapperCode.setError(textInput.getContext().getResources().getString(R.string.error_valid_code))
             } else if (!(textInput.getText().toString().length === 6)) {

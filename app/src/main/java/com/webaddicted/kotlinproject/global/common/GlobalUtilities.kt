@@ -15,6 +15,7 @@ import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
 import android.os.Handler
+import android.provider.Settings
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.format.DateFormat
@@ -33,6 +34,7 @@ import androidx.core.app.NotificationCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.webaddicted.kotlinproject.R
@@ -252,7 +254,8 @@ class GlobalUtility {
                     activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
                 inputManager.hideSoftInputFromWindow(activity.currentFocus?.windowToken, 0)
             } catch (ignored: Exception) {
-                Log.d("TAG", "hideKeyboard: " + ignored.message)
+                ignored.printStackTrace()
+                Lg.d("TAG", "hideKeyboard: " + ignored.message)
             }
 
         }
@@ -648,6 +651,26 @@ class GlobalUtility {
                     )
                 )
             }
+        }
+         fun setEnableView(edtView: TextInputEditText, isViewEditable: Boolean) {
+            if (isViewEditable) {
+                edtView.isClickable = true
+                edtView.isLongClickable = true
+                edtView.isFocusableInTouchMode = true
+                edtView.setTextColor(edtView.context.getColor(R.color.black))
+            } else {
+                edtView.isClickable = false
+                edtView.isLongClickable = false
+                edtView.isFocusableInTouchMode = false
+                edtView.setTextColor(edtView.context.getColor(R.color.gray))
+            }
+        }
+        @SuppressLint("MissingPermission")
+        fun getDeviceIMEI(activity: Activity): String? {
+//            var tm = activity.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+//            return tm.deviceId
+            return Settings.Secure.getString(activity.getContentResolver(), Settings.Secure.ANDROID_ID).toString();
+//            return "868494034542635"
         }
     }
 

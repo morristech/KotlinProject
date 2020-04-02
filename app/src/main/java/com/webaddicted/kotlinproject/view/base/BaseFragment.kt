@@ -10,6 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.apiutils.ApiResponse
 import com.webaddicted.kotlinproject.global.common.*
@@ -24,16 +28,21 @@ import java.io.File
 /**
  * Created by Deepak Sharma on 15/1/19.
  */
-abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelper.Companion.PermissionListener,
+abstract class BaseFragment : Fragment(), View.OnClickListener,
+    PermissionHelper.Companion.PermissionListener,
     MediaPickerUtils.ImagePickerListener {
     private lateinit var mBinding: ViewDataBinding
     private var loaderDialog: LoaderDialog? = null
     protected val mediaPicker: MediaPickerUtils by inject()
-    protected val preferenceMgr: PreferenceMgr  by inject()
+    protected val preferenceMgr: PreferenceMgr by inject()
     abstract fun getLayout(): Int
     protected abstract fun initUI(binding: ViewDataBinding?, view: View)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 //        return super.onCreateView(inflater, container, savedInstanceState)
         mBinding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
         if (!EventBus.getDefault().isRegistered(this))
@@ -77,10 +86,12 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
             }
         }
     }
+
     override fun onResume() {
         super.onResume()
         activity?.let { GlobalUtility.hideKeyboard(it) }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         if (EventBus.getDefault().isRegistered(this))
@@ -91,19 +102,39 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
     fun eventBusListener(eventBusListener: EventBusListener) {
     }
 
-    protected fun navigateFragment(layoutContainer: Int, fragment: Fragment, isEnableBackStack: Boolean) {
+    protected fun navigateFragment(
+        layoutContainer: Int,
+        fragment: Fragment,
+        isEnableBackStack: Boolean
+    ) {
         if (activity != null) {
-            (activity as BaseActivity).navigateFragment(layoutContainer, fragment, isEnableBackStack)
+            (activity as BaseActivity).navigateFragment(
+                layoutContainer,
+                fragment,
+                isEnableBackStack
+            )
         }
     }
 
-    protected fun navigateAddFragment(layoutContainer: Int, fragment: Fragment, isEnableBackStack: Boolean) {
+    protected fun navigateAddFragment(
+        layoutContainer: Int,
+        fragment: Fragment,
+        isEnableBackStack: Boolean
+    ) {
         if (activity != null) {
-            (activity as BaseActivity).navigateAddFragment(layoutContainer, fragment, isEnableBackStack)
+            (activity as BaseActivity).navigateAddFragment(
+                layoutContainer,
+                fragment,
+                isEnableBackStack
+            )
         }
     }
 
-    protected fun navigateChildFragment(layoutContainer: Int, fragment: Fragment, isEnableBackStack: Boolean) {
+    protected fun navigateChildFragment(
+        layoutContainer: Int,
+        fragment: Fragment,
+        isEnableBackStack: Boolean
+    ) {
         val fragmentManager = childFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(layoutContainer, fragment)
@@ -113,25 +144,10 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
     }
 
     override fun onClick(v: View) {
+        activity?.let { GlobalUtility.hideKeyboard(it) }
+        GlobalUtility.avoidDoubleClicks(v)
 //        GlobalUtility.Companion.btnClickAnimation(v)
     }
-
-//    fun getLocation() {
-//        (getActivity() as BaseLocation).getLocation()
-//    }
-
-//    fun getLocation(@NonNull timeInterval: Long, @NonNull fastInterval: Long, @NonNull displacement: Long) {
-//        (getActivity() as BaseLocation).getLocation(timeInterval, fastInterval, displacement)
-//    }
-//
-//    fun getLocationWithAddress(@NonNull timeInterval: Long, @NonNull fastInterval: Long, @NonNull displacement: Long) {
-//        (getActivity() as BaseLocation).getLocation(timeInterval, fastInterval, displacement)
-//        (getActivity() as BaseLocation).isAddressEnabled(true)
-//    }
-//
-//    fun stopUpdateLocation() {
-//        (getActivity() as BaseLocation).stopLocationUpdates()
-//    }
 
     fun checkStoragePermission() {
         val multiplePermission = ArrayList<String>()
@@ -146,15 +162,19 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
     }
 
 
-     fun checkBlinkPermission() {
+    fun checkBlinkPermission() {
         val multiplePermission = ArrayList<String>()
         multiplePermission.add(Manifest.permission.CAMERA)
         multiplePermission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         multiplePermission.add(Manifest.permission.READ_EXTERNAL_STORAGE)
         multiplePermission.add(Manifest.permission.ACCESS_FINE_LOCATION)
         multiplePermission.add(Manifest.permission.ACCESS_COARSE_LOCATION)
-         if (PermissionHelper.checkMultiplePermission(activity!!, multiplePermission))onPermissionGranted(multiplePermission)
-         else PermissionHelper.requestMultiplePermission(activity!!, multiplePermission, this)
+        if (PermissionHelper.checkMultiplePermission(
+                activity!!,
+                multiplePermission
+            )
+        ) onPermissionGranted(multiplePermission)
+        else PermissionHelper.requestMultiplePermission(activity!!, multiplePermission, this)
     }
 
     override fun onPermissionGranted(mCustomPermission: List<String>) {
@@ -173,6 +193,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
         val imageLoader = resources.getStringArray(R.array.image_loader)
         return imageLoader[imageLoaderPos]
     }
+
     protected fun addBlankSpace(bottomSpace: LinearLayout) {
         KeyboardEventListener(activity as AppCompatActivity) { isKeyboardOpen: Boolean, softkeybordHeight: Int ->
             if (isKeyboardOpen)
@@ -183,5 +204,15 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
             else bottomSpace.layoutParams =
                 LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0)
         }
+    }
+
+    protected fun getFcmDBRef(child: String): DatabaseReference {
+        val fcmDb = FirebaseDatabase.getInstance().reference
+        return fcmDb.child(child)
+    }
+
+    protected fun getFcmStorageRef(child: String): StorageReference {
+        val firebaseStorage = FirebaseStorage.getInstance().reference
+        return firebaseStorage.child(child)
     }
 }

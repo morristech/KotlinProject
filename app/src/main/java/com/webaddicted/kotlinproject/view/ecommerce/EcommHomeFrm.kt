@@ -1,7 +1,6 @@
 package com.webaddicted.kotlinproject.view.ecommerce
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.databinding.ViewDataBinding
@@ -10,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmEcomHomeBinding
+import com.webaddicted.kotlinproject.global.common.Lg
 import com.webaddicted.kotlinproject.model.bean.ecommerce.EcommCateBean
 import com.webaddicted.kotlinproject.view.adapter.EcomFashionAdapter
 import com.webaddicted.kotlinproject.view.adapter.EcomHomeDecoAdapter
@@ -18,7 +18,7 @@ import com.webaddicted.kotlinproject.view.base.BaseAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import ss.com.bannerslider.banners.Banner
 import ss.com.bannerslider.banners.RemoteBanner
-import java.util.ArrayList
+import java.util.*
 
 class EcommHomeFrm : BaseFragment() {
     private var ecommHomeDeco: ArrayList<EcommCateBean>? = null
@@ -58,6 +58,17 @@ class EcommHomeFrm : BaseFragment() {
         setAdapter(mBinding.rvMobileElec, ecomMobileAdapter)
         setAdapter(mBinding.rvHomeDesc, ecomHomeDecAdapter)
         addBanners()
+    }
+
+    private fun clickListener() {
+        mBinding.imgNavi.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View) {
+        super.onClick(v)
+        when (v.id) {
+            R.id.img_navi -> (activity as EcommHomeActivity).openCloseDrawer(true)
+        }
     }
 
 
@@ -223,7 +234,7 @@ class EcommHomeFrm : BaseFragment() {
         )
         //        remoteBanners.add(new DrawableBanner(R.drawable.btn));
         mBinding.bannerSlider.setBanners(remoteBanners)
-        Log.d(TAG, "addBanners: " + remoteBanners.size)
+        Lg.d(TAG, "addBanners: " + remoteBanners.size)
         //        mBinding.bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
         //            @Override
         //            public void onClick(int position) {
@@ -232,16 +243,6 @@ class EcommHomeFrm : BaseFragment() {
         //        });
     }
 
-    private fun clickListener() {
-        mBinding.imgNavi.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View) {
-        super.onClick(v)
-        when (v.id) {
-            R.id.img_navi -> (activity as EcommHomeActivity).openCloseDrawer(true)
-        }
-    }
 
     /**
      * navigate on fragment

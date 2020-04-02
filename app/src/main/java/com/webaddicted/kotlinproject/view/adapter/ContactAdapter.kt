@@ -1,11 +1,15 @@
 package com.webaddicted.kotlinproject.view.adapter
 
+import android.graphics.Color
 import android.text.Html
-import android.util.Log
+import android.text.Spannable
+import android.text.style.ForegroundColorSpan
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowContactBinding
+import com.webaddicted.kotlinproject.global.common.Lg
 import com.webaddicted.kotlinproject.global.common.gone
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.model.bean.common.ContactBean
@@ -16,7 +20,6 @@ import java.util.*
  * Created by Deepak Sharma on 01/07/19.
  */
 class ContactAdapter(private var list: ArrayList<ContactBean>?) : BaseAdapter() {
-    public var searchText: String? = null
     private var searchArray: ArrayList<ContactBean>
 
     init {
@@ -60,7 +63,7 @@ class ContactAdapter(private var list: ArrayList<ContactBean>?) : BaseAdapter() 
             } else rowBinding.txtOtherInfo.gone()
 
             if (source?.checked === "0") {
-                Log.d(
+                Lg.d(
                     "aaaaaaaaaaaaa",
                     "start page source.getChecked()==0   " + source
                         .checked + "  name===>" + source
@@ -68,7 +71,7 @@ class ContactAdapter(private var list: ArrayList<ContactBean>?) : BaseAdapter() 
                 )
                 rowBinding.cb.isChecked = false
             } else {
-                Log.d(
+                Lg.d(
                     "aaaaaaaaaaaaa",
                     "start page source.getChecked()==1   " + source
                         ?.checked.toString() + "   name===>" + source
@@ -79,7 +82,7 @@ class ContactAdapter(private var list: ArrayList<ContactBean>?) : BaseAdapter() 
             if (source?.contactPhoto != null)
                 rowBinding.contactImage.setImageBitmap(source.contactPhoto)
             else
-                rowBinding.contactImage.setImageDrawable(mContext.resources.getDrawable(R.drawable.girl))
+                rowBinding.contactImage.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.girl))
             onClickListener(rowBinding, rowBinding.cb, position)
         }
     }
@@ -92,14 +95,14 @@ class ContactAdapter(private var list: ArrayList<ContactBean>?) : BaseAdapter() 
             R.id.cb -> {
                 if (rowBinding.cb.isChecked) {
                     source?.checked = "1"
-                    Log.d(
+                    Lg.d(
                         "aaaaaaaaaaaaa",
                         "checked ===> 1   " + source?.checked
                             .toString() + " " + source?.contactName
                     )
                 } else {
                     source?.checked = "0"
-                    Log.d(
+                    Lg.d(
                         "aaaaaaaaaaaaa",
                         "checked ===> 0   " + source?.checked
                             .toString() + " " + source?.contactName
@@ -109,12 +112,10 @@ class ContactAdapter(private var list: ArrayList<ContactBean>?) : BaseAdapter() 
         }
     }
 
-    fun filter(charText: String?) {
-        var charText = charText
-        charText = charText!!.toLowerCase(Locale.getDefault())
-        searchText = charText
+    fun filter(textStr: String?) {
+        val charText = textStr!!.toLowerCase(Locale.getDefault())
         list?.clear()
-        if (charText == null && charText!!.length == 0) {
+        if (charText == null && !charText.isBlank()) {
             list?.addAll(searchArray)
         } else {
             for (wp in searchArray) {

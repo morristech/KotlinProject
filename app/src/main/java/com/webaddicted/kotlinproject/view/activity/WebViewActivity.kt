@@ -219,7 +219,7 @@ class WebViewActivity : BaseActivity() {
                 showToast("captured image - " + mCameraPhotoPath)
             }
         } catch (e: Exception) {
-            Log.e("Error!", "Error while opening image file" + e.localizedMessage)
+            Lg.e("Error!", "Error while opening image file: ${e.localizedMessage}")
             mUploadMessage?.onReceiveValue(arrayOf(Uri.parse("")))
             mUploadMessage = null
         }

@@ -17,6 +17,7 @@ import kotlin.collections.ArrayList
 class CircleFrm : BaseFragment() {
     private lateinit var mBinding: FrmNewsBinding
     private lateinit var newsAdapter: CircleGameAdapter
+
     companion object {
         val TAG = CircleFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): CircleFrm {
@@ -55,50 +56,54 @@ class CircleFrm : BaseFragment() {
     }
 
     private fun setAdapter() {
-         var circleBean=setCircleGameBean()
+        var circleBean = setCircleGameBean()
         Collections.sort(circleBean, CircleGameBean())
-        newsAdapter = CircleGameAdapter(circleBean)
+        newsAdapter = CircleGameAdapter(this, circleBean)
         mBinding.rvNewsChannel.layoutManager = LinearLayoutManager(activity)
         mBinding.rvNewsChannel.adapter = newsAdapter
     }
+
     private fun setCircleGameBean(): ArrayList<CircleGameBean> {
         var languageBeanList = ArrayList<CircleGameBean>()
         languageBeanList.add(CircleGameBean().apply {
             id = "0"
-            gameName= "Default (" + Locale.getDefault().displayName.toLowerCase() + ")"
-            gameImg = "https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            Name = "top 3 game you have played"
+            Image =
+                "https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
         })
         languageBeanList.add(CircleGameBean().also {
             it.id = "1"
-            it.gameName = "Argentina"
-            it.gameImg = "https://www.lovethisimages.com/wp-content/uploads/2018/04/sorry-images-download-1.jpg"
+            it.Name = "your next 3 game"
+            it.Image =
+                "https://www.lovethisimages.com/wp-content/uploads/2018/04/sorry-images-download-1.jpg"
         })
         languageBeanList.add(CircleGameBean().apply {
             id = "2"
-            gameName = "English"
-            gameImg =
+            Name = "top beach games"
+            Image =
                 "https://jacquet-autocars.com/wp-content/uploads/2016/12/Courchevel-transfert-gare-ski-DR-JuliaKuznetsova.jpg"
         })
         languageBeanList.add(CircleGameBean().apply {
             id = "3"
-            gameName = "Hindi"
-            gameImg = "https://i.imgur.com/R1eeO.jpg"
+            Name = "your next 3 game"
+            Image = "https://i.imgur.com/R1eeO.jpg"
         })
         languageBeanList.add(CircleGameBean().also {
             it.id = "1"
-            it.gameName = "Argentina"
-            it.gameImg = "http://sfwallpaper.com/images/see-hd-wallpaper-26.jpg"
+            it.Name = "top 3 game you have played"
+            it.Image = "http://sfwallpaper.com/images/see-hd-wallpaper-26.jpg"
         })
         languageBeanList.add(CircleGameBean().apply {
             id = "2"
-            gameName = "English"
-            gameImg =
+            Name = "your next 3 game"
+            Image =
                 "https://broadway.showtickets.com/cdn/img/articles/broadway/the-5-best-places-to-see-fall-foliage-in-new-york-city/st-autumn-central-park-600.jpg"
         })
         languageBeanList.add(CircleGameBean().apply {
             id = "3"
-            gameName = "Hindi"
-            gameImg = "https://www.tucantravel.com/blog/wp-content/uploads/2019/05/Northern-lights-in-Iceland-750x400.jpg"
+            Name = "top beach games"
+            Image =
+                "https://www.tucantravel.com/blog/wp-content/uploads/2019/05/Northern-lights-in-Iceland-750x400.jpg"
         })
 
         return languageBeanList
@@ -109,12 +114,20 @@ class CircleFrm : BaseFragment() {
      * navigate on fragment
      * @param tag represent navigation activity
      */
-    private fun navigateScreen(tag: String) {
+    private fun navigateScreen(tag: String, bundle: Bundle) {
         var frm: Fragment? = null
         when (tag) {
             ProfileFrm.TAG -> frm = ProfileFrm.getInstance(Bundle())
+            ZoomImageFrm.TAG -> frm = ZoomImageFrm.getInstance(bundle)
         }
         if (frm != null) navigateFragment(R.id.container, frm, false)
+    }
+
+    fun openImg(image: String?) {
+        val bundle = Bundle()
+        bundle.putString(ZoomImageFrm.IMAGE_PATH, image)
+        bundle.putBoolean(ZoomImageFrm.IS_LOCAL_FILE, false)
+        navigateScreen(ZoomImageFrm.TAG, bundle)
     }
 
 

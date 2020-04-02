@@ -12,13 +12,16 @@ import com.webaddicted.kotlinproject.global.common.showImage
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.model.circle.CircleGameBean
 import com.webaddicted.kotlinproject.view.base.BaseAdapter
+import com.webaddicted.kotlinproject.view.base.BaseFragment
+import com.webaddicted.kotlinproject.view.fcmkit.FcmHomeFrm
+import com.webaddicted.kotlinproject.view.fragment.CircleFrm
 
 /**
  * Today's Top game list & animation handle in same adapter
  */
-class CircleGameAdapter(private var mFilterBean: ArrayList<CircleGameBean>?) : BaseAdapter() {
+class CircleGameAdapter(private var frm:BaseFragment,private var mFilterBean: ArrayList<CircleGameBean>?) : BaseAdapter() {
 
-    private val slideAnmimations: Animation
+    private var slideAnmimations: Animation
     private var slideAnmimation: Animation
 
     init {
@@ -41,6 +44,8 @@ class CircleGameAdapter(private var mFilterBean: ArrayList<CircleGameBean>?) : B
 
     override fun onBindTo(mBinding: ViewDataBinding, position: Int) {
         if (mBinding is RowCircleBinding) {
+            slideAnmimation = AnimationUtils.loadAnimation(mContext, R.anim.game_bounce)
+            slideAnmimations = AnimationUtils.loadAnimation(mContext, R.anim.game_bounce)
             mBinding.imgFirst.animation = slideAnmimation
             //            mBinding.imgSecond.startAnimation(slideAnmimation);
             mBinding.imgThird.animation = slideAnmimation
@@ -131,13 +136,17 @@ class CircleGameAdapter(private var mFilterBean: ArrayList<CircleGameBean>?) : B
     override fun getClickEvent(mRowBinding: ViewDataBinding,view: View?, position: Int) {
         super.getClickEvent(mRowBinding,view, position)
         val currentPosi = position + 1
-        val categoriesBean: CircleGameBean
+        var categoriesBean: CircleGameBean? = null
             when (view?.id) {
                 R.id.img_first -> categoriesBean = getGameInfo(currentPosi, 0)
                 R.id.img_second -> categoriesBean = getGameInfo(currentPosi, 1)
                 R.id.img_third -> categoriesBean = getGameInfo(currentPosi, 2)
                 R.id.img_fourth -> categoriesBean = getGameInfo(currentPosi, 3)
-        }
+            }
+        if (frm is FcmHomeFrm)
+            (frm as FcmHomeFrm).openImg(categoriesBean?.Image)
+        else if (frm is CircleFrm)
+            (frm as CircleFrm).openImg(categoriesBean?.Image)
     }
 
     /**
@@ -149,9 +158,8 @@ class CircleGameAdapter(private var mFilterBean: ArrayList<CircleGameBean>?) : B
      */
     private fun getGameInfo(currentPos: Int, remPos: Int): CircleGameBean {
         val staggeredModel = CircleGameBean()
-        staggeredModel.gameName = (mFilterBean!![currentPos * 4 - 4 + remPos].gameName)
-        staggeredModel.gameImg = (mFilterBean!![currentPos * 4 - 4 + remPos].gameImg)
-        //  staggeredModel.setCategoryImage(mStorageBaseUrl + mCategoriesDir + mFilterBean.get(((currentPos * 4) - 4) + remPos).getCategoryImage());
+        staggeredModel.Name = (mFilterBean!![currentPos * 4 - 4 + remPos].Name)
+        staggeredModel.Image = (mFilterBean!![currentPos * 4 - 4 + remPos].Image)
         staggeredModel.id = (mFilterBean!![currentPos * 4 - 4 + remPos].id)
         return staggeredModel
     }
@@ -163,61 +171,61 @@ class CircleGameAdapter(private var mFilterBean: ArrayList<CircleGameBean>?) : B
         val currentPos = position + 1
         when (getCurrentReminder(position)) {
             0 -> {
-//                mBinding.txtFirst.text = getGameInfo(currentPos, 0).gameName
-//                mBinding.txtSecond.text = getGameInfo(currentPos, 1).gameName
-//                mBinding.txtThird.text = getGameInfo(currentPos, 2).gameName
-//                mBinding.txtFourth.text = getGameInfo(currentPos, 3).gameName
+                mBinding.txtFirst.text = getGameInfo(currentPos, 0).Name
+                mBinding.txtSecond.text = getGameInfo(currentPos, 1).Name
+                mBinding.txtThird.text = getGameInfo(currentPos, 2).Name
+                mBinding.txtFourth.text = getGameInfo(currentPos, 3).Name
                     mBinding.imgFirst.showImage(
-                    getGameInfo(currentPos, 0).gameImg,
-                    getPlaceHolder(0)
+                    getGameInfo(currentPos, 0).Image,
+                    getPlaceHolder(3)
                 )
                     mBinding.imgSecond.showImage(
-                    getGameInfo(currentPos, 1).gameImg,
-                    getPlaceHolder(0)
+                    getGameInfo(currentPos, 1).Image,
+                    getPlaceHolder(3)
                 )
                     mBinding.imgThird.showImage(
-                    getGameInfo(currentPos, 2).gameImg,
-                    getPlaceHolder(0)
+                    getGameInfo(currentPos, 2).Image,
+                    getPlaceHolder(3)
                 )
                     mBinding.imgFourth.showImage(
-                    getGameInfo(currentPos, 3).gameImg,
-                    getPlaceHolder(0)
+                    getGameInfo(currentPos, 3).Image,
+                    getPlaceHolder(3)
                 )
             }
             1 -> {
-//                mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
+                mBinding.txtFirst.text = getGameInfo(currentPos, 0).Name
                 mBinding.imgFirst.showImage(
-                    getGameInfo(currentPos, 0).gameImg,
-                    getPlaceHolder(0)
+                    getGameInfo(currentPos, 0).Image,
+                    getPlaceHolder(3)
                 )
             }
             2 -> {
-//                mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
-//                mBinding.txtSecond.setText(getGameInfo(currentPos, 1).gameName)
+                mBinding.txtFirst.text = getGameInfo(currentPos, 0).Name
+                mBinding.txtSecond.text = getGameInfo(currentPos, 1).Name
                 mBinding.imgFirst.showImage(
-                    getGameInfo(currentPos, 0).gameImg,
-                    getPlaceHolder(0)
+                    getGameInfo(currentPos, 0).Image,
+                    getPlaceHolder(3)
                 )
                     mBinding.imgSecond.showImage(
-                    getGameInfo(currentPos, 1).gameImg,
-                    getPlaceHolder(0)
+                    getGameInfo(currentPos, 1).Image,
+                    getPlaceHolder(3)
                 )
             }
             3 -> {
-//                mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
-//                mBinding.txtSecond.setText(getGameInfo(currentPos, 1).gameName)
-//                mBinding.txtThird.setText(getGameInfo(currentPos, 2).gameName)
+                mBinding.txtFirst.text = getGameInfo(currentPos, 0).Name
+                mBinding.txtSecond.text = getGameInfo(currentPos, 1).Name
+                mBinding.txtThird.text = getGameInfo(currentPos, 2).Name
                     mBinding.imgFirst.showImage(
-                    getGameInfo(currentPos, 0).gameImg,
-                    getPlaceHolder(0)
+                    getGameInfo(currentPos, 0).Image,
+                    getPlaceHolder(3)
                 )
                     mBinding.imgSecond.showImage(
-                    getGameInfo(currentPos, 1).gameImg,
-                    getPlaceHolder(0)
+                    getGameInfo(currentPos, 1).Image,
+                    getPlaceHolder(3)
                 )
                     mBinding.imgThird.showImage(
-                    getGameInfo(currentPos, 2).gameImg,
-                    getPlaceHolder(0)
+                    getGameInfo(currentPos, 2).Image,
+                    getPlaceHolder(3)
                 )
             }
         }
@@ -250,120 +258,8 @@ class CircleGameAdapter(private var mFilterBean: ArrayList<CircleGameBean>?) : B
         } else
             0
     }
-
-//
-//    override fun getItemCount(): Int {
-//        var size = 0
-//            if (mFilterBean != null && mFilterBean!!.size > 0) {
-//                size = mFilterBean!!.size / 4
-//                if (reminder != 0) {
-//                    size++
-//                }
-//            }
-//            return size
-//
-//    }
-
-
-//    val itemCount: Int
-//        get() {
-//            var size = 0
-//            if (mFilterBean != null && mFilterBean!!.size > 0) {
-//                size = mFilterBean!!.size / 4
-//                if (reminder != 0) {
-//                    size++
-//                }
-//            }
-//            return size
-//        }
-
-
-//    override fun onCreateViewHolder(
-//        parent: ViewGroup,
-//        viewType: Int
-//    ): CircleGameAdapter.FilterViewHolder {
-//        val frm = DataBindingUtil.inflate(
-//            LayoutInflater.from(parent.context),
-//            R.layout.row_circle,
-//            parent, false
-//        )
-//        return CircleGameAdapter.FilterViewHolder(frm)
-//    }
-
-//    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-//    override fun onBindViewHolder(holder: CircleGameAdapter.FilterViewHolder, position: Int) {
-//        holder.binding()
-//    }
-
-
-//    inner class FilterViewHolder(private val mBinding: RowCircleBinding) :
-//        RecyclerView.ViewHolder(mBinding.getRoot()), View.OnClickListener {
-//
-//        fun binding() {
-//
-//        }
-//
-//
-////        /**
-////         * get url & name of game from bean list
-////         *
-////         * @param currentPos of row position
-////         * @param remPos     is circle image of one row  image
-////         * @return current position game bean
-////         */
-////        private fun getGameInfo(currentPos: Int, remPos: Int): CircleGameBean {
-////            val staggeredModel = CircleGameBean()
-////            staggeredModel.gameName = (mFilterBean!![currentPos * 4 - 4 + remPos].gameName)
-////            staggeredModel.gameImg = (mFilterBean!![currentPos * 4 - 4 + remPos].gameImg)
-////            //  staggeredModel.setCategoryImage(mStorageBaseUrl + mCategoriesDir + mFilterBean.get(((currentPos * 4) - 4) + remPos).getCategoryImage());
-////            staggeredModel.id = (mFilterBean!![currentPos * 4 - 4 + remPos].id)
-////            return staggeredModel
-////        }
-//
-//        /**
-//         * set image & text parameter on current position view
-//         */
-////        fun setImage() {
-////            val loaderImage = mContext?.getResources()?.getStringArray(R.array.image_loader)
-////            val currentPos = getAdapterPosition() + 1
-////            when (getCurrentReminder(getAdapterPosition())) {
-////                0 -> {
-////                    mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
-////                    mBinding.txtSecond.setText(getGameInfo(currentPos, 1).gameName)
-////                    mBinding.txtThird.setText(getGameInfo(currentPos, 2).gameName)
-////                    mBinding.txtFourth.setText(getGameInfo(currentPos, 3).gameName)
-////                }
-////                1 -> mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
-////
-////                2 -> {
-////                    mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
-////                    mBinding.txtSecond.setText(getGameInfo(currentPos, 1).gameName)
-////                }
-////                3 -> {
-////                    mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
-////                    mBinding.txtSecond.setText(getGameInfo(currentPos, 1).gameName)
-////                    mBinding.txtThird.setText(getGameInfo(currentPos, 2).gameName)
-////                }
-////            }
-////        }
-//
-//
-////        override fun onClick(view: View) {
-////            val currentPosi = getAdapterPosition() + 1
-////            val categoriesBean: CircleGameBean
-////            when (view.id) {
-////                R.id.img_first -> categoriesBean = getGameInfo(currentPosi, 0)
-////                R.id.img_second -> categoriesBean = getGameInfo(currentPosi, 1)
-////                R.id.img_third -> categoriesBean = getGameInfo(currentPosi, 2)
-////                R.id.img_fourth -> categoriesBean = getGameInfo(currentPosi, 3)
-////            }
-//            /* goToSubGame(categoriesBean.getCategoryId(),categoriesBean.getCategoryName(),
-//                            categoriesBean.getCategoryImage(), categoriesBean.isUserCategoryGame());*//*goToSubGame(categoriesBean.getCategoryId(),categoriesBean.getCategoryName(),
-//                            categoriesBean.getCategoryImage(), categoriesBean.isUserCategoryGame());*//* goToSubGame(categoriesBean.getCategoryId(),categoriesBean.getCategoryName(),
-//                            categoriesBean.getCategoryImage(), categoriesBean.isUserCategoryGame());*//*  goToSubGame(categoriesBean.getCategoryId(),categoriesBean.getCategoryName(),
-//                            categoriesBean.getCategoryImage(), categoriesBean.isUserCategoryGame());*/
-//        }
-//    }
-
-
+    fun notifyAdapter(prodList: ArrayList<CircleGameBean>) {
+        mFilterBean = prodList
+        notifyDataSetChanged()
+    }
 }

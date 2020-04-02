@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Point
 import android.net.Uri
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
@@ -29,6 +28,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowExoPlayerBinding
+import com.webaddicted.kotlinproject.global.common.Lg
 import com.webaddicted.kotlinproject.model.bean.common.ExoPlayerBean
 import java.util.*
 
@@ -161,7 +161,7 @@ class ExoPlayerRecyclerView : RecyclerView {
             ) {
                 when (playbackState) {
                     Player.STATE_BUFFERING -> {
-                        Log.e(
+                        Lg.e(
                             TAG,
                             "onPlayerStateChanged: Buffering video."
                         )
@@ -170,7 +170,7 @@ class ExoPlayerRecyclerView : RecyclerView {
                         }
                     }
                     Player.STATE_ENDED -> {
-                        Log.d(
+                        Lg.d(
                             TAG,
                             "onPlayerStateChanged: Video ended."
                         )
@@ -179,7 +179,7 @@ class ExoPlayerRecyclerView : RecyclerView {
                     Player.STATE_IDLE -> {
                     }
                     Player.STATE_READY -> {
-                        Log.e(
+                        Lg.e(
                             TAG,
                             "onPlayerStateChanged: Ready to play."
                         )
@@ -234,7 +234,7 @@ class ExoPlayerRecyclerView : RecyclerView {
         } else {
             targetPosition = mediaObjects.size - 1
         }
-        Log.d(
+        Lg.d(
             TAG,
             "playVideo: target position: $targetPosition"
         )
@@ -292,7 +292,7 @@ class ExoPlayerRecyclerView : RecyclerView {
         val at = playPosition - (Objects.requireNonNull(
             layoutManager
         ) as LinearLayoutManager).findFirstVisibleItemPosition()
-        Log.d(
+        Lg.d(
             TAG,
             "getVisibleVideoSurfaceHeight: at: $at"
         )
@@ -353,13 +353,13 @@ class ExoPlayerRecyclerView : RecyclerView {
     private fun toggleVolume() {
         if (videoPlayer != null) {
             if (volumeState == VolumeState.OFF) {
-                Log.d(
+                Lg.d(
                     TAG,
                     "togglePlaybackState: enabling volume."
                 )
                 setVolumeControl(VolumeState.ON)
             } else if (volumeState == VolumeState.ON) {
-                Log.d(
+                Lg.d(
                     TAG,
                     "togglePlaybackState: disabling volume."
                 )

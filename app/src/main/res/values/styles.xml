@@ -116,6 +116,16 @@
     </style>
     <!--{ END TextInputLayout }-->
     <!--{ START TextInputEditText }-->
+    <style name="EdittextBlack">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColorHint">@color/brown</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/sp13</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textAppearance">@style/TextAppearance_open_sans_semibold</item>
+        <item name="android:theme">@style/EditTextStyle</item>
+    </style>
 
     <style name="Edittext">
         <item name="android:layout_height">wrap_content</item>
@@ -463,4 +473,6 @@
     <style name="my_themess" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="android:layout_height">wrap_content</item>
     </style>
+
+
 </resources>

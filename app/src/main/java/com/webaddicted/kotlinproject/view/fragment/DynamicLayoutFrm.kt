@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.ViewDataBinding
 import com.itextpdf.text.*
@@ -133,7 +134,7 @@ class DynamicLayoutFrm : BaseFragment() {
 
             //set drawable in cell
             val myImage =
-                resources.getDrawable(R.drawable.logo)
+                ContextCompat.getDrawable(activity!!,R.drawable.logo)
             val bitmap =
                 (myImage as BitmapDrawable).bitmap
             val stream = ByteArrayOutputStream()

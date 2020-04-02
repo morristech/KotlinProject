@@ -101,7 +101,13 @@ fun <T> getPlaceHolder(
     } else if (imageLoadersArray[2] == imageLoaderType) {
         drawableTypeRequest.error(R.drawable.girl)
         drawableTypeRequest.placeholder(R.drawable.girl)
-    } else {
+    } else if (imageLoadersArray[3] == imageLoaderType) {
+        drawableTypeRequest.error(R.drawable.man)
+        drawableTypeRequest.placeholder(R.drawable.man)
+    }  else if (imageLoadersArray[4] == imageLoaderType) {
+        drawableTypeRequest.error(R.drawable.ic_user)
+        drawableTypeRequest.placeholder(R.drawable.ic_user)
+    }  else {
         drawableTypeRequest.error(R.color.app_color)
         drawableTypeRequest.placeholder(R.color.app_color)
     }

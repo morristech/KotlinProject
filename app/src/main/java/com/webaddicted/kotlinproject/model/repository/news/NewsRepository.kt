@@ -5,6 +5,7 @@ import com.webaddicted.kotlinproject.apiutils.ApiResponse
 import com.webaddicted.kotlinproject.apiutils.ApiServices
 import com.webaddicted.kotlinproject.apiutils.DataFetchCall
 import com.webaddicted.kotlinproject.model.bean.newschannel.NewsChanelRespo
+import com.webaddicted.kotlinproject.model.repository.base.BaseRepository
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 /**

@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebView
@@ -35,7 +34,7 @@ class WebChromeClientTest(private var myActivity: Activity?) :WebChromeClient(){
                 Lg.d("TAG",""+exp)
             }
             webActivity.mUploadMessage = filePath
-            Log.e("FileCooserParams => ", filePath.toString())
+            Lg.e("FileCooserParams => ", filePath.toString())
             webActivity.mCameraPhotoPath = ""
             var takePictureIntent: Intent? = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             if (takePictureIntent!!.resolveActivity(webActivity.getPackageManager()) != null) {
@@ -46,7 +45,8 @@ class WebChromeClientTest(private var myActivity: Activity?) :WebChromeClient(){
                     takePictureIntent.putExtra("PhotoPath", webActivity.mCameraPhotoPath)
                 } catch (ex: IOException) {
                     // Error occurred while creating the File
-                    Log.e("TAG", "Unable to create Image File", ex)
+                    ex.printStackTrace()
+                    Lg.e("TAG", "Unable to create Image File $ex")
                 }
 
                 // Continue only if the File was successfully created

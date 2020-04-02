@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.model.repository.news
+package com.webaddicted.kotlinproject.model.repository.base
 
 import com.webaddicted.kotlinproject.global.db.dao.UserInfoDao
 import com.webaddicted.kotlinproject.global.sharedpref.PreferenceMgr

@@ -3,6 +3,7 @@ package com.webaddicted.kotlinproject.view.activity
 import android.app.Activity
 import android.content.Intent
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import androidx.viewpager.widget.ViewPager
 import com.webaddicted.kotlinproject.R
@@ -80,10 +81,10 @@ class OnBoardActivity : BaseActivity() {
     }
 
     private fun changeNavigatColor(position: Int) {
-        if (position == 0) setNavigationColor(getResources().getColor(R.color.bg_screen1))
-        else if (position == 1) setNavigationColor(getResources().getColor(R.color.bg_screen2))
-        else if (position == 2) setNavigationColor(getResources().getColor(R.color.bg_screen3))
-        else if (position == 3) setNavigationColor(getResources().getColor(R.color.bg_screen4))
+        if (position == 0) setNavigationColor(ContextCompat.getColor(this,R.color.bg_screen1))
+        else if (position == 1) setNavigationColor(ContextCompat.getColor(this,R.color.bg_screen2))
+        else if (position == 2) setNavigationColor(ContextCompat.getColor(this,R.color.bg_screen3))
+        else if (position == 3) setNavigationColor(ContextCompat.getColor(this,R.color.bg_screen4))
 
     }
 

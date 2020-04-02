@@ -3,7 +3,6 @@ package com.webaddicted.kotlinproject.view.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Handler
-import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
@@ -25,6 +24,12 @@ class SplashActivity : BaseActivity() {
         val TAG: String = SplashActivity::class.java.simpleName
         fun newIntent(activity: Activity) {
             activity.startActivity(Intent(activity, SplashActivity::class.java))
+        }
+        fun newClearLogin(context: Activity?) {
+            val intent = Intent(context, SplashActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            context?.startActivity(intent)
+            context?.finish()
         }
     }
 

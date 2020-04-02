@@ -28,6 +28,12 @@ class ZoomImageFrm : BaseFragment() {
             fragment.arguments = bundle
             return fragment
         }
+
+        fun getInstance(bundle: Bundle): ZoomImageFrm {
+            val fragment = ZoomImageFrm()
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 
     override fun getLayout(): Int {
@@ -45,13 +51,13 @@ class ZoomImageFrm : BaseFragment() {
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.zoom_title)
         val image = arguments?.getString(IMAGE_PATH)
         val isLocalFile = arguments?.getBoolean(IS_LOCAL_FILE)
-        if (image?.length!! > 0) {
+        if (image != null && image.isNotEmpty()) {
             if (isLocalFile!!) {
                 mBinding.imgZoom.showImage(File(image), getPlaceHolder(2))
             } else {
                 mBinding.imgZoom.showImage(image, getPlaceHolder(2))
             }
-        } else mBinding.imgZoom.showImage(image, getPlaceHolder(2))
+        } else mBinding.imgZoom.showImage("image", getPlaceHolder(4))
     }
 
     private fun clickListener() {

@@ -71,7 +71,7 @@ This repository provides the following components that are common to our open so
 * Ripple Effect
 * Arc Layout
 * Collapse Toolbar (With Different behavior)
-
+* Avoid Double click
 
 
 // ui design library

@@ -25,6 +25,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 /**
  * This class is responsible for loading a one day cell.
@@ -109,7 +110,7 @@ class CalendarDayAdapter extends ArrayAdapter<Date> {
 //            DayColorsUtils.setDayColors(dayLabel, calendarProperties.getSelectionLabelColor(), Typeface.NORMAL,
 //                    R.drawable.background_color_circle_selector);
 
-            dayLabel.getBackground().setColorFilter(dayLabel.getContext().getColor(R.color.disabledDialogButtonColor),
+            dayLabel.getBackground().setColorFilter(ContextCompat.getColor(dayLabel.getContext(),R.color.disabledDialogButtonColor),
                     android.graphics.PorterDuff.Mode.MULTIPLY);
             return;
         }

@@ -2,7 +2,7 @@ package com.webaddicted.kotlinproject.global.db.migration
 
 import android.database.Cursor
 import com.webaddicted.kotlinproject.global.db.entity.UserInfoEntity
-import com.webaddicted.kotlinproject.model.repository.news.BaseRepository
+import com.webaddicted.kotlinproject.model.repository.base.BaseRepository
 import org.koin.core.KoinComponent
 
 class DbMigrationHelper  : KoinComponent, BaseRepository(){

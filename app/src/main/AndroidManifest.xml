@@ -24,6 +24,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
     <uses-feature
             android:name="android.hardware.fingerprint"
             android:required="true" />
@@ -47,6 +48,22 @@
                 android:name="org.apache.http.legacy"
                 android:required="false" />
 
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="${applicationId}.provider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_provider_paths" />
+        </provider>
+        <receiver android:name=".global.common.NetworkChangeReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
         <meta-data
                 android:name="com.google.android.maps.v2.API_KEY"
                 android:value="@string/google_key" />
@@ -56,6 +73,16 @@
         <meta-data
                 android:name="com.facebook.sdk.ApplicationId"
                 android:value="@string/facebook_app_id" />
+        <meta-data
+                android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+                android:value="ocr, face, label, barcode" />
+        <!--        <meta-data-->
+        <!--                android:name="com.google.firebase.ml.vision.DEPENDENCIES"-->
+        <!--                android:value="face" />-->
+        <!--        <meta-data-->
+        <!--                android:name="com.google.firebase.ml.vision.DEPENDENCIES"-->
+        <!--                android:value="label" />-->
+
         <service android:name=".global.services.NormalService" />
 
         <service
@@ -67,15 +94,9 @@
         </service>
 
         <service
-                android:name="com.webaddicted.kotlinproject.global.services.GeofenceTransitionsIntentService"
+                android:name=".global.services.GeofenceTransitionsIntentService"
                 android:exported="true" />
 
-        <receiver android:name=".global.common.NetworkChangeReceiver">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
-            </intent-filter>
-        </receiver>
         <receiver android:name=".global.services.NotificationBroadcastReceiver">
             <intent-filter>
                 <action android:name="ACTION_CALL" />
@@ -83,6 +104,7 @@
                 <action android:name="ACTION_NO_IDEA" />
             </intent-filter>
         </receiver>
+
         <receiver
                 android:name=".global.services.SMSReceiver"
                 android:exported="true">
@@ -91,19 +113,8 @@
             </intent-filter>
         </receiver>
 
-
-        <provider
-                android:name="androidx.core.content.FileProvider"
-                android:authorities="${applicationId}.provider"
-                android:exported="false"
-                android:grantUriPermissions="true">
-            <meta-data
-                    android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/file_provider_paths" />
-        </provider>
-
         <activity
-                android:name="com.webaddicted.kotlinproject.view.activity.SplashActivity"
+                android:name=".view.activity.SplashActivity"
                 android:windowSoftInputMode="stateAlwaysHidden">
             <!--            <intent-filter>-->
             <!--                <action android:name="android.intent.action.MAIN" />-->
@@ -111,59 +122,70 @@
             <!--                <category android:name="android.intent.category.LAUNCHER" />-->
             <!--            </intent-filter>-->
         </activity>
+
         <activity
-                android:name="com.webaddicted.kotlinproject.view.activity.OnBoardActivity"
+                android:name=".view.activity.OnBoardActivity"
                 android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
-                android:name="com.webaddicted.kotlinproject.view.activity.SpeechTextActivity"
+                android:name=".view.activity.SpeechTextActivity"
                 android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
-                android:name="com.webaddicted.kotlinproject.view.activity.LanguageActivity"
+                android:name=".view.activity.LanguageActivity"
                 android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
-                android:name="com.webaddicted.kotlinproject.view.activity.LoginActivity"
+                android:name=".view.activity.LoginActivity"
                 android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
-                android:name="com.webaddicted.kotlinproject.view.activity.HomeActivity"
+                android:name=".view.activity.HomeActivity"
                 android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-                android:name="com.webaddicted.kotlinproject.view.activity.MapActivity"
-                android:windowSoftInputMode="stateAlwaysHidden"></activity>
+                android:name=".view.activity.MapActivity"
+                android:windowSoftInputMode="stateAlwaysHidden" />
 
+        <activity android:name=".view.activity.WebViewActivity" />
 
-        <activity android:name=".view.activity.WebViewActivity"></activity>
         <activity
                 android:name=".view.ecommerce.EcommHomeActivity"
-                android:theme="@style/AppThemeFullScreen"></activity>
-        <activity android:name=".view.activity.DeviceInfoActivity"></activity>
+                android:theme="@style/AppThemeFullScreen" />
+
+        <activity android:name=".view.activity.DeviceInfoActivity" />
 
         <activity
                 android:name=".global.blink.CameraActivity"
-                android:configChanges="orientation"
-                android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.ExoPlayerActivity"></activity>
+                android:configChanges="orientation" />
 
+        <activity android:name=".view.activity.ExoPlayerActivity" />
 
         <activity
                 android:name=".view.activity.NavBothSideDrawerActivity"
-                android:screenOrientation="portrait"
                 android:theme="@style/AppThemeFullScreen"
                 android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
                 android:name=".view.activity.NavDrawerActivity"
-                android:screenOrientation="portrait"
                 android:theme="@style/AppThemeFullScreen"
                 android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".view.fcmkit.FcmFoodActivity"></activity>
+
+        <activity android:name=".view.fcmkit.FcmFoodActivity" />
+
         <activity
                 android:name="com.facebook.FacebookActivity"
                 android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
                 android:label="@string/app_name" />
+
+        <activity
+                android:name=".view.fcmkit.FcmFoodHomeActivity"
+                android:theme="@style/AppThemeFullScreen" />
     </application>
 
 </manifest>

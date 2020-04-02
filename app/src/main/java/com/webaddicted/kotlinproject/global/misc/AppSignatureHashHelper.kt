@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.content.pm.PackageManager
 import android.util.Base64
-import android.util.Log
+import com.webaddicted.kotlinproject.global.common.Lg
 import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -38,7 +38,7 @@ class AppSignatureHashHelper(context: Context?) : ContextWrapper(context) {
                     }
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Package not found", e)
+                Lg.e(TAG, "Package not found", e)
             }
 
             return appSignaturesHashs
@@ -67,7 +67,7 @@ class AppSignatureHashHelper(context: Context?) : ContextWrapper(context) {
 
                 return base64Hash
             } catch (e: NoSuchAlgorithmException) {
-                Log.e(TAG, "No Such Algorithm Exception", e)
+                Lg.e(TAG, "No Such Algorithm Exception", e)
             }
 
             return null

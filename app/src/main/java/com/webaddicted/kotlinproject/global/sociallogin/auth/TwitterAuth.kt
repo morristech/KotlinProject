@@ -115,7 +115,7 @@ class TwitterAuth {
                 userName = userResult.displayName
                 dob = ""
                 userImage = profileImage
-                provider = userResult.providerId
+                provider = "Twitter"
             }
             mTwitterAuthClient!!.requestEmail(
                 twitterSession,

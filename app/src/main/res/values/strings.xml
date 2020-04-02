@@ -41,6 +41,8 @@
         <item>app_logo</item><!--app logo 0 -->
         <item>flag</item><!--flag  1 -->
         <item>girl</item><!--flag  2 -->
+        <item>man</item><!--flag  3 -->
+        <item>user</item><!--flag  4 -->
         <item>other image</item><!--other image-->
     </string-array>
     <string name="slide_1_title">Hello Food!</string>
@@ -371,5 +373,27 @@
     <string name="connect_with_google">Connect with Google</string>
     <string name="connect_with_fb">Connect with Facebook</string>
     <string name="connect_with_twitter">Connect with Twitter</string>
+    <string name="welocome">Welcome back,</string>
+    <string name="signin_to_start">Sign in to continue</string>
+    <string name="forgot_pasword_s">forgot password</string>
+    <string name="dont_have_account">Don\'t have an account ?\u0020</string>
+    <string name="forgot_pasword">Forgot Password</string>
+    <string name="verify">Verify</string>
+    <string name="dob">Date of birth</string>
+    <string name="mobile_no_already_exist">Mobile no already exist !</string>
+    <string name="account_successfully_created">Account successfully created.</string>
+    <string name="account_does_not_exist">Account does not exist with this mobile no.\nPlease create an account.</string>
+    <string name="text_recognizer">Text Recognizer</string>
+    <string name="face_detection">"Face detection "</string>
+    <string name="on_device">On device</string>
+    <string name="cloud">Cloud</string>
+    <string name="object_detection">"Object detection and tracking"</string>
+    <string name="image_label">Image Label</string>
+    <string name="barcode_scanner">Barcode scanner</string>
+    <string name="landmark_recognition">"Landmark Recognition "</string>
+    <string name="language_id">"Language ID "</string>
+    <string name="device_translation">"On-device translation "</string>
+    <string name="smart_reply">Smart Reply</string>
+
 
 </resources>

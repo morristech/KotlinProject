@@ -9,7 +9,6 @@ import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
-import android.util.Log
 import android.widget.Toast
 import androidx.annotation.NonNull
 import com.webaddicted.kotlinproject.global.common.PermissionHelper
@@ -25,6 +24,7 @@ import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.Circle
 import com.google.android.gms.maps.model.Marker
+import com.webaddicted.kotlinproject.global.common.Lg
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -137,9 +137,9 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
                 when (status.statusCode) {
                     LocationSettingsStatusCodes.SUCCESS ->
                         // All location settings are satisfied. The client can initialize location requests here
-                        Log.d(TAG, "onResult: SUCCESS")
+                        Lg.d(TAG, "onResult: SUCCESS")
                     LocationSettingsStatusCodes.RESOLUTION_REQUIRED -> {
-                        Log.d(TAG, "onResult: RESOLUTION_REQUIRED")
+                        Lg.d(TAG, "onResult: RESOLUTION_REQUIRED")
                         try {
                             // Show the dialog by calling startResolutionForResult(),
                             // and check the result in onActivityResult().
@@ -149,11 +149,11 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
                         }
 
                     }
-                    LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> Log.d(
+                    LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> Lg.d(
                         TAG,
                         "onResult: SETTINGS_CHANGE_UNAVAILABLE"
                     )
-                    LocationSettingsStatusCodes.CANCELED -> Log.d(TAG, "onResult: CANCELED")
+                    LocationSettingsStatusCodes.CANCELED -> Lg.d(TAG, "onResult: CANCELED")
                 }//                        getLocation();
             }
 
@@ -170,10 +170,10 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
                 getGeofencePendingIntent()
             ).setResultCallback(ResultCallback<Status> { status ->
                 if (status.isSuccess) {
-                    Log.i(TAG, "Saving Geofence")
+                    Lg.i(TAG, "Saving Geofence")
 
                 } else {
-                    Log.e(
+                    Lg.e(
                         TAG, "Registering geofence failed: " + status.statusMessage +
                                 " : " + status.statusCode
                     )
@@ -182,7 +182,7 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
 
         } catch (securityException: SecurityException) {
             // Catch exception generated if the app does not use ACCESS_FINE_LOCATION permission.
-            Log.e(TAG, "Error")
+            Lg.e(TAG, "Error")
         }
     }
 
@@ -271,12 +271,12 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
     }
 
     override fun onConnectionSuspended(arg0: Int) {
-        Log.d(TAG, "onConnectionSuspended: ")
+        Lg.d(TAG, "onConnectionSuspended: ")
         mGoogleApiClient!!.connect()
     }
 
     override fun onConnectionFailed(result: ConnectionResult) {
-        Log.i(
+        Lg.i(
             TAG,
             "login  Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode()
         )
@@ -371,13 +371,13 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
                     strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n")
                 }
                 strAddress = strReturnedAddress.toString()
-                Log.d(TAG, "Current address - $strReturnedAddress")
+                Lg.d(TAG, "Current address - $strReturnedAddress")
             } else {
-                Log.d(TAG, "No Address returned!")
+                Lg.d(TAG, "No Address returned!")
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.d(TAG, "Can't get Address! - $e")
+            Lg.d(TAG, "Can't get Address! - $e")
         }
 
         getCurrentLocation(location, strAddress)

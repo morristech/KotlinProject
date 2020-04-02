@@ -1,21 +1,25 @@
 package com.webaddicted.kotlinproject.view.adapter
 
-import android.graphics.Color
 import android.text.Spannable
-import android.text.SpannableString
+import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowTextListBinding
 import com.webaddicted.kotlinproject.view.base.BaseAdapter
 import com.webaddicted.kotlinproject.view.fragment.TaskFrm
 import java.util.*
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class TaskAdapter(private var taskFrm: TaskFrm, private var mTaskList: ArrayList<String>?) : BaseAdapter() {
+class TaskAdapter(private var taskFrm: TaskFrm, private var mTaskList: ArrayList<String>?) :
+    BaseAdapter() {
     private var searchText: String? = null
     private val searchArray: List<String>
 
@@ -35,38 +39,26 @@ class TaskAdapter(private var taskFrm: TaskFrm, private var mTaskList: ArrayList
 
     override fun onBindTo(mRowBinding: ViewDataBinding, position: Int) {
         if (mRowBinding is RowTextListBinding) {
-//            if (searchText != null && searchText?.length!! > 1) {
-//                val completeText = mTaskList?.get(position)
-//                val spannableString = SpannableString(mTaskList?.get(position))
-//                var i = -1
-//                while (completeText?.indexOf(searchText!!, i + 1).also { i = it!! } != -1) {
-////                while ((i = completeText.indexOf(searchText!!, i + 1)) != -1) {
-//                    val endText = searchText?.length!! + i
-//                    val foregroundSpan = ForegroundColorSpan(Color.GREEN)
-//                    spannableString.setSpan(
-//                        foregroundSpan,
-//                        i,
-//                        endText,
-//                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-//                    )
-//                    i++
-//                }
-            mRowBinding.txtName.text = mTaskList?.get(position)
-            val test = mTaskList?.get(position)
-            val initial = test?.get(0)
-            mRowBinding.txtInitial.text = initial.toString()
-
-//            } else {
-//                mRowBinding.txtName.setText(mTaskList?.get(position))
-//            }
-//            mRowBinding.card.setOnClickListener {
-            onClickListener(mRowBinding,mRowBinding.card, position)
-//        }
+            val title = mTaskList?.get(position)
+            if (searchText != null && searchText?.length!! > 1) {
+                val sb = SpannableStringBuilder(title)
+                val word: Pattern = Pattern.compile(searchText!!.toLowerCase())
+                val match: Matcher = word.matcher(title!!.toLowerCase())
+                while (match.find()) {
+                    val fcs = ForegroundColorSpan(
+                        ContextCompat.getColor(mContext, R.color.red)
+                    )
+                    sb.setSpan(fcs, match.start(), match.end(), Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+                }
+                mRowBinding.txtName.text = sb
+            } else mRowBinding.txtName.text = title
+            mRowBinding.txtInitial.text = title?.get(0).toString()
+            onClickListener(mRowBinding, mRowBinding.card, position)
         }
     }
 
-    override fun getClickEvent(mRowBinding: ViewDataBinding,view: View?, position: Int) {
-        super.getClickEvent(mRowBinding,view, position)
+    override fun getClickEvent(mRowBinding: ViewDataBinding, view: View?, position: Int) {
+        super.getClickEvent(mRowBinding, view, position)
         when (view?.id) {
             R.id.card -> mTaskList?.get(position)?.let { taskFrm.onClicks(it) }
         }
@@ -77,12 +69,11 @@ class TaskAdapter(private var taskFrm: TaskFrm, private var mTaskList: ArrayList
         notifyDataSetChanged()
     }
 
-    fun filter(charText: String?) {
-        var charText = charText
-        charText = charText!!.toLowerCase(Locale.getDefault())
+    fun filter(textStr: String?) {
+        val charText = textStr!!.toLowerCase(Locale.getDefault())
         searchText = charText
         mTaskList?.clear()
-        if (charText == null && charText!!.length == 0) {
+        if (charText == null && charText.isBlank()) {
             mTaskList?.addAll(searchArray)
         } else {
             for (wp in searchArray) {

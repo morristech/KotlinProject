@@ -95,7 +95,9 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener,
         overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out)
     }
 
-    override fun onClick(v: View) {}
+    override fun onClick(v: View) {
+        GlobalUtility.avoidDoubleClicks(v)
+    }
 
     override fun onResume() {
         super.onResume()

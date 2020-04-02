@@ -5,11 +5,11 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.speech.RecognizerIntent
 import android.speech.tts.TextToSpeech
-import android.util.Log
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivitySpechTextBinding
+import com.webaddicted.kotlinproject.global.common.Lg
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.base.BaseActivity
 import java.util.*
@@ -79,7 +79,7 @@ class SpeechTextActivity : BaseActivity() {
         try {
             startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT)
         } catch (exp: ActivityNotFoundException) {
-            Log.d(TAG, "speechToTextOutput: $exp")
+            Lg.d(TAG, "speechToTextOutput: $exp")
         }
 
     }

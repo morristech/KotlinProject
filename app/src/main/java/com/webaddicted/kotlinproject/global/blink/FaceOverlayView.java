@@ -19,6 +19,7 @@ import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 import com.webaddicted.kotlinproject.global.common.AppApplication;
+import com.webaddicted.kotlinproject.global.common.Lg;
 
 /**
  * Created by Paul on 11/4/15.
@@ -92,10 +93,10 @@ public class FaceOverlayView extends View {
                             strBuilder.append("/");
                             for (Text line : itemb.getComponents()) {
                                 //extract scanned text lines here
-                                Log.v("lines", line.getValue());
+                                Log.d("lines", line.getValue());
                                 for (Text element : line.getComponents()) {
                                     //extract scanned text words here
-                                    Log.v("element", element.getValue());
+                                    Log.d("element", element.getValue());
                                 }
                             }
                         }

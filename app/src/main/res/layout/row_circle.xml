@@ -37,8 +37,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="@dimen/dp11"
                     android:layout_marginRight="@dimen/dp4"
-                    android:src="@color/gray"
-                    android:tint="@color/colorPrimary" />
+                    android:src="@color/gray" />
 
             <TextView
                     android:id="@+id/txt_second"
@@ -63,8 +62,7 @@
                     android:layout_below="@+id/txt_first"
                     android:layout_marginLeft="@dimen/dp20"
                     android:layout_marginTop="@dimen/dp19"
-                    android:src="@color/gray"
-                    android:tint="@color/colorPrimary" />
+                    android:src="@color/gray" />
 
             <TextView
                     android:id="@+id/txt_third"
@@ -89,8 +87,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="@dimen/dp19"
                     android:paddingRight="@dimen/dpmin25"
-                    android:src="@color/gray"
-                    android:tint="@color/colorPrimary" />
+                    android:src="@color/gray" />
 
             <TextView
                     android:id="@+id/txt_fourth"

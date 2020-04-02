@@ -11,13 +11,13 @@ import android.widget.DatePicker
 import android.widget.MultiAutoCompleteTextView
 import android.widget.TimePicker
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmWidgetBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.base.BaseFragment
-import kotlinx.android.synthetic.main.frm_dev_battery.view.*
 
 
 class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
@@ -90,7 +90,7 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
         mBinding.pbCircular.progress = 0
         mBinding.pbCircular.secondaryProgress = 100
         mBinding.pbCircular.max = 100
-        mBinding.pbCircular.progressDrawable = resources.getDrawable(R.drawable.pb_circulare)
+        mBinding.pbCircular.progressDrawable = ContextCompat.getDrawable(activity!!,R.drawable.pb_circulare)
         var progressBarStatus = 0
         thread = Thread(Runnable {
             while (progressBarStatus < 100) {

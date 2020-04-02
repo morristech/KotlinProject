@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.PopupMenu
 import androidx.biometric.BiometricPrompt
 import androidx.biometric.BiometricPrompt.PromptInfo
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -85,7 +86,7 @@ class TaskFrm : BaseFragment() {
         "Collapse Toolbar Behavior",
         "Location Helper",
         "Firebase"
-        )
+    )
     private lateinit var showSearchView: ShowSearchView
 
     companion object {
@@ -119,10 +120,10 @@ class TaskFrm : BaseFragment() {
         )
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.task_title)
         mTaskList = ArrayList(listOf(*worktask))
-        showSearchView = ShowSearchView()
         setAdapter()
         clickListener()
         sortList(SortListType.ASCENDING)
+        showSearchView = ShowSearchView()
         val currentMode = AppCompatDelegate.getDefaultNightMode()
         if (currentMode == AppCompatDelegate.MODE_NIGHT_YES)
             activity?.showToast("Night Mode")
@@ -144,6 +145,7 @@ class TaskFrm : BaseFragment() {
                     .toLowerCase(Locale.getDefault())
                 mHomeAdapter.filter(text)
             }
+
 
             override fun afterTextChanged(editable: Editable) {
             }
@@ -176,8 +178,8 @@ class TaskFrm : BaseFragment() {
             false
         )
         mBinding.recyclerView.adapter = mHomeAdapter
-        mBinding.swipeView.setColorSchemeColors(resources.getColor(R.color.white))
-        mBinding.swipeView.setWaveColor(resources.getColor(R.color.app_color))
+        mBinding.swipeView.setColorSchemeColors(ContextCompat.getColor(activity!!, R.color.white))
+        mBinding.swipeView.setWaveColor(ContextCompat.getColor(activity!!, R.color.app_color))
         mBinding.swipeView.setOnRefreshListener {
             Handler().postDelayed({
                 mBinding.swipeView.isRefreshing = false
@@ -232,10 +234,10 @@ class TaskFrm : BaseFragment() {
             "Zoom Image(Touch/TwoFinger)" -> navigateScreen(ZoomImageFrm.TAG)
             "Exo Player" -> navigateScreen(ExoPlayerFrm.TAG)
             "Exo Player Recycler View" -> navigateScreen(ExoPlayerRecyclerFrm.TAG)
-            "Collapse Toolbar" ->navigateScreen(CollapseToolbarFrm.TAG)
-            "Collapse Toolbar Behavior" ->navigateScreen(CollapseToolbarBehavFrm.TAG)
-            "Location Helper" ->navigateScreen(LocationHelperFrm.TAG)
-            "Firebase"->navigateScreen(FcmFoodActivity.TAG)
+            "Collapse Toolbar" -> navigateScreen(CollapseToolbarFrm.TAG)
+            "Collapse Toolbar Behavior" -> navigateScreen(CollapseToolbarBehavFrm.TAG)
+            "Location Helper" -> navigateScreen(LocationHelperFrm.TAG)
+            "Firebase" -> navigateScreen(FcmFoodActivity.TAG)
 
             else -> navigateScreen(WidgetFrm.TAG)
         }

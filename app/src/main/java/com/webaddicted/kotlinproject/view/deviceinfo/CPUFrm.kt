@@ -5,7 +5,6 @@ import android.app.ActivityManager
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.databinding.ViewDataBinding
@@ -14,6 +13,7 @@ import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityCpuBinding
 import com.webaddicted.kotlinproject.global.common.FileHelper.Companion.calculatePercentage
 import com.webaddicted.kotlinproject.global.common.FileHelper.Companion.formatSize
+import com.webaddicted.kotlinproject.global.common.Lg
 import com.webaddicted.kotlinproject.model.bean.deviceinfo.CPUBean
 import com.webaddicted.kotlinproject.view.adapter.CPUAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
@@ -86,7 +86,7 @@ class CPUFrm : BaseFragment() {
                 }
             }
         } catch (e: Exception) {
-            Log.e("getCpuInfoMap", Log.getStackTraceString(e))
+            Lg.e("getCpuInfoMap", "${e.printStackTrace()}")
         }
         return lists
     }

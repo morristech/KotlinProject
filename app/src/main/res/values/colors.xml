@@ -61,4 +61,5 @@
 
     <color name="white_transparent">#99FFFFFF</color>
     <color name="windows_blue">#3495af</color>
+    <color name="nav_back_color">#31000000</color>
 </resources>

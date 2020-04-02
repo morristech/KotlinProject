@@ -15,6 +15,7 @@
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
             <LinearLayout
                     android:id="@+id/linear_btn"
                     android:layout_width="match_parent"
@@ -22,81 +23,67 @@
                     android:background="@color/white"
                     android:orientation="vertical">
 
-            <LinearLayout
-                    android:id="@+id/relative"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp5"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
+                <LinearLayout
+                        android:id="@+id/relative"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
 
-                <Button
-                        android:id="@+id/btn_normal_webview"
-                        style="@style/Button"
-                        android:layout_width="@dimen/dp0"
-                        android:layout_marginLeft="@dimen/dp5"
-                        android:layout_marginRight="@dimen/dp5"
-                        android:layout_weight="0.5"
-                        android:text="@string/normal_webview" />
+                    <Button
+                            android:id="@+id/btn_normal_webview"
+                            style="@style/Button"
+                            android:layout_width="@dimen/dp0"
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:layout_marginRight="@dimen/dp5"
+                            android:layout_weight="0.5"
+                            android:text="@string/normal_webview" />
 
-                <Button
-                        android:id="@+id/btn_web_click"
-                        style="@style/Button"
-                        android:layout_width="@dimen/dp0"
-                        android:layout_marginLeft="@dimen/dp5"
-                        android:layout_marginRight="@dimen/dp5"
-                        android:layout_weight="0.5"
-                        android:text="@string/click_webview" />
+                    <Button
+                            android:id="@+id/btn_web_click"
+                            style="@style/Button"
+                            android:layout_width="@dimen/dp0"
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:layout_marginRight="@dimen/dp5"
+                            android:layout_weight="0.5"
+                            android:text="@string/click_webview" />
 
 
-            </LinearLayout>
+                </LinearLayout>
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp5"
-                    android:layout_marginBottom="@dimen/dp5"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:layout_marginBottom="@dimen/dp5"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
 
-                <Button
-                        android:id="@+id/btn_web_file_choose"
-                        style="@style/Button"
-                        android:layout_width="@dimen/dp0"
-                        android:layout_marginLeft="@dimen/dp5"
-                        android:layout_marginRight="@dimen/dp5"
-                        android:layout_weight="0.5"
-                        android:text="@string/web_file_choose" />
+                    <Button
+                            android:id="@+id/btn_web_file_choose"
+                            style="@style/Button"
+                            android:layout_width="@dimen/dp0"
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:layout_marginRight="@dimen/dp5"
+                            android:layout_weight="0.5"
+                            android:text="@string/web_file_choose" />
 
-            </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <WebView
                     android:id="@+id/webview"
                     android:layout_width="fill_parent"
-                    android:layout_below="@+id/linear_btn"
-                    android:layout_above="@+id/txt_no_internet"
-                    android:layout_height="fill_parent" />
+                    android:layout_height="fill_parent"
+                    android:layout_below="@+id/linear_btn" />
 
             <ProgressBar
                     android:id="@+id/progress_bar"
                     android:layout_width="@dimen/dp50"
-                    android:indeterminate="true"
-                    android:visibility="gone"
+                    android:layout_height="@dimen/dp50"
                     android:layout_centerInParent="true"
-                    android:layout_height="@dimen/dp50" />
-            <TextView
-                    android:id="@+id/txt_no_internet"
-                    style="@style/TextView_Regular"
-                    android:layout_width="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="@color/red_ff090b"
-                    android:gravity="center"
-                    android:padding="@dimen/dp5"
-                    android:text="@string/no_internet_connection"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/sp12"
+                    android:indeterminate="true"
                     android:visibility="gone" />
         </RelativeLayout>
     </LinearLayout>

@@ -174,7 +174,7 @@ class FacebookAuth {
             loginResponse.userEmailId = fbResponse.email
             loginResponse.dob = fbResponse.birthday
             loginResponse.userImage = fbResponse.picture?.data?.url
-            loginResponse.provider = firebaseUser?.providerId
+            loginResponse.provider = "Facebook"
             mLoginResponse?.onSocialLoginSuccess(loginResponse)
         }
 
