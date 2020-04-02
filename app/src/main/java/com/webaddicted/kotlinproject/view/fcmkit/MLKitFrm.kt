@@ -80,7 +80,7 @@ class MLKitFrm : BaseFragment() {
             getString(R.string.landmark_recognition) -> {
                 mBinding.imgOnDevice.gone()
                 mBinding.txtOnDeviceResult.gone()
-                mBinding.btnCloud.gone()
+                mBinding.btnOnDevice.gone()
             }
             getString(R.string.barcode_scanner) -> {
                 mBinding.imgOnDevice.setImageDrawable(
@@ -140,7 +140,6 @@ class MLKitFrm : BaseFragment() {
         @MediaPickerType.MediaType captureImage: Int,
         isOnDevice: Boolean
     ) {
-        mBinding.txtOnDeviceResult.text = ""
         imgPickerDialog = ImagePickerDialog.dialog(captureImage,
             object : OnImageActionListener {
                 override fun onAcceptClick(file: List<File>) {
@@ -168,18 +167,18 @@ class MLKitFrm : BaseFragment() {
         mBinding.imgOnDevice.showImage(file, getPlaceHolder(3))
         val image = FirebaseVisionImage.fromFilePath(activity!!, Uri.fromFile(file))
         val detector = FirebaseVision.getInstance().onDeviceTextRecognizer
-        detector.processImage(image)
-            .addOnSuccessListener { firebaseVisionText ->
-                if (firebaseVisionText.textBlocks.size == 0) {
-                    mBinding.txtOnDeviceResult.text = getString(R.string.txt_no_data_found)
-                } else {
-                    for (block in firebaseVisionText.textBlocks) {
-                        val blockText =
-                            "confidence : ${block.confidence}\nLanguages : ${block.recognizedLanguages}\n\n" + block.text
-                        mBinding.txtOnDeviceResult.append(blockText + "\n")
+        detector.processImage(image).addOnSuccessListener { firebaseVisionText ->
+            if (firebaseVisionText.textBlocks.size == 0) {
+                mBinding.txtOnDeviceResult.text = getString(R.string.txt_no_data_found)
+            } else {
+                firebaseVisionText.textBlocks.forEachIndexed { index, textBlock ->
+                    textBlock.recognizedLanguages.forEachIndexed { index, recognizedLanguage ->
+                        mBinding.txtOnDeviceResult.append("Language : ${recognizedLanguage.languageCode}")
                     }
+                    mBinding.txtOnDeviceResult.append("confidence : ${textBlock.confidence}%\n ${textBlock.text}\n\n")
                 }
             }
+        }
             .addOnFailureListener {
                 mBinding.txtOnDeviceResult.text = "Failed\n ${it.message}"
             }
@@ -190,20 +189,19 @@ class MLKitFrm : BaseFragment() {
         mBinding.imgCloud.showImage(file, getPlaceHolder(3))
         val image = FirebaseVisionImage.fromFilePath(activity!!, Uri.fromFile(file))
         val detector = FirebaseVision.getInstance().cloudDocumentTextRecognizer
-        detector.processImage(image)
-            .addOnSuccessListener(fun(firebaseVisionCloudText: FirebaseVisionDocumentText) {
-                firebaseVisionCloudText.blocks.forEachIndexed { blocksindex, block ->
-                    block.paragraphs.forEachIndexed { paragraphsindex, paragraph ->
-                        paragraph.words.forEachIndexed { wordsindex, word ->
-                            word.symbols.forEachIndexed { symbolsindex, symbol ->
-                                Log.d(
-                                    TAG,
-                                    "onResponse: extractCloudText: recognizedText-> $symbol"
-                                )
-                            }
+        detector.processImage(image).addOnSuccessListener { firebaseVisionCloudText ->
+            firebaseVisionCloudText.blocks.forEachIndexed { blocksindex, block ->
+                block.paragraphs.forEachIndexed { paragraphsindex, paragraph ->
+                    paragraph.words.forEachIndexed { wordsindex, word ->
+                        word.symbols.forEachIndexed { symbolsindex, symbol ->
+                            Log.d(
+                                TAG,
+                                "onResponse: extractCloudText: recognizedText-> $symbol"
+                            )
                         }
                     }
                 }
+            }
 //                val blocks = firebaseVisionCloudText.blocks
 //                for (i in blocks.indices) {
 //                    val paragraphs = blocks[i].paragraphs
@@ -217,8 +215,7 @@ class MLKitFrm : BaseFragment() {
 //                        }
 //                    }
 //                }
-            })
-            .addOnFailureListener { mBinding.txtCloudResult.text = "Failed\n ${it.message}" }
+        }.addOnFailureListener { mBinding.txtCloudResult.text = "Failed\n ${it.message}" }
     }
 
     private fun faceDetectionOnDevice(file: File) {
@@ -233,7 +230,9 @@ class MLKitFrm : BaseFragment() {
         detector.detectInImage(image)
             .addOnSuccessListener { results ->
                 val stringBuilder = StringBuilder()
+                stringBuilder.append("Total face detected : ${results.size}\n\n")
                 results.forEachIndexed { index, face ->
+                    stringBuilder.append("===================================\n")
                     val bounds = face.boundingBox
                     val rotY =
                         face.headEulerAngleY // Head is rotated to the right rotY degrees
@@ -273,17 +272,17 @@ class MLKitFrm : BaseFragment() {
                     }
                     if (face.rightEyeOpenProbability != FirebaseVisionFace.UNCOMPUTED_PROBABILITY) {
                         rightEyeOpenProb = face.rightEyeOpenProbability
-                        stringBuilder.append("Right Eye OpenProb : $rightEyeOpenProb\n")
+                        stringBuilder.append("Right Eye OpenProb : $rightEyeOpenProb%\n")
                     }
                     if (face.leftEyeOpenProbability != FirebaseVisionFace.UNCOMPUTED_PROBABILITY) {
                         leftEyeOpenProb = face.leftEyeOpenProbability
-                        stringBuilder.append("Left Eye OpenProb : $leftEyeOpenProb\n")
+                        stringBuilder.append("Left Eye OpenProb : $leftEyeOpenProb%\n")
                     }
 
                     // If classification was enabled:
                     if (face.smilingProbability != FirebaseVisionFace.UNCOMPUTED_PROBABILITY) {
                         smileProb = face.smilingProbability
-                        stringBuilder.append("Smile Prob : $smileProb\n\n\n")
+                        stringBuilder.append("Smile Prob : $smileProb%\n\n\n")
                     }
                 }
                 mBinding.txtOnDeviceResult.text = stringBuilder.toString()
@@ -304,33 +303,31 @@ class MLKitFrm : BaseFragment() {
         val detector = FirebaseVision.getInstance().getOnDeviceObjectDetector(options)
         detector.processImage(image).addOnSuccessListener { results ->
             Lg.d(TAG, results.toString())
-            val LOG_MOD = "MLKit-ODT"
-            results.forEachIndexed { index, obj ->
-//            for ((idx, obj) in results.withIndex()) {
-                val box = obj.boundingBox
-                Log.d(LOG_MOD, "Detected object: ${index} ")
-                when (obj.classificationCategory) {
-                    //Firebase only supports this much categories
-                    0 -> Log.d(LOG_MOD, "  Classification name: CATEGORY_UNKNOWN")
-                    1 -> Log.d(LOG_MOD, "  Classification name: CATEGORY_HOME_GOOD")
-                    2 -> Log.d(LOG_MOD, "  Classification name: CATEGORY_FASHION_GOOD")
-                    3 -> Log.d(LOG_MOD, "  Classification name: CATEGORY_FOOD")
-                    4 -> Log.d(LOG_MOD, "  Classification name: CATEGORY_PLACE")
-                    5 -> Log.d(LOG_MOD, "  Classification name: CATEGORY_PLANT")
+            if (results.size > 0) {
+                results.forEachIndexed { index, obj ->
+                    val box = obj.boundingBox
+                    mBinding.txtOnDeviceResult.append("Detected object : ${index}\n")
+                    Log.d(TAG, "Detected object: ${index} ")
+                    when (obj.classificationCategory) {
+                        //Firebase only supports this much categories
+                        0 -> Log.d(TAG, "  Classification name: CATEGORY_UNKNOWN")
+                        1 -> Log.d(TAG, "  Classification name: CATEGORY_HOME_GOOD")
+                        2 -> Log.d(TAG, "  Classification name: CATEGORY_FASHION_GOOD")
+                        3 -> Log.d(TAG, "  Classification name: CATEGORY_FOOD")
+                        4 -> Log.d(TAG, "  Classification name: CATEGORY_PLACE")
+                        5 -> Log.d(TAG, "  Classification name: CATEGORY_PLANT")
+                    }
+                    mBinding.txtOnDeviceResult.append("Classification code : ${obj.classificationCategory}\n")
+                    Log.d(TAG, "  Classification code : ${obj.classificationCategory}")
+                    if (obj.classificationCategory != FirebaseVisionObject.CATEGORY_UNKNOWN) {
+                        val confidence: Int = obj.classificationConfidence!!.times(100).toInt()
+                        mBinding.txtOnDeviceResult.append("Confidence : ${confidence}%\n")
+                        Log.d(TAG, "  Confidence : ${confidence}%")
+                    }
+                    mBinding.txtOnDeviceResult.append("boundingBox: (${box.left}, ${box.top}) - (${box.right},${box.bottom}\n\n")
                 }
-                Log.d(LOG_MOD, "  Classification code: ${obj.classificationCategory}")
-                if (obj.classificationCategory != FirebaseVisionObject.CATEGORY_UNKNOWN) {
-                    val confidence: Int = obj.classificationConfidence!!.times(100).toInt()
-                    Log.d(LOG_MOD, "  Confidence: ${confidence}%")
-                }
-                Log.d(
-                    LOG_MOD,
-                    "  boundingBox: (${box.left}, ${box.top}) - (${box.right},${box.bottom})"
-                )
-            }
-        }.addOnFailureListener { e ->
-            mBinding.txtOnDeviceResult.text = "Failure\n${e.message}"
-        }
+            } else mBinding.txtOnDeviceResult.append(getString(R.string.txt_no_data_found))
+        }.addOnFailureListener { e -> mBinding.txtOnDeviceResult.text = "Failure\n${e.message}" }
     }
 
     private fun imageLabelOnDevice(file: File) {
@@ -338,19 +335,16 @@ class MLKitFrm : BaseFragment() {
         mBinding.imgOnDevice.showImage(file, getPlaceHolder(3))
         val image = FirebaseVisionImage.fromFilePath(activity!!, Uri.fromFile(file))
         val detector = FirebaseVision.getInstance().onDeviceImageLabeler
-        detector.processImage(image)
-            .addOnSuccessListener { results ->
-                val strBuilder = StringBuilder()
-                results.forEachIndexed { index, label ->
-                    strBuilder.append("Label : ${label.text}\n")
-                    strBuilder.append("Confidence : ${label.confidence}\n\n")
-                }
-                mBinding.txtOnDeviceResult.text = strBuilder.toString()
-                Lg.d(TAG, results.toString())
+        detector.processImage(image).addOnSuccessListener { results ->
+            val strBuilder = StringBuilder()
+            results.forEachIndexed { index, label ->
+                strBuilder.append("Label : ${label.text}\n")
+                strBuilder.append("Confidence : ${label.confidence}%\n\n")
             }
-            .addOnFailureListener { e ->
-                mBinding.txtOnDeviceResult.text = "Failure\n${e.message}"
-            }
+            mBinding.txtOnDeviceResult.text = strBuilder.toString()
+            Lg.d(TAG, results.toString())
+        }
+            .addOnFailureListener { e -> mBinding.txtOnDeviceResult.text = "Failure\n${e.message}" }
     }
 
     private fun imageLabelCloud(file: File) {
@@ -361,18 +355,15 @@ class MLKitFrm : BaseFragment() {
             .build().let { options ->
                 FirebaseVision.getInstance().getCloudImageLabeler(options)
             }
-        detector.processImage(image)
-            .addOnSuccessListener { results ->
-                val strBuilder = StringBuilder()
-                results.forEachIndexed { index, label ->
-                    strBuilder.append("Label : ${label.text}\n")
-                    strBuilder.append("Confidence : ${label.confidence}\n\n")
-                }
-                mBinding.txtOnDeviceResult.text = strBuilder.toString()
-                Lg.d(TAG, results.toString())
-            }.addOnFailureListener { e ->
-                mBinding.txtCloudResult.text = "Failure\n${e.message}"
+        detector.processImage(image).addOnSuccessListener { results ->
+            val strBuilder = StringBuilder()
+            results.forEachIndexed { index, label ->
+                strBuilder.append("Label : ${label.text}\n")
+                strBuilder.append("Confidence : ${label.confidence}%\n\n")
             }
+            mBinding.txtOnDeviceResult.text = strBuilder.toString()
+            Lg.d(TAG, results.toString())
+        }.addOnFailureListener { e -> mBinding.txtCloudResult.text = "Failure\n${e.message}" }
     }
 
     private fun barcodeScannerOnDevice(file: File) {
@@ -380,22 +371,15 @@ class MLKitFrm : BaseFragment() {
         mBinding.imgOnDevice.showImage(file, getPlaceHolder(3))
         val image = FirebaseVisionImage.fromFilePath(activity!!, Uri.fromFile(file))
         val detector = FirebaseVision.getInstance().visionBarcodeDetector
-        detector.detectInImage(image)
-            .addOnSuccessListener { results ->
-                val strBuilder = StringBuilder()
+        detector.detectInImage(image).addOnSuccessListener { results ->
+            if (results.size > 0) {
                 results.forEachIndexed { index, barcode ->
-//                    strBuilder.append("Label : ${label.text}\n")
-//                    strBuilder.append("Confidence : ${label.confidence}\n\n")
-                    Lg.d(TAG, "barcode : ${barcode.toString()}")
+                    mBinding.txtOnDeviceResult.text = barcode.rawValue + "\n"
+                    Lg.d(TAG, "barcode : ${barcode.rawValue}")
                 }
-                mBinding.txtOnDeviceResult.text = strBuilder.toString()
-                Lg.d(TAG, results.toString())
-            }
-            .addOnFailureListener { e ->
-                mBinding.txtOnDeviceResult.text = "Failure\n${e.message}"
-            }
+            } else mBinding.txtOnDeviceResult.text = getString(R.string.txt_no_data_found)
+        }.addOnFailureListener { e -> mBinding.txtOnDeviceResult.text = "Failure\n${e.message}" }
     }
-
 
     private fun landmarkRegCloud(file: File) {
         mBinding.txtCloudResult.text = ""
@@ -406,28 +390,25 @@ class MLKitFrm : BaseFragment() {
             .setModelType(FirebaseVisionCloudDetectorOptions.STABLE_MODEL)
             .build()
         val detector = FirebaseVision.getInstance().getVisionCloudLandmarkDetector(options)
-        detector.detectInImage(image)
-            .addOnSuccessListener { results ->
-                val strBuilder = StringBuilder()
-                results.forEachIndexed { index, landmark ->
-                    val bounds: Rect? = landmark.boundingBox
-                    val landmarkName = landmark.landmark
-                    val entityId = landmark.entityId
-                    val confidence = landmark.confidence
-                    strBuilder.append("Entity Id : ${entityId}\n")
-                    strBuilder.append("Landmark Name : ${landmarkName}\n")
-                    strBuilder.append("Confidence : ${confidence}\n")
-                    landmark.locations.forEachIndexed { index, firebaseVisionLatLng ->
-                        strBuilder.append("Latitude : ${firebaseVisionLatLng.latitude}\n")
-                        strBuilder.append("Longitude : ${firebaseVisionLatLng.longitude}\n\n")
-                    }
-                    Lg.d(TAG, "landmark : ${landmark.toString()}")
+        detector.detectInImage(image).addOnSuccessListener { results ->
+            val strBuilder = StringBuilder()
+            results.forEachIndexed { index, landmark ->
+                val bounds: Rect? = landmark.boundingBox
+                val landmarkName = landmark.landmark
+                val entityId = landmark.entityId
+                val confidence = landmark.confidence
+                strBuilder.append("Entity Id : ${entityId}\n")
+                strBuilder.append("Landmark Name : ${landmarkName}\n")
+                strBuilder.append("Confidence : ${confidence}%\n")
+                landmark.locations.forEachIndexed { index, firebaseVisionLatLng ->
+                    strBuilder.append("Latitude : ${firebaseVisionLatLng.latitude}\n")
+                    strBuilder.append("Longitude : ${firebaseVisionLatLng.longitude}\n\n")
                 }
-                mBinding.txtCloudResult.text = strBuilder.toString()
-                Lg.d(TAG, results.toString())
-            }.addOnFailureListener { e ->
-                mBinding.txtCloudResult.text = "Failure\n${e.message}"
+                Lg.d(TAG, "landmark : ${landmark.toString()}")
             }
+            mBinding.txtCloudResult.text = strBuilder.toString()
+            Lg.d(TAG, results.toString())
+        }.addOnFailureListener { e -> mBinding.txtCloudResult.text = "Failure\n${e.message}" }
     }
 
     private fun languageIdOnDevice() {
@@ -437,29 +418,25 @@ class MLKitFrm : BaseFragment() {
         languageIdentifier.identifyLanguage(getString(R.string.dummyText))
             .addOnSuccessListener { languageCode ->
                 if (languageCode !== null && languageCode.isNotBlank())
-                    Log.i(TAG, "Language : $languageCode")
+                    mBinding.txtCloudResult.text = "Language : $languageCode"
                 else mBinding.txtCloudResult.text = "Can't identify language."
             }.addOnFailureListener { mBinding.txtCloudResult.text = "Failure\n${it.message}" }
     }
 
     private fun deviceTranslationOnDevice() {
-        mBinding.txtOnDeviceResult.text = ""
         val options = FirebaseTranslatorOptions.Builder()
             .setSourceLanguage(FirebaseTranslateLanguage.EN)
-            .setTargetLanguage(FirebaseTranslateLanguage.DE)
+            .setTargetLanguage(FirebaseTranslateLanguage.FR)
             .build()
-        val englishGermanTranslator =
-            FirebaseNaturalLanguage.getInstance().getTranslator(options)
-        val conditions: FirebaseModelDownloadConditions =
-            FirebaseModelDownloadConditions.Builder()
-                .requireWifi()
-                .build()
-        englishGermanTranslator.downloadModelIfNeeded(conditions)
-            .addOnSuccessListener { result ->
-                mBinding.txtOnDeviceResult.text = result.toString()
-                Lg.d(TAG, "Device Trans : ${result.toString()}")
-            }
-            .addOnFailureListener { mBinding.txtOnDeviceResult.text = "Failure\n${it.message}" }
+        val translator = FirebaseNaturalLanguage.getInstance().getTranslator(options)
+
+        translator.downloadModelIfNeeded().addOnSuccessListener {
+            translator.translate(getString(R.string.dummyText))
+                .addOnSuccessListener { result ->
+                    mBinding.txtOnDeviceResult.text = result.toString()
+                }
+                .addOnFailureListener { mBinding.txtOnDeviceResult.text = "Failure\n${it.message}" }
+        }.addOnFailureListener { mBinding.txtOnDeviceResult.text = "Failure\n${it.message}" }
     }
 
     private fun smartReplyOnDevice() {
@@ -475,22 +452,25 @@ class MLKitFrm : BaseFragment() {
                 "Are you coming back soon?", System.currentTimeMillis()
             )
         )
+        conversation.add(
+            FirebaseTextMessage.createForLocalUser(
+                "How are you?", System.currentTimeMillis()
+            )
+        )
 //        conversation.add(FirebaseTextMessage.createForRemoteUser(
 //            "Are you coming back soon?", System.currentTimeMillis(), userId));
         val smartReply = FirebaseNaturalLanguage.getInstance().smartReply
-        smartReply.suggestReplies(conversation)
-            .addOnSuccessListener { result ->
-                if (result.status === SmartReplySuggestionResult.STATUS_SUCCESS) {
-                    result.suggestions.forEachIndexed { index, smartReplySuggestion ->
-                        mBinding.txtOnDeviceResult.text =
-                            "Suggestion : ${smartReplySuggestion.text}\n"
-                    }
-                } else if (result.status === SmartReplySuggestionResult.STATUS_NOT_SUPPORTED_LANGUAGE) {
+        smartReply.suggestReplies(conversation).addOnSuccessListener { result ->
+            if (result.status === SmartReplySuggestionResult.STATUS_SUCCESS) {
+                result.suggestions.forEachIndexed { index, smartReplySuggestion ->
                     mBinding.txtOnDeviceResult.text =
-                        "The conversation's language isn't supported, so the\nresult doesn't contain any suggestions."
+                        "Suggestion : ${smartReplySuggestion.text}\n"
                 }
+            } else if (result.status === SmartReplySuggestionResult.STATUS_NOT_SUPPORTED_LANGUAGE) {
+                mBinding.txtOnDeviceResult.text =
+                    "The conversation's language isn't supported, so the\nresult doesn't contain any suggestions."
             }
-            .addOnFailureListener { mBinding.txtOnDeviceResult.text = "Failure\n${it.message}" }
+        }.addOnFailureListener { mBinding.txtOnDeviceResult.text = "Failure\n${it.message}" }
     }
 }
 

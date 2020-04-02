@@ -89,7 +89,7 @@
     <string name="select_language">Select language</string>
     <string name="submit">Submit</string>
     <string name="please_select_language">Please select your preferred language</string>
-    <string name="txt_no_data_found">No data found for \nthis language</string>
+    <string name="txt_no_data_found">No data found</string>
     <string name="google_map">Google map</string>
     <string name="draw_polyline">Draw polyline</string>
     <string name="task_title">Task</string>
