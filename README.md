@@ -22,6 +22,7 @@ This repository provides the following components that are common to our open so
 * Api calling
 * Sms retriever Api 
 * MVVM(model, view, viewModel)
+* Android Dark theme
 * Webview (Click/ file access)
 * Retrofit
 * Custom Dialog
