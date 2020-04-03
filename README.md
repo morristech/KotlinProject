@@ -73,6 +73,36 @@ This repository provides the following components that are common to our open so
 * Arc Layout
 * Collapse Toolbar (With Different behavior)
 * Avoid Double click
+* Firebase Login Authentication with method :
+
+        Google Login Authentication
+        Facebook Login Authentication
+        Twitter Login Authentication
+        Phone Login Authentication
+        Email/Password Login Authentication
+        Anonymous Login Authentication
+
+* Firebase ML Kit integrated :
+
+        Text recognition (On-Device/Cloud)
+        Face detection (On-Device)
+        Object detection and tracking (On-Device)
+        Image labeling (On-Device/Cloud)
+        Barcode scanner (On-Device)
+        Landmark recognition (Cloud)
+        Language ID (On-Device)
+        On-device translation (On-Device)
+        Smart Reply (On-Device)
+
+* Firebase push notification
+* Firebase Database Integrated
+* Firebase Storage Integrated
+* Firebase Crashlytic Integrated
+* Firebase Analyic Integrated
+
+
+
+
 
 
 // ui design library
