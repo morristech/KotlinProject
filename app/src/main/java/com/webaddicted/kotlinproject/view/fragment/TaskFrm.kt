@@ -22,6 +22,7 @@ import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmTaskListBinding
 import com.webaddicted.kotlinproject.global.annotationdef.SortListType
 import com.webaddicted.kotlinproject.global.common.*
+import com.webaddicted.kotlinproject.global.services.ScheduledJobService
 import com.webaddicted.kotlinproject.view.activity.*
 import com.webaddicted.kotlinproject.view.adapter.TaskAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
@@ -86,7 +87,9 @@ class TaskFrm : BaseFragment() {
         "Collapse Toolbar",
         "Collapse Toolbar Behavior",
         "Location Helper",
-        "Firebase"
+        "Firebase",
+        "Job Dispatcher",
+        "Work Manager"
     )
     private lateinit var showSearchView: ShowSearchView
 
@@ -221,7 +224,7 @@ class TaskFrm : BaseFragment() {
             "Barcode" -> navigateScreen(BarcodeFrm.TAG)
             "Bottom Navigation" -> navigateScreen(BottomNavigationFrm.TAG)
             "Bottom Sheet" -> navigateScreen(BottomSheetFrm.TAG)
-            "Bottom Sheet Behav"-> navigateScreen(BottomSheetBehavFrm.TAG)
+            "Bottom Sheet Behav" -> navigateScreen(BottomSheetBehavFrm.TAG)
             "Collapse/Expend" -> navigateScreen(CollapseExpendFrm.TAG)
             "Digital Signature" -> navigateScreen(DigitalSignatureFrm.TAG)
             "Fab Button" -> navigateScreen(FabButtonFrm.TAG)
@@ -240,7 +243,8 @@ class TaskFrm : BaseFragment() {
             "Collapse Toolbar Behavior" -> navigateScreen(CollapseToolbarBehavFrm.TAG)
             "Location Helper" -> navigateScreen(LocationHelperFrm.TAG)
             "Firebase" -> navigateScreen(FcmFoodActivity.TAG)
-
+            "Job Dispatcher" -> startJobDispatcher()
+            "Work Manager"-> navigateScreen(WorkManagerFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -303,6 +307,7 @@ class TaskFrm : BaseFragment() {
             CollapseToolbarBehavFrm.TAG -> frm = CollapseToolbarBehavFrm.getInstance(Bundle())
             LocationHelperFrm.TAG -> frm = LocationHelperFrm.getInstance(Bundle())
             FcmFoodActivity.TAG -> activity?.let { FcmFoodActivity.newIntent(it) }
+            WorkManagerFrm.TAG -> frm = WorkManagerFrm.getInstance(Bundle())
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }
@@ -392,5 +397,10 @@ class TaskFrm : BaseFragment() {
             .setNegativeButtonText(getString(R.string.cancel))
             .build()
         myBiometricPrompt.authenticate(promptInfo)
+    }
+
+    private fun startJobDispatcher() {
+        ScheduledJobService.scheduleJob(activity)
+        GlobalUtility.showToast(getString(R.string.job_schedule_successfully))
     }
 }

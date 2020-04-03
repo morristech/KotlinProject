@@ -8,6 +8,7 @@ class ApiConstant {
     companion object {
 
 
+
         const val PHONE_AUTH_TIMEOUT: Long = 119
 
         /*********API BASE URL************/
@@ -28,6 +29,7 @@ class ApiConstant {
         const val FCM_USERS_EMAIL_ID = "userEmailId"
         const val FCM_USERS_MOBILE_NO = "userMobileno"
         const val FCM_USERS_PASSWORD = "password"
+        const val FCM_USERS_FCM_TOKEN= "fcmToken"
         //        END FIREBASE KEY
 
     }

@@ -396,6 +396,12 @@
     <string name="smart_reply">Smart Reply</string>
     <string name="email_auth">Email Auth</string>
     <string name="update_email">Update email</string>
+    <string name="fire_push_noti">Fire push notification</string>
+    <string name="job_schedule_successfully">Job schedule successfully.</string>
+    <string name="periodic_work_req">Perodic work request</string>
+    <string name="one_time_work_request">"One Time Work Request "</string>
+    <string name="chaining_works">Chaining Works</string>
+    <string name="work_manager_title">Work Manager</string>
 
 
 </resources>

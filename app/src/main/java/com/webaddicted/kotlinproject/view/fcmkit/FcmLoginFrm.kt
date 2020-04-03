@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.iid.FirebaseInstanceId
 import com.webaddicted.kotlinproject.BuildConfig
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.apiutils.ApiConstant
@@ -80,9 +81,13 @@ class FcmLoginFrm : BaseFragment() {
                 hideApiLoader()
                 dbRef.removeEventListener(this)
                 if (dataSnapshot?.value != null) {
+
                     for (noteDataSnapshot in dataSnapshot.children) {
                         val note = noteDataSnapshot.getValue(FcmSocialLoginRespoBean::class.java)
-                        viewModel.setFcmFoodUserInfo(note!!)
+                        dbRef.child(note?.userMobileno!!).child(ApiConstant.FCM_USERS_FCM_TOKEN)
+                            .setValue(FirebaseInstanceId.getInstance().token)
+                        note.fcmToken = FirebaseInstanceId.getInstance().token
+                        viewModel.setFcmFoodUserInfo(note)
                         break
                     }
                     FcmFoodHomeActivity.newIntent(activity!!)
