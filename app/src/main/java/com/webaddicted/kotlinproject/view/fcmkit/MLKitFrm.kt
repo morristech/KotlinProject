@@ -1,5 +1,6 @@
 package com.webaddicted.kotlinproject.view.fcmkit
 
+import android.content.DialogInterface
 import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
@@ -7,11 +8,7 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditions
 import com.google.firebase.ml.naturallanguage.FirebaseNaturalLanguage
-import com.google.firebase.ml.naturallanguage.smartreply.FirebaseSmartReply
 import com.google.firebase.ml.naturallanguage.smartreply.FirebaseTextMessage
 import com.google.firebase.ml.naturallanguage.smartreply.SmartReplySuggestionResult
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguage
@@ -20,7 +17,6 @@ import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.cloud.FirebaseVisionCloudDetectorOptions
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.common.FirebaseVisionPoint
-import com.google.firebase.ml.vision.document.FirebaseVisionDocumentText
 import com.google.firebase.ml.vision.face.FirebaseVisionFace
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceLandmark
@@ -30,13 +26,13 @@ import com.google.firebase.ml.vision.objects.FirebaseVisionObjectDetectorOptions
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmFcmMlKitBinding
 import com.webaddicted.kotlinproject.global.annotationdef.MediaPickerType
-import com.webaddicted.kotlinproject.global.common.Lg
-import com.webaddicted.kotlinproject.global.common.gone
-import com.webaddicted.kotlinproject.global.common.showImage
+import com.webaddicted.kotlinproject.global.common.*
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.webaddicted.kotlinproject.view.dialog.ImagePickerDialog
 import com.webaddicted.kotlinproject.view.interfac.OnImageActionListener
 import java.io.File
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MLKitFrm : BaseFragment() {
@@ -94,18 +90,22 @@ class MLKitFrm : BaseFragment() {
                 mBinding.btnCloud.gone()
             }
             getString(R.string.language_id) -> {
+                mBinding.edtText.visible()
                 mBinding.imgOnDevice.gone()
                 mBinding.imgCloud.gone()
                 mBinding.txtCloudResult.gone()
                 mBinding.btnCloud.gone()
             }
             getString(R.string.device_translation) -> {
+                mBinding.edtText.visible()
+                mBinding.linearLangTrans.visible()
                 mBinding.imgOnDevice.gone()
                 mBinding.imgCloud.gone()
                 mBinding.txtCloudResult.gone()
                 mBinding.btnCloud.gone()
             }
             getString(R.string.smart_reply) -> {
+                mBinding.edtText.visible()
                 mBinding.imgOnDevice.gone()
                 mBinding.imgCloud.gone()
                 mBinding.txtCloudResult.gone()
@@ -118,6 +118,7 @@ class MLKitFrm : BaseFragment() {
         mBinding.toolbar.imgNavLeft.setOnClickListener(this)
         mBinding.btnOnDevice.setOnClickListener(this)
         mBinding.btnCloud.setOnClickListener(this)
+        mBinding.txtDestLang.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -133,6 +134,27 @@ class MLKitFrm : BaseFragment() {
                 }
             }
             R.id.btn_cloud -> requestCamera(MediaPickerType.CAPTURE_IMAGE, false)
+            R.id.txt_dest_lang -> {
+                DialogUtil.getSingleChoiceDialog(activity!!,
+                    resources.getString(R.string.select_language),
+                    FirebaseTranslateLanguage.getAllLanguages().toList(),
+                    DialogInterface.OnClickListener { dialog, position ->
+                        if (position > 0) {
+                            activity?.showToast(
+                                FirebaseTranslateLanguage.getAllLanguages()
+                                    .toList()[position - 1].toString()
+                            )
+                            mBinding.txtDestLang.text =
+                                FirebaseTranslateLanguage.languageCodeForLanguage(
+                                    FirebaseTranslateLanguage.getAllLanguages().toList()[position]
+                                )
+                        }
+                        dialog.dismiss()
+                    },
+                    DialogInterface.OnClickListener { dialog, position -> dialog.dismiss() })
+
+            }//requestCamera(MediaPickerType.CAPTURE_IMAGE, false)
+
         }
     }
 
@@ -367,18 +389,23 @@ class MLKitFrm : BaseFragment() {
     }
 
     private fun barcodeScannerOnDevice(file: File) {
+        showApiLoader()
         mBinding.txtOnDeviceResult.text = ""
         mBinding.imgOnDevice.showImage(file, getPlaceHolder(3))
         val image = FirebaseVisionImage.fromFilePath(activity!!, Uri.fromFile(file))
         val detector = FirebaseVision.getInstance().visionBarcodeDetector
         detector.detectInImage(image).addOnSuccessListener { results ->
+            hideApiLoader()
             if (results.size > 0) {
                 results.forEachIndexed { index, barcode ->
                     mBinding.txtOnDeviceResult.text = barcode.rawValue + "\n"
                     Lg.d(TAG, "barcode : ${barcode.rawValue}")
                 }
             } else mBinding.txtOnDeviceResult.text = getString(R.string.txt_no_data_found)
-        }.addOnFailureListener { e -> mBinding.txtOnDeviceResult.text = "Failure\n${e.message}" }
+        }.addOnFailureListener { e ->
+            hideApiLoader()
+            mBinding.txtOnDeviceResult.text = "Failure\n${e.message}"
+        }
     }
 
     private fun landmarkRegCloud(file: File) {
@@ -412,59 +439,76 @@ class MLKitFrm : BaseFragment() {
     }
 
     private fun languageIdOnDevice() {
+        showApiLoader()
+        if (mBinding.edtText.text.toString().isEmpty())
+            mBinding.edtText.setText(getString(R.string.forcefully_enable_permission))
         mBinding.txtOnDeviceResult.text = ""
         val languageIdentifier =
             FirebaseNaturalLanguage.getInstance().languageIdentification
-        languageIdentifier.identifyLanguage(getString(R.string.dummyText))
+        languageIdentifier.identifyLanguage(mBinding.edtText.text.toString())
             .addOnSuccessListener { languageCode ->
+                hideApiLoader()
                 if (languageCode !== null && languageCode.isNotBlank())
-                    mBinding.txtCloudResult.text = "Language : $languageCode"
-                else mBinding.txtCloudResult.text = "Can't identify language."
-            }.addOnFailureListener { mBinding.txtCloudResult.text = "Failure\n${it.message}" }
+                    mBinding.txtOnDeviceResult.text = "Language : $languageCode"
+                else mBinding.txtOnDeviceResult.text = "Can't identify language."
+            }.addOnFailureListener {
+                hideApiLoader()
+                mBinding.txtOnDeviceResult.text = "Failure\n${it.message}"
+            }
     }
 
     private fun deviceTranslationOnDevice() {
+        showApiLoader()
+        if (mBinding.edtText.text.toString().isEmpty())
+            mBinding.edtText.setText(getString(R.string.forcefully_enable_permission))
         val options = FirebaseTranslatorOptions.Builder()
             .setSourceLanguage(FirebaseTranslateLanguage.EN)
-            .setTargetLanguage(FirebaseTranslateLanguage.FR)
+            .setTargetLanguage(FirebaseTranslateLanguage.languageForLanguageCode(mBinding.txtDestLang.text.toString())!!)
             .build()
         val translator = FirebaseNaturalLanguage.getInstance().getTranslator(options)
 
         translator.downloadModelIfNeeded().addOnSuccessListener {
-            translator.translate(getString(R.string.dummyText))
-                .addOnSuccessListener { result ->
-                    mBinding.txtOnDeviceResult.text = result.toString()
-                }
-                .addOnFailureListener { mBinding.txtOnDeviceResult.text = "Failure\n${it.message}" }
-        }.addOnFailureListener { mBinding.txtOnDeviceResult.text = "Failure\n${it.message}" }
+            translator.translate(mBinding.edtText.text.toString()).addOnSuccessListener { result ->
+                hideApiLoader()
+                mBinding.txtOnDeviceResult.append(result.toString()+"\n")
+            }.addOnFailureListener {
+                hideApiLoader()
+                mBinding.txtOnDeviceResult.text = "Failure\n${it.message}"
+            }
+        }.addOnFailureListener {
+            hideApiLoader()
+            mBinding.txtOnDeviceResult.text = "Failure\n${it.message}"
+        }
     }
 
     private fun smartReplyOnDevice() {
+        if (mBinding.edtText.text.toString().isEmpty())
+            mBinding.edtText.setText("How are you")
+
         mBinding.txtOnDeviceResult.text = ""
         val conversation = ArrayList<FirebaseTextMessage>()
+//        conversation.add(
+//            FirebaseTextMessage.createForLocalUser(
+//                "Hi", System.currentTimeMillis()
+//            )
+//        )
         conversation.add(
             FirebaseTextMessage.createForLocalUser(
-                "heading out now", System.currentTimeMillis()
+                mBinding.edtText.text.toString().toLowerCase(), System.currentTimeMillis()
             )
         )
         conversation.add(
-            FirebaseTextMessage.createForLocalUser(
-                "Are you coming back soon?", System.currentTimeMillis()
+            FirebaseTextMessage.createForRemoteUser(
+                "Are you coming back soon?",
+                System.currentTimeMillis(),
+                UUID.randomUUID().toString()
             )
-        )
-        conversation.add(
-            FirebaseTextMessage.createForLocalUser(
-                "How are you?", System.currentTimeMillis()
-            )
-        )
-//        conversation.add(FirebaseTextMessage.createForRemoteUser(
-//            "Are you coming back soon?", System.currentTimeMillis(), userId));
+        );
         val smartReply = FirebaseNaturalLanguage.getInstance().smartReply
         smartReply.suggestReplies(conversation).addOnSuccessListener { result ->
             if (result.status === SmartReplySuggestionResult.STATUS_SUCCESS) {
                 result.suggestions.forEachIndexed { index, smartReplySuggestion ->
-                    mBinding.txtOnDeviceResult.text =
-                        "Suggestion : ${smartReplySuggestion.text}\n"
+                    mBinding.txtOnDeviceResult.append("Suggestion : ${smartReplySuggestion.text}\n")
                 }
             } else if (result.status === SmartReplySuggestionResult.STATUS_NOT_SUPPORTED_LANGUAGE) {
                 mBinding.txtOnDeviceResult.text =

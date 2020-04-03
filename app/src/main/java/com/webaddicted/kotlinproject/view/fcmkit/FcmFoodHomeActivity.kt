@@ -72,6 +72,7 @@ class FcmFoodHomeActivity : BaseActivity() {
         navView.txt_language_id.setOnClickListener(this)
         navView.txt_translation.setOnClickListener(this)
         navView.txt_smart_reply.setOnClickListener(this)
+        navView.txt_email_auth.setOnClickListener(this)
         navView.txt_logout.setOnClickListener(this)
     }
 
@@ -116,6 +117,7 @@ class FcmFoodHomeActivity : BaseActivity() {
                 bundle.putString(MLKIT_TYPE, getString(R.string.smart_reply))
                 navigateScreen(MLKitFrm.TAG, bundle)
             }
+            R.id.txt_email_auth -> navigateScreen(FcmEmailAuthFrm.TAG, bundle)
             R.id.txt_logout -> onBackPressed()
         }
         openCloseDrawer(false)
@@ -140,6 +142,7 @@ class FcmFoodHomeActivity : BaseActivity() {
         when (tag) {
             FcmHomeFrm.TAG -> frm = FcmHomeFrm.getInstance(Bundle())
             MLKitFrm.TAG -> frm = MLKitFrm.getInstance(bundle)
+            FcmEmailAuthFrm.TAG -> frm = FcmEmailAuthFrm.getInstance(bundle)
         }
         if (frm != null) navigateFragment(R.id.container, frm, false)
     }

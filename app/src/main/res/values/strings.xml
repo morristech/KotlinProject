@@ -394,6 +394,8 @@
     <string name="language_id">"Language ID "</string>
     <string name="device_translation">"On-device translation "</string>
     <string name="smart_reply">Smart Reply</string>
+    <string name="email_auth">Email Auth</string>
+    <string name="update_email">Update email</string>
 
 
 </resources>

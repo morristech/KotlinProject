@@ -28,6 +28,13 @@
         <include
                 android:id="@+id/include_bottom_sheet"
                 layout="@layout/bottom_sheet" />
+        <include
+                android:id="@+id/bottom_sheet_behav"
+                layout="@layout/frm_dev_user_app"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:behavior_hideable="true"
+                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

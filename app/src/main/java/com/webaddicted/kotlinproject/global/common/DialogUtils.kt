@@ -406,7 +406,9 @@ class DialogUtil {
             }
             val builder = AlertDialog.Builder(context, style)
             if (title != null) builder.setTitle(title)
-            builder.setSingleChoiceItems(itemArray, checkedItem) { dialog, which -> }
+            builder.setSingleChoiceItems(itemArray, checkedItem) { dialog, which ->
+                okListener.onClick(dialog, which)
+            }
             builder.setPositiveButton(okBtn, okListener)
             builder.setNegativeButton(cancelBtn, cancelListener)
             val alertDialog = builder.create()

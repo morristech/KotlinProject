@@ -72,6 +72,7 @@ class TaskFrm : BaseFragment() {
         "Fab Button",
         "Bottom Navigation",
         "Bottom Sheet",
+        "Bottom Sheet Behav",
         "Coroutines",
         "Splash",
         "Rate App",
@@ -220,6 +221,7 @@ class TaskFrm : BaseFragment() {
             "Barcode" -> navigateScreen(BarcodeFrm.TAG)
             "Bottom Navigation" -> navigateScreen(BottomNavigationFrm.TAG)
             "Bottom Sheet" -> navigateScreen(BottomSheetFrm.TAG)
+            "Bottom Sheet Behav"-> navigateScreen(BottomSheetBehavFrm.TAG)
             "Collapse/Expend" -> navigateScreen(CollapseExpendFrm.TAG)
             "Digital Signature" -> navigateScreen(DigitalSignatureFrm.TAG)
             "Fab Button" -> navigateScreen(FabButtonFrm.TAG)
@@ -280,6 +282,7 @@ class TaskFrm : BaseFragment() {
             BarcodeFrm.TAG -> frm = BarcodeFrm.getInstance(Bundle())
             BottomNavigationFrm.TAG -> frm = BottomNavigationFrm.getInstance(Bundle())
             BottomSheetFrm.TAG -> frm = BottomSheetFrm.getInstance(Bundle())
+            BottomSheetBehavFrm.TAG -> frm = BottomSheetBehavFrm.getInstance(Bundle())
             CollapseExpendFrm.TAG -> frm = CollapseExpendFrm.getInstance(Bundle())
             DigitalSignatureFrm.TAG -> frm = DigitalSignatureFrm.getInstance(Bundle())
             FabButtonFrm.TAG -> frm = FabButtonFrm.getInstance(Bundle())
