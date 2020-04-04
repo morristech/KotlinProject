@@ -84,6 +84,7 @@ class TaskFrm : BaseFragment() {
         "Zoom Image(Touch/TwoFinger)",
         "Exo Player",
         "Exo Player Recycler View",
+        "Exo Player PIP",
         "Collapse Toolbar",
         "Collapse Toolbar Behavior",
         "Location Helper",
@@ -239,6 +240,7 @@ class TaskFrm : BaseFragment() {
             "Zoom Image(Touch/TwoFinger)" -> navigateScreen(ZoomImageFrm.TAG)
             "Exo Player" -> navigateScreen(ExoPlayerFrm.TAG)
             "Exo Player Recycler View" -> navigateScreen(ExoPlayerRecyclerFrm.TAG)
+            "Exo Player PIP"->navigateScreen(ExoPlayerPIPActivity.TAG)
             "Collapse Toolbar" -> navigateScreen(CollapseToolbarFrm.TAG)
             "Collapse Toolbar Behavior" -> navigateScreen(CollapseToolbarBehavFrm.TAG)
             "Location Helper" -> navigateScreen(LocationHelperFrm.TAG)
@@ -303,6 +305,7 @@ class TaskFrm : BaseFragment() {
                     ExoPlayerRecyclerFrm.TAG
                 )
             }
+            ExoPlayerPIPActivity.TAG -> activity?.let { ExoPlayerPIPActivity.newIntent(it, ExoPlayerFrm.TAG) }
             CollapseToolbarFrm.TAG -> frm = CollapseToolbarFrm.getInstance(Bundle())
             CollapseToolbarBehavFrm.TAG -> frm = CollapseToolbarBehavFrm.getInstance(Bundle())
             LocationHelperFrm.TAG -> frm = LocationHelperFrm.getInstance(Bundle())

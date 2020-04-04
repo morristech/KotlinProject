@@ -15,13 +15,24 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+//        splits {
+//            abi {
+//                enable true
+//                reset()
+//                include 'x86_64', 'x86', 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'mips'
+//                universalApk false
+//            }
+//        }
     }
     buildTypes {
         release {
-            minifyEnabled false
+//            minifyEnabled true
+//            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
+//            minifyEnabled true
+//            shrinkResources true
             clean
         }
     }
@@ -44,9 +55,9 @@ android {
         }
     }
     // firebase smart reply
-    aaptOptions {
-        noCompress "tflite"
-    }
+//    aaptOptions {
+//        noCompress "tflite"
+//    }
     dataBinding {
         enabled = true
     }
@@ -85,16 +96,17 @@ dependencies {
 //    implementation 'com.firebaseui:firebase-ui-database:1.2.0'
     implementation 'com.google.firebase:firebase-analytics:17.3.0'
     implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta03'
-    implementation 'com.google.firebase:firebase-ml-vision:24.0.1'
+//    implementation 'com.google.firebase:firebase-ml-vision:24.0.1'
     // If you want to detect face contours (landmark detection and classification
     // don't require this additional model):
-    implementation 'com.google.firebase:firebase-ml-vision-face-model:19.0.0'
-    implementation 'com.google.firebase:firebase-ml-vision-object-detection-model:19.0.3'
-    implementation 'com.google.firebase:firebase-ml-vision-image-label-model:19.0.0'
-    implementation 'com.google.firebase:firebase-ml-vision-barcode-model:16.0.2'
-    implementation 'com.google.firebase:firebase-ml-natural-language-language-id-model:20.0.7'
-    implementation 'com.google.firebase:firebase-ml-natural-language-translate-model:20.0.7'
-    implementation 'com.google.firebase:firebase-ml-natural-language-smart-reply-model:20.0.7'
+//    implementation 'com.google.firebase:firebase-ml-vision-face-model:19.0.0'
+//    implementation 'com.google.firebase:firebase-ml-vision-object-detection-model:19.0.3'
+//    implementation 'com.google.firebase:firebase-ml-vision-image-label-model:19.0.0'
+//    implementation 'com.google.firebase:firebase-ml-vision-barcode-model:16.0.2'
+//    implementation 'com.google.firebase:firebase-ml-natural-language-language-id-model:20.0.7'
+//    implementation 'com.google.firebase:firebase-ml-natural-language-translate-model:20.0.7'
+//    implementation 'com.google.firebase:firebase-ml-natural-language-smart-reply-model:20.0.7'
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
 
 //    Google
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
@@ -163,11 +175,14 @@ dependencies {
     implementation 'com.github.clans:fab:1.6.4'
     implementation files('libs/itextpdf-5.4.3.jar')
     implementation 'com.google.android.exoplayer:exoplayer:2.7.3'
+//    for PIP
+    implementation 'com.google.android.exoplayer:extension-mediasession:2.8.1'
     implementation 'com.github.recruit-lifestyle:WaveSwipeRefreshLayout:1.6'
 //    ripple effect animation
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
 //    implementation 'com.github.florent37:arclayout:1.0.4'
     implementation 'com.rocky.arclayout:arclayout:1.0.0'
+    implementation "android.arch.work:work-runtime:1.0.1"
 }
 kapt {
     generateStubs = true

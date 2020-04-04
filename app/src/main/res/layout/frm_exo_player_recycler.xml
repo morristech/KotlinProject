@@ -13,13 +13,14 @@
                 layout="@layout/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
         <com.webaddicted.kotlinproject.view.adapter.ExoPlayerRecyclerView
                 android:id="@+id/rv_exo_player"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#dedede"
-                android:dividerHeight="8dp"
-                />
+                android:dividerHeight="8dp" />
+
         <com.google.android.exoplayer2.ui.SimpleExoPlayerView
                 android:id="@+id/exo_player"
                 android:layout_width="match_parent"

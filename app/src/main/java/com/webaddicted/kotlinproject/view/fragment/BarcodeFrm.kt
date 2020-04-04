@@ -53,7 +53,6 @@ class BarcodeFrm : BaseFragment() {
         when (v.id) {
             R.id.img_back -> activity?.onBackPressed()
             R.id.btn_scan_barcode -> qrScan!!.initiateScan()
-
         }
     }
 

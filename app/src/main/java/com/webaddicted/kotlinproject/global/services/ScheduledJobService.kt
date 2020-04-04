@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import com.firebase.jobdispatcher.*
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
-import java.util.concurrent.TimeUnit
 
 /**
  * Created by Deepak Sharma(webaddicted) on 03/04/2020

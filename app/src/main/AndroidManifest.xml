@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:dist="http://schemas.android.com/apk/distribution"
+        xmlns:tools="http://schemas.android.com/tools"
         package="com.webaddicted.kotlinproject">
 
     <dist:module dist:instant="true" />
@@ -77,12 +78,6 @@
         <meta-data
                 android:name="com.google.firebase.ml.vision.DEPENDENCIES"
                 android:value="ocr, face, label, barcode" />
-        <!--        <meta-data-->
-        <!--                android:name="com.google.firebase.ml.vision.DEPENDENCIES"-->
-        <!--                android:value="face" />-->
-        <!--        <meta-data-->
-        <!--                android:name="com.google.firebase.ml.vision.DEPENDENCIES"-->
-        <!--                android:value="label" />-->
 
         <service android:name=".global.services.NormalService" />
 
@@ -125,11 +120,11 @@
         <activity
                 android:name=".view.activity.SplashActivity"
                 android:windowSoftInputMode="stateAlwaysHidden">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
+                        <intent-filter>
+                            <action android:name="android.intent.action.MAIN" />
 
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
+                            <category android:name="android.intent.category.LAUNCHER" />
+                        </intent-filter>
         </activity>
 
         <activity
@@ -151,10 +146,10 @@
         <activity
                 android:name=".view.activity.HomeActivity"
                 android:windowSoftInputMode="stateAlwaysHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <activity
@@ -173,7 +168,9 @@
                 android:name=".global.blink.CameraActivity"
                 android:configChanges="orientation" />
 
-        <activity android:name=".view.activity.ExoPlayerActivity" />
+        <activity
+                android:name=".view.activity.ExoPlayerActivity"
+                android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation" />
 
         <activity
                 android:name=".view.activity.NavBothSideDrawerActivity"
@@ -195,6 +192,13 @@
         <activity
                 android:name=".view.fcmkit.FcmFoodHomeActivity"
                 android:theme="@style/AppThemeFullScreen" />
+        <activity
+                android:name=".view.activity.ExoPlayerPIPActivity"
+                android:resizeableActivity="true"
+                android:supportsPictureInPicture="true"
+                android:exported="false"
+                tools:targetApi="n"
+                android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation" />
     </application>
 
 </manifest>

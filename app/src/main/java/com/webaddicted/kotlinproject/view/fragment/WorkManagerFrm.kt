@@ -77,7 +77,7 @@ class WorkManagerFrm : BaseFragment() {
         )
         val request = photoCheckBuilder.build()
         WorkManager.getInstance()
-            .enqueueUniquePeriodicWork("hgghgj", ExistingPeriodicWorkPolicy.KEEP, request)
+            .enqueueUniquePeriodicWork("hgghgj", ExistingPeriodicWorkPolicy.REPLACE, request)
     }
 
     private fun chainingWorkReq() {
