@@ -99,7 +99,8 @@ This repository provides the following components that are common to our open so
 * Firebase Storage Integrated
 * Firebase Crashlytic Integrated
 * Firebase Analyic Integrated
-
+* PIP (Picture In Picture)
+* Read Call Logs
 
 
 
