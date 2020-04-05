@@ -25,8 +25,8 @@ class CircleGameAdapter(private var frm:BaseFragment,private var mFilterBean: Ar
     private var slideAnmimation: Animation
 
     init {
-        slideAnmimation = AnimationUtils.loadAnimation(mContext, R.anim.game_bounce)
-        slideAnmimations = AnimationUtils.loadAnimation(mContext, R.anim.game_bounce)
+        slideAnmimation = AnimationUtils.loadAnimation(mContext, R.anim.bounce_game)
+        slideAnmimations = AnimationUtils.loadAnimation(mContext, R.anim.bounce_game)
     }
 
     override fun getListSize(): Int {
@@ -44,8 +44,8 @@ class CircleGameAdapter(private var frm:BaseFragment,private var mFilterBean: Ar
 
     override fun onBindTo(mBinding: ViewDataBinding, position: Int) {
         if (mBinding is RowCircleBinding) {
-            slideAnmimation = AnimationUtils.loadAnimation(mContext, R.anim.game_bounce)
-            slideAnmimations = AnimationUtils.loadAnimation(mContext, R.anim.game_bounce)
+            slideAnmimation = AnimationUtils.loadAnimation(mContext, R.anim.bounce_game)
+            slideAnmimations = AnimationUtils.loadAnimation(mContext, R.anim.bounce_game)
             mBinding.imgFirst.animation = slideAnmimation
             //            mBinding.imgSecond.startAnimation(slideAnmimation);
             mBinding.imgThird.animation = slideAnmimation

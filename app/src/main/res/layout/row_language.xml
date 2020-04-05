@@ -11,7 +11,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp5"
-                card_view:cardCornerRadius="@dimen/dp2">
+                card_view:cardCornerRadius="@dimen/dp10">
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -53,6 +53,7 @@
                     android:layout_marginRight="@dimen/dp8"
                     android:button="@null"
                     android:checked="true"
+                    android:background="@color/transprant"
                     android:drawableRight="@drawable/selector_checkbox"
                     android:drawablePadding="@dimen/dp5"
                     android:drawableTint="@color/app_color"

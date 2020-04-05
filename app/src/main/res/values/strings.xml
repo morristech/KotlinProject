@@ -402,6 +402,7 @@
     <string name="one_time_work_request">"One Time Work Request "</string>
     <string name="chaining_works">Chaining Works</string>
     <string name="work_manager_title">Work Manager</string>
+    <string name="call_log_title">Call Log</string>
 
 
 </resources>

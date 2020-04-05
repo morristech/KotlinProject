@@ -171,6 +171,12 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener,
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 //        fragmentTransaction.setCustomAnimations(R.anim.trans_left_in, R.anim.trans_left_out, R.anim.trans_right_in, R.anim.trans_right_out)
+//        fragmentTransaction.setCustomAnimations(
+//            R.animator.fragment_slide_left_enter,
+//            R.animator.fragment_slide_left_exit,
+//            R.animator.fragment_slide_right_enter,
+//            R.animator.fragment_slide_right_exit
+//        )
         fragmentTransaction.replace(layoutContainer, fragment)
         if (isEnableBackStack)
             fragmentTransaction.addToBackStack(fragment.javaClass.simpleName)
@@ -181,7 +187,13 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener,
     fun navigateAddFragment(layoutContainer: Int, fragment: Fragment, isEnableBackStack: Boolean) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction.setCustomAnimations(R.anim.trans_left_in, R.anim.trans_left_out, R.anim.trans_right_in, R.anim.trans_right_out)
+        fragmentTransaction.setCustomAnimations(R.anim.trans_left_in, R.anim.trans_left_out, R.anim.trans_right_in, R.anim.trans_right_out)
+//        fragmentTransaction.setCustomAnimations(
+//            R.animator.fragment_slide_left_enter,
+//            R.animator.fragment_slide_left_exit,
+//            R.animator.fragment_slide_right_enter,
+//            R.animator.fragment_slide_right_exit
+//        )
         fragmentTransaction.add(layoutContainer, fragment)
         if (isEnableBackStack)
             fragmentTransaction.addToBackStack(fragment.javaClass.simpleName)

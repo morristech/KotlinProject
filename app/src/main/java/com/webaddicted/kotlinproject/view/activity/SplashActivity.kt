@@ -3,6 +3,7 @@ package com.webaddicted.kotlinproject.view.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Handler
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
@@ -40,12 +41,13 @@ class SplashActivity : BaseActivity() {
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivitySplashBinding
         init()
-        setNavigationColor(ContextCompat.getColor(context!!,R.color.app_color))
+        setNavigationColor(ContextCompat.getColor(context,R.color.app_color))
         mBinding.imgLogo.setOnClickListener { init() }
     }
 
-    var isInternetConnectedtest = true
     private fun init() {
+        val slideAnmimation = AnimationUtils.loadAnimation(this, R.anim.bounce_game)
+        mBinding.imgLogo.animation = slideAnmimation
 //        mBinding.imgLogo.setOnClickListener(object : View.OnClickListener {
 //            override fun onClick(p0: View?) {
 //    if (isInternetConnectedtest){
@@ -74,7 +76,7 @@ class SplashActivity : BaseActivity() {
         val isAnswerCorrect = missingNumberFromAlgo == missingNum
         Lg.d(TAG,"Your solution is $isAnswerCorrect")
     }
-    fun generateShuffledArrayOfRange(n: Int): List<Int> {
+    private fun generateShuffledArrayOfRange(n: Int): List<Int> {
         val a = (1..n).toList()
         val temp = a.toMutableList()
         temp.shuffle()
@@ -82,10 +84,10 @@ class SplashActivity : BaseActivity() {
     }
 
 
-    fun MySolution(arrayWithMissingNum: List<Int>): Int {
+    private fun MySolution(arrayWithMissingNum: List<Int>): Int {
         var sum = 0
         var idx = -1
-        for (i in 0 until arrayWithMissingNum.size) {
+        for (i in arrayWithMissingNum.indices) {
             if (arrayWithMissingNum[i] === 0) {
                 idx = i
             } else {

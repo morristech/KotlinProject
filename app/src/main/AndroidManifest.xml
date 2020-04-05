@@ -26,7 +26,7 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-feature
             android:name="android.hardware.fingerprint"
             android:required="true" />

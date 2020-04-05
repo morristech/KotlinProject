@@ -6,7 +6,7 @@ package com.webaddicted.kotlinproject.global.constant
 class AppConstant {
     companion object {
         const val PAGINATION_SIZE: Int = 10
-        const val SPLASH_DELAY: Long = 3000
+        const val SPLASH_DELAY: Long = 4000
         const val PICK_IMAGE = 5000
         const val GALLERY_IMAGE_ = 5001
         const val PICK_IMAGE_MULTIPLE = 5002

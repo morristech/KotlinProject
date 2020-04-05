@@ -1,7 +1,5 @@
 package com.webaddicted.kotlinproject.view.fragment
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
@@ -90,7 +88,9 @@ class TaskFrm : BaseFragment() {
         "Location Helper",
         "Firebase",
         "Job Dispatcher",
-        "Work Manager"
+        "Work Manager",
+        "Landing Page",
+        "Call Logs"
     )
     private lateinit var showSearchView: ShowSearchView
 
@@ -140,7 +140,7 @@ class TaskFrm : BaseFragment() {
         mBinding.toolbar.imgProfile.setOnClickListener(this)
         mBinding.toolbar.imgSearchBack.setOnClickListener(this)
         mBinding.toolbar.imgSort.setOnClickListener(this)
-        mBinding.linearMobileNo.setOnClickListener(this)
+//        mBinding.btnMobileNo.setOnClickListener(this)
         mBinding.toolbar.editTextSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
             }
@@ -166,11 +166,11 @@ class TaskFrm : BaseFragment() {
                     mBinding.toolbar.cardSearch,
                     mBinding.toolbar.editTextSearch
                 )
-            R.id.linear_mobile_no -> {
-                val intent = Intent(Intent.ACTION_DIAL)
-                intent.data = Uri.parse("tel:" + getString(R.string.deep_mobile_no))
-                startActivity(intent)
-            }
+//            R.id.btn_mobile_no -> {
+//                val intent = Intent(Intent.ACTION_DIAL)
+//                intent.data = Uri.parse("tel:" + getString(R.string.deep_mobile_no))
+//                startActivity(intent)
+//            }
             R.id.img_sort -> showPopupMenu(mBinding.toolbar.imgSort)
         }
     }
@@ -240,13 +240,15 @@ class TaskFrm : BaseFragment() {
             "Zoom Image(Touch/TwoFinger)" -> navigateScreen(ZoomImageFrm.TAG)
             "Exo Player" -> navigateScreen(ExoPlayerFrm.TAG)
             "Exo Player Recycler View" -> navigateScreen(ExoPlayerRecyclerFrm.TAG)
-            "Exo Player PIP"->navigateScreen(ExoPlayerPIPActivity.TAG)
+            "Exo Player PIP" -> navigateScreen(ExoPlayerPIPActivity.TAG)
             "Collapse Toolbar" -> navigateScreen(CollapseToolbarFrm.TAG)
             "Collapse Toolbar Behavior" -> navigateScreen(CollapseToolbarBehavFrm.TAG)
             "Location Helper" -> navigateScreen(LocationHelperFrm.TAG)
             "Firebase" -> navigateScreen(FcmFoodActivity.TAG)
             "Job Dispatcher" -> startJobDispatcher()
-            "Work Manager"-> navigateScreen(WorkManagerFrm.TAG)
+            "Work Manager" -> navigateScreen(WorkManagerFrm.TAG)
+            "Landing Page" -> navigateScreen(LandingPageFrm.TAG)
+            "Call Logs" -> navigateScreen(CallLogFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -305,12 +307,19 @@ class TaskFrm : BaseFragment() {
                     ExoPlayerRecyclerFrm.TAG
                 )
             }
-            ExoPlayerPIPActivity.TAG -> activity?.let { ExoPlayerPIPActivity.newIntent(it, ExoPlayerFrm.TAG) }
+            ExoPlayerPIPActivity.TAG -> activity?.let {
+                ExoPlayerPIPActivity.newIntent(
+                    it,
+                    ExoPlayerFrm.TAG
+                )
+            }
             CollapseToolbarFrm.TAG -> frm = CollapseToolbarFrm.getInstance(Bundle())
             CollapseToolbarBehavFrm.TAG -> frm = CollapseToolbarBehavFrm.getInstance(Bundle())
             LocationHelperFrm.TAG -> frm = LocationHelperFrm.getInstance(Bundle())
             FcmFoodActivity.TAG -> activity?.let { FcmFoodActivity.newIntent(it) }
             WorkManagerFrm.TAG -> frm = WorkManagerFrm.getInstance(Bundle())
+            LandingPageFrm.TAG -> frm = LandingPageFrm.getInstance(Bundle())
+            CallLogFrm.TAG -> frm = CallLogFrm.getInstance(Bundle())
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }
@@ -351,11 +360,6 @@ class TaskFrm : BaseFragment() {
             }
             return false
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        addBlankSpace(mBinding.bottomSpace)
     }
 
     private fun setUpFingrePrint() {
