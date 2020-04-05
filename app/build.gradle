@@ -183,6 +183,8 @@ dependencies {
 //    implementation 'com.github.florent37:arclayout:1.0.4'
     implementation 'com.rocky.arclayout:arclayout:1.0.0'
     implementation "android.arch.work:work-runtime:1.0.1"
+    implementation 'com.github.bosphere.android-fadingedgelayout:fadingedgelayout:1.0.0'
+    implementation 'androidx.palette:palette:1.0.0-beta01'
 }
 kapt {
     generateStubs = true
