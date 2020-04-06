@@ -5,7 +5,9 @@ Gives a detailed explanation of working all the features/functionality/integrati
 ## feature/screen/design
 
 This repository provides the following components that are common to our open source projects:
-
+<h2>Feature</h2>
+<ol>
+        
 * AndroidX
 * Base location (track location)
 * Permission handler
