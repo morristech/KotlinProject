@@ -43,10 +43,10 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener,
         supportActionBar?.hide()
 //        setNavigationColor(resources.getColor(R.color.app_color))
         fullScreen()
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_SECURE,
-            WindowManager.LayoutParams.FLAG_SECURE
-        )
+//        window.setFlags(
+//            WindowManager.LayoutParams.FLAG_SECURE,
+//            WindowManager.LayoutParams.FLAG_SECURE
+//        )
         GlobalUtility.hideKeyboard(this)
         val layoutResId = getLayout()
         val binding: ViewDataBinding?
