@@ -89,7 +89,6 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/txt_intent_service"
                 style="@style/txt_black_normal"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dp5"
@@ -122,6 +121,40 @@
                     android:layout_toRightOf="@+id/btn_google_map"
                     android:layout_weight="0.5"
                     android:text="@string/stop_intent_service" />
+            </LinearLayout>
+            <TextView
+                    style="@style/txt_black_normal"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:text="@string/forground_service" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                <Button
+                        android:id="@+id/btn_start_forground_service"
+                        style="@style/Button"
+                        android:layout_width="@dimen/dp0"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginRight="@dimen/dp5"
+                        android:layout_toRightOf="@+id/btn_google_map"
+                        android:layout_weight="0.5"
+                        android:text="@string/start_forground_service" />
+
+                <Button
+                        android:id="@+id/btn_stop_forground_service"
+                        style="@style/Button"
+                        android:layout_width="@dimen/dp0"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginRight="@dimen/dp5"
+                        android:layout_toRightOf="@+id/btn_google_map"
+                        android:layout_weight="0.5"
+                        android:text="@string/stop_forground_service" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
