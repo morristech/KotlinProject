@@ -129,35 +129,31 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
         val result =
             LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build())
 
-        result.setResultCallback(object : ResultCallback<LocationSettingsResult> {
-            override fun onResult(locationSettingsResult: LocationSettingsResult) {
+        result.setResultCallback { locationSettingsResult ->
+            val status = locationSettingsResult.status
 
-                val status = locationSettingsResult.status
-
-                when (status.statusCode) {
-                    LocationSettingsStatusCodes.SUCCESS ->
-                        // All location settings are satisfied. The client can initialize location requests here
-                        Lg.d(TAG, "onResult: SUCCESS")
-                    LocationSettingsStatusCodes.RESOLUTION_REQUIRED -> {
-                        Lg.d(TAG, "onResult: RESOLUTION_REQUIRED")
-                        try {
-                            // Show the dialog by calling startResolutionForResult(),
-                            // and check the result in onActivityResult().
-                            status.startResolutionForResult(this@BaseLocation, 2000)
-                        } catch (e: IntentSender.SendIntentException) {
-                            // Ignore the error.
-                        }
-
+            when (status.statusCode) {
+                LocationSettingsStatusCodes.SUCCESS ->
+                    // All location settings are satisfied. The client can initialize location requests here
+                    Lg.d(TAG, "onResult: SUCCESS")
+                LocationSettingsStatusCodes.RESOLUTION_REQUIRED -> {
+                    Lg.d(TAG, "onResult: RESOLUTION_REQUIRED")
+                    try {
+                        // Show the dialog by calling startResolutionForResult(),
+                        // and check the result in onActivityResult().
+                        status.startResolutionForResult(this@BaseLocation, 2000)
+                    } catch (e: IntentSender.SendIntentException) {
+                        // Ignore the error.
                     }
-                    LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> Lg.d(
-                        TAG,
-                        "onResult: SETTINGS_CHANGE_UNAVAILABLE"
-                    )
-                    LocationSettingsStatusCodes.CANCELED -> Lg.d(TAG, "onResult: CANCELED")
-                }//                        getLocation();
-            }
 
-        })
+                }
+                LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> Lg.d(
+                    TAG,
+                    "onResult: SETTINGS_CHANGE_UNAVAILABLE"
+                )
+                LocationSettingsStatusCodes.CANCELED -> Lg.d(TAG, "onResult: CANCELED")
+            }//                        getLocation();
+        }
     }
 
     fun startGeoFencing(location: Location, fancyMarker: Marker?) {

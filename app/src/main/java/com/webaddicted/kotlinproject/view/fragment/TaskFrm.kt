@@ -90,7 +90,8 @@ class TaskFrm : BaseFragment() {
         "Job Dispatcher",
         "Work Manager",
         "Landing Page",
-        "Call Logs"
+        "Call Logs",
+        "Car Animation"
     )
     private lateinit var showSearchView: ShowSearchView
 
@@ -249,6 +250,7 @@ class TaskFrm : BaseFragment() {
             "Work Manager" -> navigateScreen(WorkManagerFrm.TAG)
             "Landing Page" -> navigateScreen(LandingPageFrm.TAG)
             "Call Logs" -> navigateScreen(CallLogFrm.TAG)
+            "Car Animation"-> navigateScreen(CarAnimFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -263,7 +265,7 @@ class TaskFrm : BaseFragment() {
         when (tag) {
             WidgetFrm.TAG -> frm = WidgetFrm.getInstance(Bundle())
             NewsFrm.TAG -> frm = NewsFrm.getInstance(Bundle())
-            MapActivity.TAG -> activity?.let { MapActivity.newIntent(it) }
+            MapActivity.TAG -> activity?.let { MapActivity.newIntent(it, GoogleMapFrm.TAG) }
             CircleFrm.TAG -> frm = CircleFrm.getInstance(Bundle())
             CalendarFrm.TAG -> frm = CalendarFrm.getInstance(Bundle())
             SmsRetrieverFrm.TAG -> frm = SmsRetrieverFrm.getInstance(Bundle())
@@ -320,6 +322,7 @@ class TaskFrm : BaseFragment() {
             WorkManagerFrm.TAG -> frm = WorkManagerFrm.getInstance(Bundle())
             LandingPageFrm.TAG -> frm = LandingPageFrm.getInstance(Bundle())
             CallLogFrm.TAG -> frm = CallLogFrm.getInstance(Bundle())
+            CarAnimFrm.TAG -> activity?.let { MapActivity.newIntent(it, CarAnimFrm.TAG) }
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }

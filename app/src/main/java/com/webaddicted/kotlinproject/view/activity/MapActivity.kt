@@ -10,6 +10,7 @@ import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityCommonBinding
 import com.webaddicted.kotlinproject.global.common.Lg
 import com.webaddicted.kotlinproject.view.base.BaseLocation
+import com.webaddicted.kotlinproject.view.fragment.CarAnimFrm
 import com.webaddicted.kotlinproject.view.fragment.GoogleMapFrm
 import com.webaddicted.kotlinproject.viewModel.map.MapViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -19,21 +20,31 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 class MapActivity : BaseLocation() {
     private lateinit var mBinding: ActivityCommonBinding
-    public val mapViewModel: MapViewModel by viewModel()
+    val mapViewModel: MapViewModel by viewModel()
 
-    companion object{
+    companion object {
         val TAG: String = MapActivity::class.java.simpleName
-        fun newIntent(activity: Activity){
-            activity.startActivity(Intent(activity, MapActivity::class.java))
+        val OPEN_FRM = "OPEN_FRM"
+        fun newIntent(activity: Activity, openFrm: String) {
+            val intent = Intent(activity, MapActivity::class.java)
+            intent.putExtra(OPEN_FRM, openFrm)
+            activity.startActivity(intent)
         }
     }
+
     override fun getLayout(): Int {
         return R.layout.activity_common
     }
 
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityCommonBinding
-        navigateScreen(GoogleMapFrm.TAG)
+        if (intent != null) {
+            val openFrm = intent.getStringExtra(OPEN_FRM)
+            when (openFrm) {
+                CarAnimFrm.TAG -> navigateScreen(CarAnimFrm.TAG)
+                GoogleMapFrm.TAG -> navigateScreen(GoogleMapFrm.TAG)
+            }
+        }
     }
 
     /**
@@ -44,12 +55,16 @@ class MapActivity : BaseLocation() {
         var frm: Fragment? = null
         when (tag) {
             GoogleMapFrm.TAG -> frm = GoogleMapFrm.getInstance(Bundle())
+            CarAnimFrm.TAG -> frm = CarAnimFrm.getInstance(Bundle())
         }
         if (frm != null) navigateFragment(R.id.container, frm, false)
     }
 
     override fun getCurrentLocation(location: Location, address: String?) {
-        Lg.d(TAG, "lat -> " + location.latitude.toString() + "\n long -> " + location.longitude.toString())
+        Lg.d(
+            TAG,
+            "lat -> " + location.latitude.toString() + "\n long -> " + location.longitude.toString()
+        )
         mapViewModel.locationUpdated.postValue(location)
     }
 
