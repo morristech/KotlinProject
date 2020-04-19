@@ -13,15 +13,16 @@ class BindService : Service() {
     private val mGenerator = Random()
 
     /** method for clients  */
-    val randomNumber: Int
-        get() = mGenerator.nextInt(100)
+//    val randomNumber: Int
+//        get() = mGenerator.nextInt(100)
 
     /**
      * Class used for the client Binder.  Because we know this service always
      * runs in the same process as its clients, we don't need to deal with IPC.
      */
-    inner class LocalBinder : Binder() {// Return this instance of LocalService so clients can call public methods
-        public val getService: BindService
+    inner class LocalBinder : Binder() {
+        // Return this instance of LocalService so clients can call public methods
+        val getService: BindService
             get() = this@BindService
     }
 

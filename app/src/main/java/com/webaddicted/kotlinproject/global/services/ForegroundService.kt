@@ -77,7 +77,7 @@ class ForegroundService : Service() {
                 BitmapFactory.decodeResource(resources, com.webaddicted.kotlinproject.R.mipmap.ic_launcher_round)
             builder.setLargeIcon(largeIconBitmap)
             // Make the notification max priority.
-            builder.priority = Notification.PRIORITY_MAX
+            builder.priority = NotificationCompat.PRIORITY_MAX
             // Make head-up notification.
             builder.setFullScreenIntent(pendingIntent, true)
             // Add Play button intent in notification.

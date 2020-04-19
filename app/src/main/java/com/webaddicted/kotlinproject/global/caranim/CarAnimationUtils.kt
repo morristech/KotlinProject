@@ -2,6 +2,9 @@ package com.webaddicted.kotlinproject.global.caranim
 
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.sin
 
 object CarAnimationUtils {
     fun isMarkerVisible(googleMap: GoogleMap, newLocation: LatLng?): Boolean {
@@ -15,11 +18,11 @@ object CarAnimationUtils {
         val lat2 = latLng2.latitude * PI / 180
         val long2 = latLng2.longitude * PI / 180
         val dLon = long2 - long1
-        val y = Math.sin(dLon) * Math.cos(lat2)
+        val y = sin(dLon) * cos(lat2)
         val x =
-            Math.cos(lat1) * Math.sin(lat2) - (Math.sin(lat1)
-                    * Math.cos(lat2) * Math.cos(dLon))
-        var brng = Math.atan2(y, x)
+            cos(lat1) * sin(lat2) - (sin(lat1)
+                    * cos(lat2) * cos(dLon))
+        var brng = atan2(y, x)
         brng = Math.toDegrees(brng)
         brng = (brng + 360) % 360
         return brng

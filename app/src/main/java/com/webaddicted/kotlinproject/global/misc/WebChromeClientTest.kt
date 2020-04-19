@@ -24,11 +24,11 @@ class WebChromeClientTest(private var myActivity: Activity?) :WebChromeClient(){
         fileChooserParams: FileChooserParams
     ): Boolean {
         if (myActivity is WebViewActivity) {
-            var webActivity = myActivity as WebViewActivity
+            val webActivity = myActivity as WebViewActivity
             // Double check that we don't have any existing callbacks
             try {
-                if (webActivity?.mUploadMessage != null) {
-                    webActivity?.mUploadMessage?.onReceiveValue(null)
+                if (webActivity.mUploadMessage != null) {
+                    webActivity.mUploadMessage?.onReceiveValue(null)
                 }
             }catch (exp: Exception){
                 Lg.d("TAG",""+exp)
@@ -37,7 +37,7 @@ class WebChromeClientTest(private var myActivity: Activity?) :WebChromeClient(){
             Lg.e("FileCooserParams => ", filePath.toString())
             webActivity.mCameraPhotoPath = ""
             var takePictureIntent: Intent? = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            if (takePictureIntent!!.resolveActivity(webActivity.getPackageManager()) != null) {
+            if (takePictureIntent!!.resolveActivity(webActivity.packageManager) != null) {
                 // Create the File where the photo should go
                 var photoFile: File? = null
                 try {
@@ -64,10 +64,10 @@ class WebChromeClientTest(private var myActivity: Activity?) :WebChromeClient(){
             contentSelectionIntent.type = "image/*"
 
             val intentArray: Array<Intent?>
-            if (takePictureIntent != null) {
-                intentArray = arrayOf(takePictureIntent)
+            intentArray = if (takePictureIntent != null) {
+                arrayOf(takePictureIntent)
             } else {
-                intentArray = arrayOfNulls(2500)
+                arrayOfNulls(2500)
             }
 
             val chooserIntent = Intent(Intent.ACTION_CHOOSER)

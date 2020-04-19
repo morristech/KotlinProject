@@ -20,7 +20,7 @@ class CarAnimationHelper(
     private val animationDuration: Long = duration
     fun animateMarker(
         destination: Location,
-        oldLocation: Location?,
+//        oldLocation: Location?,
         marker: Marker?
     ) {
         if (marker != null) {
@@ -87,6 +87,7 @@ class CarAnimationHelper(
             valueAnimator?.start()
         }
     }
+
     interface UpdateLocationCallBack {
         fun onUpdatedLocation(updatedLocation: Location?)
     }

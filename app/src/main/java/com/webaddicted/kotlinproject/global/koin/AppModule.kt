@@ -33,17 +33,17 @@ val appModule = module {
 
     /* PROVIDE RETROFIT SINGLETON */
     single {
-        var loggingInterceptor = HttpLoggingInterceptor()
+        val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
-        var httpClient = OkHttpClient.Builder()
+        val httpClient = OkHttpClient.Builder()
         httpClient.addInterceptor(loggingInterceptor)
         httpClient.connectTimeout(ApiConstant.API_TIME_OUT, TimeUnit.MILLISECONDS)
         httpClient.addInterceptor { chain ->
             val request = chain.request().newBuilder().build()
             chain.proceed(request)
         }
-        var okHttpClient = httpClient.build()
+        val okHttpClient = httpClient.build()
 
         Retrofit.Builder()
             .baseUrl(ApiConstant.BASE_URL)

@@ -1,11 +1,12 @@
 package com.webaddicted.kotlinproject.global.calllog;
 
-import java.text.DecimalFormat;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+
+import java.text.DecimalFormat;
 /**
  * Created by Deepak Sharma(webaddicted) on 05/04/2020
  */
@@ -15,10 +16,7 @@ public class LogObject implements CallLogObject {
     private int duration, type;
     private Context context;
 
-    public LogObject() {
-    }
-
-    public LogObject(Context context) {
+    LogObject(Context context) {
         this.context = context;
     }
 

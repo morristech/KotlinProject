@@ -1,9 +1,9 @@
 package com.webaddicted.kotlinproject.global.services
 
 import android.content.Context
-import android.util.Log
 import com.firebase.jobdispatcher.*
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
+import com.webaddicted.kotlinproject.global.common.Lg
 
 /**
  * Created by Deepak Sharma(webaddicted) on 03/04/2020
@@ -20,7 +20,7 @@ class ScheduledJobService : JobService() {
             dispatcher.mustSchedule(job)
         }
 
-        fun createJob(dispatcher: FirebaseJobDispatcher): Job {
+        private fun createJob(dispatcher: FirebaseJobDispatcher): Job {
 //            val periodicity =
 //                TimeUnit.HOURS.toSeconds(1).toInt() // Every 1 hour periodicity expressed as seconds
 //            val toleranceInterval =
@@ -71,12 +71,12 @@ class ScheduledJobService : JobService() {
         return false
     }
 
-    fun codeYouWantToRun(parameters: JobParameters?) {
+    private fun codeYouWantToRun(parameters: JobParameters?) {
         try {
-            Log.d(TAG, "completeJob: " + "jobStarted")
+            Lg.d(TAG, "completeJob: " + "jobStarted")
             //This task takes 2 seconds to complete.
             Thread.sleep(2000)
-            Log.d(TAG, "completeJob: " + "jobFinished")
+            Lg.d(TAG, "completeJob: " + "jobFinished")
         } catch (e: InterruptedException) {
             e.printStackTrace()
         } finally {

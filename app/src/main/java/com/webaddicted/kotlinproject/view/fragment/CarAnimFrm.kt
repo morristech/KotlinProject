@@ -114,7 +114,7 @@ class CarAnimFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickListe
                         override fun onUpdatedLocation(updatedLocation: Location?) {
                             oldLocation = updatedLocation
                         }
-                    }).animateMarker(mLastLocation!!, oldLocation, marker)
+                    }).animateMarker(mLastLocation!!, marker)
                 } else {
                     oldLocation = mLastLocation
                 }

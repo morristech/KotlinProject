@@ -10,11 +10,11 @@ import com.webaddicted.kotlinproject.view.fragment.ServiceFrm
 class IntentTypeService: IntentService("IntentTypeService") {
     override fun onHandleIntent(intent: Intent?) {
         val message = intent?.getStringExtra("message")
-        intent?.setAction(ServiceFrm.FILTER_ACTION_KEY)
+        intent?.action = ServiceFrm.FILTER_ACTION_KEY
         SystemClock.sleep(3000)
         val echoMessage = "IntentService after a pause of 3 seconds echoes $message"
         intent?.putExtra("broadcastMessage", echoMessage)?.let {
-            LocalBroadcastManager.getInstance(getApplicationContext())
+            LocalBroadcastManager.getInstance(applicationContext)
                 .sendBroadcast(it)
         }
     }
