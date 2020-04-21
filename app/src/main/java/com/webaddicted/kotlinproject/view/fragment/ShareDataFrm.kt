@@ -170,7 +170,7 @@ class ShareDataFrm : BaseFragment() {
                     FileHelper.createApplicationFolder()
                     val url = "http://housedocs.house.gov/edlabor/AAHCA-BillText-071409.pdf"
                     val file = File(FileHelper.subFolder(), FileHelper.getFileName(url))
-                    if (file.exists()) openPDF(file)
+                    if (file.exists()) FileHelper.openFile(shareDataFrm.activity!! ,file)
                     else DownloadFile(shareDataFrm, url).execute()
                 }
 
@@ -254,7 +254,7 @@ class ShareDataFrm : BaseFragment() {
                 if (progressDialog != null && progressDialog?.isShowing!!)
                     progressDialog?.dismiss()
                 val file = File(FileHelper.appFolder(), FileHelper.getFileName(strUrl))
-                if (file.exists()) shareDataFrm.openPDF(file)
+                if (file.exists()) FileHelper.openFile(shareDataFrm.activity!! ,file)
                 // Display File path after downloading
             } catch (exp: java.lang.Exception) {
                 exp.printStackTrace()
@@ -262,30 +262,6 @@ class ShareDataFrm : BaseFragment() {
         }
     }
 
-    private fun openPDF(file: File) {
-        var intent: Intent
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            try {
-                val uri =
-                    FileProvider.getUriForFile(
-                        activity!!,
-                        activity?.packageName + ".provider",
-                        file
-                    )
-                intent = Intent(Intent.ACTION_VIEW)
-                intent.data = uri
-                intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-                startActivity(intent)
-            } catch (exp: Exception) {
-                exp.printStackTrace()
-            }
-        } else {
-            intent = Intent(Intent.ACTION_VIEW)
-            intent.setDataAndType(Uri.parse(file.toString()), "application/pdf")
-            intent = Intent.createChooser(intent, "Open File")
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-        }
-    }
+
 }
 

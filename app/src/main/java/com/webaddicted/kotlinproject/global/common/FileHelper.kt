@@ -6,15 +6,18 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import androidx.core.content.FileProvider
+import com.itextpdf.text.pdf.PdfFileSpecification.url
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 /**
  * Created by Deepak Sharma on 01/07/19.
@@ -243,6 +246,68 @@ class FileHelper {
             val usage: Double = (value * 100.0f / total)
             return usage.toInt()
         }
+        fun openFile(activity: Activity, file: File) {
+            var intent: Intent
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                try {
+                    val uri =
+                        FileProvider.getUriForFile(
+                            activity,
+                            activity.packageName + ".provider",
+                            file
+                        )
+                    intent = Intent(Intent.ACTION_VIEW)
+                    intent.data = uri
+                    intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    activity.startActivity(intent)
+                } catch (exp: Exception) {
+                    exp.printStackTrace()
+                }
+            } else {
+                intent = Intent(Intent.ACTION_VIEW)
+                val url = file.path
+                val uri = Uri.fromFile(file)
+                if (url.toString().contains(".doc") || url.toString().contains(".docx")) { // Word document
+                    intent.setDataAndType(uri, "application/msword")
+                } else if (url.toString().contains(".pdf")) { // PDF file
+                    intent.setDataAndType(uri, "application/pdf")
+                } else if (url.toString().contains(".ppt") || url.toString().contains(".pptx")) { // Powerpoint file
+                    intent.setDataAndType(uri, "application/vnd.ms-powerpoint")
+                } else if (url.toString().contains(".xls") || url.toString().contains(".xlsx")) { // Excel file
+                    intent.setDataAndType(uri, "application/vnd.ms-excel")
+                } else if (url.toString().contains(".zip")) { // ZIP file
+                    intent.setDataAndType(uri, "application/zip")
+                } else if (url.toString().contains(".rar")) { // RAR file
+                    intent.setDataAndType(uri, "application/x-rar-compressed")
+                } else if (url.toString().contains(".rtf")) { // RTF file
+                    intent.setDataAndType(uri, "application/rtf")
+                } else if (url.toString().contains(".wav") || url.toString().contains(".mp3")) { // WAV audio file
+                    intent.setDataAndType(uri, "audio/x-wav")
+                } else if (url.toString().contains(".gif")) { // GIF file
+                    intent.setDataAndType(uri, "image/gif")
+                } else if (url.toString().contains(".jpg") || url.toString().contains(".jpeg") || url.toString().contains(
+                        ".png"
+                    )
+                ) { // JPG file
+                    intent.setDataAndType(uri, "image/jpeg")
+                } else if (url.toString().contains(".txt")) { // Text file
+                    intent.setDataAndType(uri, "text/plain")
+                } else if (url.toString().contains(".3gp") || url.toString().contains(".mpg") ||
+                    url.toString().contains(".mpeg") || url.toString().contains(".mpe") || url.toString().contains(
+                        ".mp4"
+                    ) || url.toString().contains(".avi")
+                ) { // Video files
+                    intent.setDataAndType(uri, "video/*")
+                } else {
+                    intent.setDataAndType(uri, "*/*")
+                }
+                intent.setDataAndType(Uri.parse(file.toString()), "application/pdf")
+                intent = Intent.createChooser(intent, "Open File")
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                activity.startActivity(intent)
+            }
+        }
+
     }
 
     //    {END CAPTURE IMAGE PROCESS}
