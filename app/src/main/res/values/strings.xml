@@ -407,6 +407,7 @@
     <string name="forground_service">Forground Service</string>
     <string name="start_forground_service">Start Forground Service</string>
     <string name="stop_forground_service">Stop Forground Service</string>
+    <string name="whats_app_type_noti">Whats app type notification</string>
 
 
 </resources>

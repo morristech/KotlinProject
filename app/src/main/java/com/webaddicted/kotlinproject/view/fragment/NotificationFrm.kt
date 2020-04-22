@@ -3,8 +3,11 @@ package com.webaddicted.kotlinproject.view.fragment
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.Context.MODE_PRIVATE
 import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.media.RingtoneManager
@@ -15,11 +18,14 @@ import android.view.View
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.databinding.ViewDataBinding
+import com.facebook.FacebookSdk.getApplicationContext
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmNotificationBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility.Companion.getTwoDigitRandomNo
+import com.webaddicted.kotlinproject.global.common.Lg
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.global.constant.AppConstant
+import com.webaddicted.kotlinproject.global.services.MyBroadcastReceiver
 import com.webaddicted.kotlinproject.global.services.NotificationBroadcastReceiver
 import com.webaddicted.kotlinproject.global.services.NotificationBroadcastReceiver.Companion.ACTION_CALL
 import com.webaddicted.kotlinproject.global.services.NotificationBroadcastReceiver.Companion.ACTION_DISMISS
@@ -28,6 +34,7 @@ import com.webaddicted.kotlinproject.view.activity.HomeActivity
 import com.webaddicted.kotlinproject.view.activity.SplashActivity
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import java.util.*
+
 
 class NotificationFrm : BaseFragment() {
     private lateinit var mBinding: FrmNotificationBinding
@@ -54,6 +61,7 @@ class NotificationFrm : BaseFragment() {
     private fun init() {
         mBinding.toolbar.imgBack.visible()
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.notification_title)
+        initWhatsappNoti()
     }
 
     private fun clickListener() {
@@ -66,6 +74,7 @@ class NotificationFrm : BaseFragment() {
         mBinding.btnBigPicture.setOnClickListener(this)
         mBinding.btnCustom.setOnClickListener(this)
         mBinding.btnInboxStyle.setOnClickListener(this)
+        mBinding.btnWhatsApp.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -79,7 +88,9 @@ class NotificationFrm : BaseFragment() {
             R.id.btn_action -> actionNoti()
             R.id.btn_big_picture -> bigPictureNoti()
             R.id.btn_custom -> customNoti()
-            R.id.btn_inbox_style -> inboxStyleNoti()
+            R.id.btn_inbox_style ->inboxStyleNoti()
+            R.id.btn_whats_app ->whatsAppTypeNoti()
+
         }
     }
 
@@ -112,7 +123,7 @@ class NotificationFrm : BaseFragment() {
     }
 
     private fun customNoti() {
-        val remoteViews = RemoteViews(activity?.packageName,R.layout.row_product_cat)
+        val remoteViews = RemoteViews(activity?.packageName, R.layout.row_product_cat)
         val intent = Intent(activity, SplashActivity::class.java)
         val pIntent = PendingIntent.getActivity(
             activity, 0, intent,
@@ -297,5 +308,128 @@ class NotificationFrm : BaseFragment() {
                 as NotificationCompat.Builder
     }
 
+    private var NOTIFICATION_ID = 1
+    private var value = 0
+    private var inboxStyle = NotificationCompat.InboxStyle()
+    private var mCopat: NotificationCompat.Builder? = null
+    private var bitmap: Bitmap? = null
+    private var sharedPreferences: SharedPreferences? = null
+    private var editor: SharedPreferences.Editor? = null
+    private fun initWhatsappNoti() {
+        bitmap = BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
+        mCopat = NotificationCompat.Builder(getApplicationContext())
+
+        /**
+         * Here we create shared preferences.Probably you will create some helper class to access shared preferences from everywhere
+         */
+        /**
+         * Here we create shared preferences.Probably you will create some helper class to access shared preferences from everywhere
+         */
+        sharedPreferences = activity?.getSharedPreferences("shared", MODE_PRIVATE)
+        editor = sharedPreferences?.edit()
+
+        /**
+         * I clear this for test purpose.
+         */
+        /**
+         * I clear this for test purpose.
+         */
+        editor?.clear()
+        editor?.commit()
+    }
+
+    fun whatsAppTypeNoti() {
+        /**
+         * Add notification,let`s say add 4 notifications with same id which will be grouped as single and after it add the rest which will be grouped as new notification.
+         */
+        val clickedTime: Int = value++
+        if (clickedTime == 4) {
+            NOTIFICATION_ID++
+        }
+        /**
+         * Here is the important part!We must check whether notification id inserted inside the shared preferences or no.If inserted IT MEANS THAT WE HAVE an notification
+         * to where we should add this one (add the new one to the existing group in clear way)
+         */
+        if (sharedPreferences?.getString(NOTIFICATION_ID.toString(), null) != null) {
+            Lg.d("fsafsafasfa", "hey: " + "not null adding current")
+            /**
+             * TAKE A NOTICE YOU MUST NOT CREATE A NEW INSTANCE OF INBOXSTYLE, OTHERWISE, IT WON`T WORK. JUST ADD VALUES TO EXISTING ONE
+             */
+            val nManager =
+                activity?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager?
+            val builder: NotificationCompat.Builder = NotificationCompat.Builder(activity)
+            builder.setContentTitle("Lanes")
+            builder.setContentText("Notification from Lanes $value")
+            builder.setSmallIcon(R.mipmap.ic_launcher)
+            builder.setLargeIcon(bitmap)
+            builder.setAutoCancel(true)
+            /**
+             * By this line you actually add an value to the group,if the notification is collapsed the 'Notification from Lanes' text will be displayed and nothing more
+             * otherwise if it is expanded the actual values (let`s say we have 5 items added to notification group) will be displayed.
+             */
+            inboxStyle.setBigContentTitle("Enter Content Text")
+            inboxStyle.addLine("hi events $value")
+            /**
+             * This is important too.Send current notification id to the MyBroadcastReceiver which will delete the id from sharedPrefs as soon as the notification is dismissed
+             * BY USER ACTION! not manually from code.
+             */
+            val intent = Intent(activity, MyBroadcastReceiver::class.java)
+            intent.putExtra("id", NOTIFICATION_ID)
+            val pendingIntent = PendingIntent.getBroadcast(
+                getApplicationContext(),
+                0,
+                intent,
+                PendingIntent.FLAG_ONE_SHOT
+            )
+            /**
+             * Simply set delete intent.
+             */
+            builder.setDeleteIntent(pendingIntent)
+            builder.setStyle(inboxStyle)// = inboxStyle
+            notiChannel(builder, nManager!!)
+            nManager.notify("App Name", NOTIFICATION_ID, builder.build())
+            /**
+             * Add id to shared prefs as KEY so we can delete it later
+             */
+            editor?.putString(NOTIFICATION_ID.toString(), "notification")
+            editor?.commit()
+        } else {
+            /***
+             * Here is same logic EXCEPT that you do create an INBOXSTYLE instance so the values are added to actually separate notification which will just be created now!
+             * The rest logic is as same as above!
+             */
+            /**
+             * Ok it gone to else,meaning we do no have any active notifications to add to,so just simply create new separate notification
+             * TAKE A NOTICE to be able to insert new values without old ones you must call new instance of InboxStyle so the old one will not take the place in new separate
+             * notification.
+             */
+            Lg.d("fsafsafasfa", "hey: " + " null adding new")
+            inboxStyle = NotificationCompat.InboxStyle()
+            val nManager =
+                activity?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager?
+            val builder: NotificationCompat.Builder = NotificationCompat.Builder(activity)
+            builder.setContentTitle("Lanes")
+            builder.setContentText("Notification from Lanes $value")
+            builder.setSmallIcon(R.mipmap.ic_launcher)
+            builder.setLargeIcon(bitmap)
+            builder.setAutoCancel(true)
+            inboxStyle.setBigContentTitle("Enter Content Text")
+            inboxStyle.addLine("hi events $value")
+            val intent = Intent(activity, MyBroadcastReceiver::class.java)
+            intent.putExtra("id", NOTIFICATION_ID)
+            val pendingIntent = PendingIntent.getBroadcast(
+                getApplicationContext(),
+                0,
+                intent,
+                PendingIntent.FLAG_ONE_SHOT
+            )
+            builder.setDeleteIntent(pendingIntent)
+            builder.setStyle(inboxStyle)//style = inboxStyle
+            notiChannel(builder, nManager!!)
+            nManager.notify("App Name", NOTIFICATION_ID, builder.build())
+            editor?.putString(NOTIFICATION_ID.toString(), "notification")
+            editor?.commit()
+        }
+    }
 }
 

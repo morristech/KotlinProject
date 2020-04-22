@@ -67,7 +67,11 @@
                         style="@style/Button"
                         android:layout_marginTop="@dimen/dp15"
                         android:text="@string/inbox_style" />
-
+                <Button
+                        android:id="@+id/btn_whats_app"
+                        style="@style/Button"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:text="@string/whats_app_type_noti" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
