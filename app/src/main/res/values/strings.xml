@@ -4,6 +4,7 @@
     <string name="twitter_consumer_secret">	ZLMmiM3RL9ftD9uenN3tDFu742P1cwJONzllNjC8KpdvNjZuvJ</string>
     <string name="facebook_app_id">466359743713130</string>
     <string name="app_name">KotlinProject</string>
+    <string name="notification_channel_id">com.icc.cruuui</string>
     <string name="file_provider_authority" translatable="false">com.webaddicted.kotlinproject.fileprovider</string>
     <string name="network_error">Network Error</string>
     <string name="internal_server_error">Internal Server Error</string>

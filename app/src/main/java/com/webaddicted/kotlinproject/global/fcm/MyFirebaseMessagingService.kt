@@ -30,8 +30,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         private val TAG = MyFirebaseMessagingService::class.java.simpleName
     }
 
-    override fun onNewToken(p0: String) {
-        super.onNewToken(p0)
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
     }
 
     /**
@@ -40,6 +40,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      */
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         Lg.d(TAG, "messagess")
+        Lg.d(TAG, "aaaaaaaaaaaaaaaaa messagess")
+
 //        if (remoteMessage != null && remoteMessage!!.getData() != null) {
 //            val payload = remoteMessage!!.getData().get("payload")
 //            mNotificationData = GlobalUtility.stringToJson(payload, NotificationData::class.java)
