@@ -1,6 +1,20 @@
+## Kotlin Demo
+
+[![GitHub license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23406-2CA3E6.svg?style=flat)](http://androidweekly.net/issues/issue-406)
+![Github Followers](https://img.shields.io/github/followers/webaddicted?label=Follow&style=social)
+![GitHub stars](https://img.shields.io/github/stars/webaddicted/KotlinProject?style=social)
+![GitHub forks](https://img.shields.io/github/forks/webaddicted/KotlinProject?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/webaddicted/KotlinProject?style=social)
+
 # Kotlin Project with all latest feature
 
 Gives a detailed explanation of working all the features/functionality/integrations in android application development.
+
+***You can Install and test latest Kotlin Demo app from below 👇***
+
+[![Kotlin Demo](https://img.shields.io/badge/Kotlin%20Demo%20-Apk-brightgreen.svg?&logo=android)](https://github.com/webaddicted/KotlinProject/tree/master/apk/kotlinDemo.apk)
+
 
 ## Feature/screen/design
 
