@@ -1,4 +1,4 @@
-## Kotlin Demo
+# Kotlin Demo
 
 [![GitHub license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23406-2CA3E6.svg?style=flat)](http://androidweekly.net/issues/issue-406)
@@ -119,7 +119,7 @@ This repository provides the following components that are common to our open so
 
 
 
-*UI Design Library*
+### UI Design Library
 
 [awesome-android-ui](https://github.com/thanhtoan1196/awesome-android-ui)
 
@@ -128,7 +128,7 @@ This repository provides the following components that are common to our open so
 [awesome-android-ui](https://github.com/XPGSnail/awesome-android-ui)
 
 
-* Coding library*
+### Coding library
 
 [awesome-code](https://github.com/JStumpp/awesome-android)
 
