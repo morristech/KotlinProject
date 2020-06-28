@@ -2,68 +2,67 @@
 
 Gives a detailed explanation of working all the features/functionality/integrations in android application development.
 
-## feature/screen/design
+## Feature/screen/design
 
 This repository provides the following components that are common to our open source projects:
 <h2>Feature</h2>
-<ol>
-        
-* AndroidX
-* Base location (track location)
-* Permission handler
-* Local media file picker (File Picker)
-* Google map
-* Geo fancing (enter & exit event)
-* Room database
-* OnBoarding screen
-* Calligraphy fonts
-* Login/signup screen
-* Koin for DI(Dependency inversion)
-* Custom calendar with (disable date, multiple/single selection, edited date)
-* Simple all default widget
-* Api calling
-* Sms retriever Api 
-* MVVM(model, view, viewModel)
-* Android Dark theme
-* Webview (Click/ file access)
-* Retrofit
-* Custom Dialog
-* Create dynamic layout
-* Shared Preference
-* Speech to text/Text to speech
-* Animation
-* Recycler View with animation and load more property(Grid View/ Staggred view)
-* Expendable and spinner list view
-* Different type of sharing(text/image/file/link)
-* Broadcast Receiver(Normal/Ordered)
-* Services(Normal/Bind/Intent service)
-* Timer using(Handler/Countdown timer)
-* Ecommerce app(Login/Signup/verification/Deshboard/category listing)
-* Navigation drawer(both side left/right)
-* Zoom image(Single click/ Double finger)
-* Different Style of Notification
-* Exo player (Single & In List)
-* Fab Button
-* FingerPrint Access
-* Fetch device all image
-* Fetch device all SMS
-* Fetch device all Contact
-* Take Screenshot
-* Restrict Screenshot
-* Tab and ViewPager
-* Rate Your App Feature
-* Create PDF and save
-* Device Info like :
 
-        Battery detail
-        Bluetooth detail
-        Camera detail
-        Display detail
-        OS detail
-        Storage detail
-        System app detail
-        Installed app detail
-        Processor detail
+        
+1) AndroidX
+2) Base location (track location)
+3) Permission handler
+4) Local media file picker (File Picker)
+5) Google map
+6) Geo fancing (enter & exit event)
+7) Room database
+8) OnBoarding screen
+9) Calligraphy fonts
+10) Login/signup screen
+11) Koin for DI(Dependency inversion)
+12) Custom calendar with (disable date, multiple/single selection, edited date)
+13) Simple all default widget
+14) Api calling
+15) Sms retriever Api 
+16) MVVM(model, view, viewModel)
+17) Android Dark theme
+18) Webview (Click/ file access)
+19) Retrofit
+20) Custom Dialog
+21) Create dynamic layout
+22) Shared Preference
+23) Speech to text/Text to speech
+24) Animation
+25) Recycler View with animation and load more property(Grid View/ Staggred view)
+26) Expendable and spinner list view
+27) Different type of sharing(text/image/file/link)
+28) Broadcast Receiver(Normal/Ordered)
+29) Services(Normal/Bind/Intent service)
+30) Timer using(Handler/Countdown timer)
+31) Ecommerce app(Login/Signup/verification/Deshboard/category listing)
+32) Navigation drawer(both side left/right)
+33) Zoom image(Single click/ Double finger)
+34) Different Style of Notification
+35) Exo player (Single & In List)
+36) Fab Button
+37) FingerPrint Access
+38) Fetch device all image
+39) Fetch device all SMS
+40) Fetch device all Contact
+41) Take Screenshot
+42) Restrict Screenshot
+43) Tab and ViewPager
+44) Rate Your App Feature
+45) Create PDF and save
+46) Device Info like :
+      * Battery detail
+      * Bluetooth detail
+      * Camera detail
+      * Display detail
+      * OS detail
+      * Storage detail
+      * System app detail
+      * Installed app detail
+      * Processor detail
 
 * Collapse and expend animation
 * Animated Circle
