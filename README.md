@@ -64,6 +64,7 @@ This repository provides the following components that are common to our open so
 <img src="screenshot/others/anim.jpg" width="205">    <img src="screenshot/others/calendar.jpg" width="205">
 <img src="screenshot/others/otp.jpg" width="205">    <img src="screenshot/others/webview_access.jpg" width="205">
 <img src="screenshot/others/dynamic_pdf_gen.jpg" width="205">    <img src="screenshot/others/home.jpg" width="205">
+<img src="screenshot/others/collapse_anim.jpg" width="205">    <img src="screenshot/others/loading.jpg" width="205">
 
 
 
