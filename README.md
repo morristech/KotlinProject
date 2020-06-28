@@ -13,7 +13,7 @@ Gives a detailed explanation of working all the features/functionality/integrati
 
 ***You can Install and test latest Kotlin Demo app from below 👇***
 
-[![Kotlin Demo](https://img.shields.io/badge/Kotlin%20Demo%20-Apk-brightgreen.svg?style=for-the-badge&logo=android)](https://github.com/webaddicted/KotlinProject/tree/master/apk/kotlinDemo.apk)
+[![Kotlin Demo](https://img.shields.io/badge/Kotlin%20Demo%20-Apk-brightgreen.svg?style=for-the-badge&logo=android)](https://github.com/webaddicted/KotlinProject/tree/master/apk/KotlinDemo.apk)
 
 
 ## Feature/screen/design
