@@ -32,6 +32,7 @@ This repository provides the following components that are common to our open so
 <img src="screenshot/onboarding/onboarding5.jpg" width="205">    <img src="screenshot/onboarding/onboarding6.jpg" width="205">
 <img src="screenshot/onboarding/onboarding7.jpg" width="205">    <img src="screenshot/onboarding/onboarding8.jpg" width="205">
 <img src="screenshot/onboarding/splash.jpg" width="205">    <img src="screenshot/onboarding/language.jpg" width="205">
+<img src="screenshot/onboarding/login.jpg" width="205">    <img src="screenshot/onboarding/signup.jpg" width="205">
 
 
 4) AndroidX
@@ -40,6 +41,12 @@ This repository provides the following components that are common to our open so
 7) Local media file picker (File Picker)
 8) Google map
 9) Geo fancing (enter & exit event)
+
+
+<img src="screenshot/map/map_car_anim.jpg" width="205">    <img src="screenshot/map/map_current_loc.jpg" width="205">
+<img src="screenshot/map/map_geo_fancy.jpg" width="205">    <img src="screenshot/map/map_location.jpg" width="205">
+
+
 10) Room database
 11) Calligraphy fonts
 12) Koin for DI(Dependency inversion)
@@ -52,6 +59,14 @@ This repository provides the following components that are common to our open so
 19) Retrofit
 20) Custom Dialog
 21) Create dynamic layout
+
+
+<img src="screenshot/others/anim.jpg" width="205">    <img src="screenshot/others/calendar.jpg" width="205">
+<img src="screenshot/others/otp.jpg" width="205">    <img src="screenshot/others/webview_access.jpg" width="205">
+<img src="screenshot/others/dynamic_pdf_gen.jpg" width="205">    <img src="screenshot/others/home.jpg" width="205">
+
+
+
 22) Shared Preference
 23) Speech to text/Text to speech
 24) Animation
@@ -62,6 +77,14 @@ This repository provides the following components that are common to our open so
 29) Services(Normal/Bind/Intent service)
 30) Timer using(Handler/Countdown timer)
 31) Ecommerce app(Login/Signup/verification/Deshboard/category listing)
+
+
+<img src="screenshot/ecom/ecom_login.jpg" width="205">    <img src="screenshot/ecom/ecom_otp.jpg" width="205">
+<img src="screenshot/ecom/ecom_home.jpg" width="205">    <img src="screenshot/ecom/ecom_home2.jpg" width="205">
+<img src="screenshot/ecom/ecom_product.jpg" width="205">    <img src="screenshot/others/bottom_nav.jpg" width="205">
+<img src="screenshot/others/cicle.jpg" width="205">    <img src="screenshot/others/collapse_toolbar.jpg" width="205">
+
+
 32) Navigation drawer(both side left/right)
 33) Zoom image(Single click/ Double finger)
 34) Different Style of Notification
@@ -71,6 +94,12 @@ This repository provides the following components that are common to our open so
 38) Fetch device all image
 39) Fetch device all SMS
 40) Fetch device all Contact
+
+
+<img src="screenshot/local/local_image.jpg" width="205">    <img src="screenshot/local/local_call_log.jpg" width="205">
+<img src="screenshot/local/local_sms.jpg" width="205">    <img src="screenshot/local/local_contact.jpg" width="205">
+
+
 41) Take Screenshot
 42) Restrict Screenshot
 43) Tab and ViewPager
