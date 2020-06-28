@@ -26,8 +26,8 @@ This repository provides the following components that are common to our open so
 2) Login/signup screen
 3) Simple all default widget
 
-<img src="screenshot/onboarding/splash.jpg" width="210">    <img src="screenshot/onboarding/language.jpg" width="210">
-<img src="screenshot/onboarding/onboarding1.jpg" width="210">    <img src="screenshot/onboarding/onboarding2.jpg" width="210">
+<img src="screenshot/onboarding/splash.jpg" width="205">    <img src="screenshot/onboarding/language.jpg" width="205">
+<img src="screenshot/onboarding/onboarding1.jpg" width="205">    <img src="screenshot/onboarding/onboarding2.jpg" width="205">
 <img src="screenshot/onboarding/onboarding3.jpg" width="225">    <img src="screenshot/onboarding/onboarding4.jpg" width="225">
 <img src="screenshot/onboarding/onboarding5.jpg" width="225">    <img src="screenshot/onboarding/onboarding6.jpg" width="225">
 <img src="screenshot/onboarding/onboarding7.jpg" width="225">    <img src="screenshot/onboarding/onboarding8.jpg" width="225">
