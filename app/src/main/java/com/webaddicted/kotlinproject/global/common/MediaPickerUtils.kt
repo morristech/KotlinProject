@@ -116,7 +116,7 @@ class MediaPickerUtils {
                         filePath.contains(mMimeTypes[2])
                     ) {
                         compressedFiles =
-                            CompressImage.compressImage(activity, files[i].toString())
+                                CompressImage.compressImage(activity, files[i].toString())
                         Lg.d(
                             TAG,
                             "old Image - ${FileHelper.formatSize(files[i].length())} \n " +
