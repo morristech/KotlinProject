@@ -79,10 +79,10 @@ This repository provides the following components that are common to our open so
 31) Ecommerce app(Login/Signup/verification/Deshboard/category listing)
 
 
-<img src="screenshot/ecom/ecom_login.jpg" width="205">    <img src="screenshot/ecom/ecom_otp.jpg" width="205">
-<img src="screenshot/ecom/ecom_home.jpg" width="205">    <img src="screenshot/ecom/ecom_home2.jpg" width="205">
+<img src="screenshot/ecom/ecom_login.jpg" width="205">    <img src="screenshot/ecom/ecom_home.jpg" width="205">
+<img src="screenshot/ecom/ecom_otp.jpg" width="205">    <img src="screenshot/ecom/ecom_home2.jpg" width="205">
 <img src="screenshot/ecom/ecom_product.jpg" width="205">    <img src="screenshot/others/bottom_nav.jpg" width="205">
-<img src="screenshot/others/cicle.jpg" width="205">    <img src="screenshot/others/collapse_toolbar.jpg" width="205">
+<img src="screenshot/others/collapse_toolbar.jpg" width="205">    <img src="screenshot/others/cicle.jpg" width="205">
 
 
 32) Navigation drawer(both side left/right)
