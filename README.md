@@ -89,7 +89,7 @@ This repository provides the following components that are common to our open so
 32) Navigation drawer(both side left/right)
 33) Zoom image(Single click/ Double finger)
 34) Different Style of Notification
-35) Exo player (Single & In List)
+35) Animated Circle
 36) Fab Button
 37) FingerPrint Access
 38) Fetch device all image
@@ -118,7 +118,12 @@ This repository provides the following components that are common to our open so
     * Processor detail
 
 47) Collapse and expend animation
-48) Animated Circle
+48) Exo player (Single & In List)
+
+<img src="screenshot/video/video_player.jpg" width="205">    <img src="screenshot/video/video_pip.jpg" width="205">
+<img src="screenshot/video/video_list.jpg" width="205"> 
+
+
 49) Bottom Sheet
 50) Bottom Navigation
 51) Capture image when user blink
@@ -127,6 +132,12 @@ This repository provides the following components that are common to our open so
 54) Arc Layout
 55) Collapse Toolbar (With Different behavior)
 56) Avoid Double click
+
+
+<img src="screenshot/others/fab_button.jpg" width="205">    <img src="screenshot/others/device_info.jpg" width="205">
+<img src="screenshot/others/fingureprint.jpg" width="205">    <img src="screenshot/others/signature.jpg" width="205">
+
+
 57) Firebase Login Authentication with method :
     * Google Login Authentication
     * Facebook Login Authentication
@@ -145,6 +156,16 @@ This repository provides the following components that are common to our open so
     * Language ID (On-Device)
     * On-device translation (On-Device)
     * Smart Reply (On-Device)
+
+
+<img src="screenshot/fcm/fcm_social.jpg" width="205">    <img src="screenshot/fcm/fcm_login.jpg" width="205">
+<img src="screenshot/fcm/fcm_signup.jpg" width="205">    <img src="screenshot/fcm/fcm_otp.jpg" width="205">
+<img src="screenshot/fcm/fcm_forgot_pass.jpg" width="205">    <img src="screenshot/fcm/fcm_google_login.jpg" width="205">
+<img src="screenshot/fcm/fcm_email.jpg" width="205">    <img src="screenshot/fcm/fcm_home.jpg" width="205">
+
+
+
+
 
 59) Firebase push notification
 60) Firebase Database Integrated
