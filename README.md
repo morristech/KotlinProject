@@ -119,18 +119,22 @@ This repository provides the following components that are common to our open so
 
 
 
-// ui design library
+*UI Design Library*
 
-https://github.com/thanhtoan1196/awesome-android-ui
+[awesome-android-ui](https://github.com/thanhtoan1196/awesome-android-ui)
 
-https://github.com/vimalcvs/Awesome-Android-UI#UI
+[awesome-android-ui](https://github.com/vimalcvs/Awesome-Android-UI#UI)
 
-https://github.com/XPGSnail/awesome-android-ui.
+[awesome-android-ui](https://github.com/XPGSnail/awesome-android-ui)
 
 
-// Coding library
+* Coding library*
 
-https://github.com/JStumpp/awesome-android
+[awesome-code](https://github.com/JStumpp/awesome-android)
+
+
+
+
 
 
 
