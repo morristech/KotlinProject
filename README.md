@@ -54,54 +54,52 @@ This repository provides the following components that are common to our open so
 44) Rate Your App Feature
 45) Create PDF and save
 46) Device Info like :
-      * Battery detail
-      * Bluetooth detail
-      * Camera detail
-      * Display detail
-      * OS detail
-      * Storage detail
-      * System app detail
-      * Installed app detail
-      * Processor detail
+    * Battery detail
+    * Bluetooth detail
+    * Camera detail
+    * Display detail
+    * OS detail
+    * Storage detail
+    * System app detail
+    * Installed app detail
+    * Processor detail
 
-* Collapse and expend animation
-* Animated Circle
-* Bottom Sheet
-* Bottom Navigation
-* Capture image when user blink
-* Swipe to refresh
-* Ripple Effect
-* Arc Layout
-* Collapse Toolbar (With Different behavior)
-* Avoid Double click
-* Firebase Login Authentication with method :
+47) Collapse and expend animation
+48) Animated Circle
+49) Bottom Sheet
+50) Bottom Navigation
+51) Capture image when user blink
+52) Swipe to refresh
+53) Ripple Effect
+54) Arc Layout
+55) Collapse Toolbar (With Different behavior)
+56) Avoid Double click
+57) Firebase Login Authentication with method :
+    * Google Login Authentication
+    * Facebook Login Authentication
+    * Twitter Login Authentication
+    * Phone Login Authentication
+    * Email/Password Login Authentication
+    * Anonymous Login Authentication
 
-        Google Login Authentication
-        Facebook Login Authentication
-        Twitter Login Authentication
-        Phone Login Authentication
-        Email/Password Login Authentication
-        Anonymous Login Authentication
+58) Firebase ML Kit integrated :
+    * Text recognition (On-Device/Cloud)
+    * Face detection (On-Device)
+    * Object detection and tracking (On-Device)
+    * Image labeling (On-Device/Cloud)
+    * Barcode scanner (On-Device)
+    * Landmark recognition (Cloud)
+    * Language ID (On-Device)
+    * On-device translation (On-Device)
+    * Smart Reply (On-Device)
 
-* Firebase ML Kit integrated :
-
-        Text recognition (On-Device/Cloud)
-        Face detection (On-Device)
-        Object detection and tracking (On-Device)
-        Image labeling (On-Device/Cloud)
-        Barcode scanner (On-Device)
-        Landmark recognition (Cloud)
-        Language ID (On-Device)
-        On-device translation (On-Device)
-        Smart Reply (On-Device)
-
-* Firebase push notification
-* Firebase Database Integrated
-* Firebase Storage Integrated
-* Firebase Crashlytic Integrated
-* Firebase Analyic Integrated
-* PIP (Picture In Picture)
-* Read Call Logs
+59) Firebase push notification
+60) Firebase Database Integrated
+61) Firebase Storage Integrated
+62) Firebase Crashlytic Integrated
+63) Firebase Analyic Integrated
+64) PIP (Picture In Picture)
+65) Read Call Logs
 
 
 
