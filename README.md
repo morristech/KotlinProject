@@ -21,20 +21,28 @@ Gives a detailed explanation of working all the features/functionality/integrati
 This repository provides the following components that are common to our open source projects:
 <h2>Feature</h2>
 
-        
-1) AndroidX
-2) Base location (track location)
-3) Permission handler
-4) Local media file picker (File Picker)
-5) Google map
-6) Geo fancing (enter & exit event)
-7) Room database
-8) OnBoarding screen
-9) Calligraphy fonts
-10) Login/signup screen
-11) Koin for DI(Dependency inversion)
-12) Custom calendar with (disable date, multiple/single selection, edited date)
-13) Simple all default widget
+
+1) OnBoarding screen
+2) Login/signup screen
+3) Simple all default widget
+
+<img src="screenshot/onboarding/splash.jpg" width="225">    <img src="screenshot/onboarding/language.jpg" width="225">
+<img src="screenshot/onboarding/onboarding1.jpg" width="225">    <img src="screenshot/onboarding/onboarding2.jpg" width="225">
+<img src="screenshot/onboarding/onboarding3.jpg" width="225">    <img src="screenshot/onboarding/onboarding4.jpg" width="225">
+<img src="screenshot/onboarding/onboarding5.jpg" width="225">    <img src="screenshot/onboarding/onboarding6.jpg" width="225">
+<img src="screenshot/onboarding/onboarding7.jpg" width="225">    <img src="screenshot/onboarding/onboarding8.jpg" width="225">
+
+
+4) AndroidX
+5) Base location (track location)
+6) Permission handler
+7) Local media file picker (File Picker)
+8) Google map
+9) Geo fancing (enter & exit event)
+10) Room database
+11) Calligraphy fonts
+12) Koin for DI(Dependency inversion)
+13) Custom calendar with (disable date, multiple/single selection, edited date)
 14) Api calling
 15) Sms retriever Api 
 16) MVVM(model, view, viewModel)
