@@ -31,8 +31,8 @@ This repository provides the following components that are common to our open so
 <img src="screenshot/onboarding/onboarding3.jpg" width="205">    <img src="screenshot/onboarding/onboarding4.jpg" width="205">
 <img src="screenshot/onboarding/onboarding5.jpg" width="205">    <img src="screenshot/onboarding/onboarding6.jpg" width="205">
 <img src="screenshot/onboarding/onboarding7.jpg" width="205">    <img src="screenshot/onboarding/onboarding8.jpg" width="205">
-<img src="screenshot/onboarding/splash.jpg" width="205">    <img src="screenshot/onboarding/language.jpg" width="205">
-<img src="screenshot/onboarding/login.jpg" width="205">    <img src="screenshot/onboarding/signup.jpg" width="205">
+<img src="screenshot/onboarding/splash.jpg" width="205">    <img src="screenshot/onboarding/login.jpg" width="205">
+<img src="screenshot/onboarding/language.jpg" width="205">    <img src="screenshot/onboarding/signup.jpg" width="205">
 
 
 4) AndroidX
@@ -43,8 +43,8 @@ This repository provides the following components that are common to our open so
 9) Geo fancing (enter & exit event)
 
 
-<img src="screenshot/map/map_car_anim.jpg" width="205">    <img src="screenshot/map/map_current_loc.jpg" width="205">
-<img src="screenshot/map/map_geo_fancy.jpg" width="205">    <img src="screenshot/map/map_location.jpg" width="205">
+<img src="screenshot/map/map_car_anim.jpg" width="205">    <img src="screenshot/map/map_geo_fancy.jpg" width="205">
+<img src="screenshot/map/map_current_loc.jpg" width="205">    <img src="screenshot/map/map_location.jpg" width="205">
 
 
 10) Room database
@@ -62,9 +62,9 @@ This repository provides the following components that are common to our open so
 
 
 <img src="screenshot/others/anim.jpg" width="205">    <img src="screenshot/others/calendar.jpg" width="205">
-<img src="screenshot/others/otp.jpg" width="205">    <img src="screenshot/others/webview_access.jpg" width="205">
+<img src="screenshot/others/webview_access.jpg" width="205">    <img src="screenshot/others/otp.jpg" width="205">
 <img src="screenshot/others/dynamic_pdf_gen.jpg" width="205">    <img src="screenshot/others/home.jpg" width="205">
-<img src="screenshot/others/collapse_anim.jpg" width="205">    <img src="screenshot/others/loading.jpg" width="205">
+<img src="screenshot/others/loading.jpg" width="205">    <img src="screenshot/others/collapse_anim.jpg" width="205">
 
 
 
@@ -98,7 +98,7 @@ This repository provides the following components that are common to our open so
 
 
 <img src="screenshot/local/local_image.jpg" width="205">    <img src="screenshot/local/local_call_log.jpg" width="205">
-<img src="screenshot/local/local_sms.jpg" width="205">    <img src="screenshot/local/local_contact.jpg" width="205">
+<img src="screenshot/local/local_contact.jpg" width="205">    <img src="screenshot/local/local_sms.jpg" width="205">
 
 
 41) Take Screenshot
