@@ -6,28 +6,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:background="@color/white"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <Button
                 android:id="@+id/btn_bottom_sheet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Button"
+                android:paddingLeft="@dimen/dp25"
+                android:paddingRight="@dimen/dp25"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dp8"
                 android:text="Show Bottom Sheet" />
 
         <Button
                 android:id="@+id/btn_bottom_sheet_dialog"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Button"
+                android:paddingLeft="@dimen/dp25"
+                android:paddingRight="@dimen/dp25"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dp8"
                 android:text="Show Bottom Sheet Dialog" />
 
         <Button
                 android:id="@+id/btn_bottom_sheet_dialog_fragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Button"
+                android:paddingLeft="@dimen/dp25"
+                android:paddingRight="@dimen/dp25"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dp8"
                 android:text="Show Bottom Sheet Dialog Fragment" />

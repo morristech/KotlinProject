@@ -14,6 +14,7 @@
 
         <RelativeLayout
                 android:layout_width="match_parent"
+                android:background="@color/white"
                 android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
+                    android:elevation="@dimen/dp3"
                     android:orientation="vertical">
 
                 <Button
@@ -34,7 +36,7 @@
                         android:background="@color/app_color"
                         android:text="@string/submit"
                         android:textAppearance="@style/TextAppearance_open_sans_bold"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white_par" />
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

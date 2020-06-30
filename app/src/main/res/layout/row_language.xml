@@ -5,21 +5,23 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp5"
+                card_view:cardBackgroundColor="@color/white"
                 card_view:cardCornerRadius="@dimen/dp10">
 
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dp10"
+                    android:orientation="horizontal"
                     android:paddingTop="@dimen/dp5"
-                    android:paddingBottom="@dimen/dp5"
-                    android:orientation="horizontal">
+                    android:paddingBottom="@dimen/dp5">
 
                 <ImageView
                         android:id="@+id/img_country_flag"
@@ -36,10 +38,10 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="@dimen/dp8"
                         android:layout_marginRight="@dimen/dp8"
+                        android:background="@color/transprant"
                         android:singleLine="true"
                         android:text="assasssssss"
                         android:textColor="@color/black"
-                        android:background="@color/transprant"
                         android:textSize="@dimen/sp16"
                         android:textStyle="bold" />
             </LinearLayout>
@@ -51,12 +53,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="@dimen/dp8"
+                    android:background="@color/transprant"
                     android:button="@null"
                     android:checked="true"
-                    android:background="@color/transprant"
                     android:drawableRight="@drawable/selector_checkbox"
                     android:drawablePadding="@dimen/dp5"
-                    android:drawableTint="@color/app_color"
+                    android:drawableTint="@color/black"
                     android:minHeight="@dimen/dp40" />
         </androidx.cardview.widget.CardView>
 

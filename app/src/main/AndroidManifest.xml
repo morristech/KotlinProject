@@ -29,6 +29,7 @@
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
     <uses-feature
             android:name="android.hardware.fingerprint"
             android:required="true" />
@@ -67,6 +68,7 @@
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
             </intent-filter>
         </receiver>
+
         <meta-data
                 android:name="com.google.firebase.messaging.default_notification_icon"
                 android:resource="@drawable/ic_battery" />
@@ -134,11 +136,12 @@
         <activity
                 android:name=".view.activity.SplashActivity"
                 android:windowSoftInputMode="stateAlwaysHidden">
-                        <intent-filter>
-                            <action android:name="android.intent.action.MAIN" />
+<!--            android:theme="@style/AppTheme.Splash"-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-                            <category android:name="android.intent.category.LAUNCHER" />
-                        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -160,10 +163,10 @@
         <activity
                 android:name=".view.activity.HomeActivity"
                 android:windowSoftInputMode="stateAlwaysHidden">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
 
         <activity
@@ -208,11 +211,11 @@
                 android:theme="@style/AppThemeFullScreen" />
         <activity
                 android:name=".view.activity.ExoPlayerPIPActivity"
+                android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+                android:exported="false"
                 android:resizeableActivity="true"
                 android:supportsPictureInPicture="true"
-                android:exported="false"
-                tools:targetApi="n"
-                android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation" />
+                tools:targetApi="n" />
     </application>
 
 </manifest>

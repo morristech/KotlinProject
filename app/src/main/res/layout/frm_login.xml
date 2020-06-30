@@ -33,7 +33,7 @@
                 <TextView
                         style="@style/TextView_Regular"
                         android:text="Login"
-                        android:textColor="@color/white"
+                        android:textColor="@color/white_par"
                         android:textSize="@dimen/sp32" />
 
                 <View
@@ -52,7 +52,7 @@
                         android:layout_marginTop="@dimen/dp4"
                         android:gravity="center"
                         android:text="@string/coding_exper"
-                        android:textColor="@color/white"
+                        android:textColor="@color/white_par"
                         android:textSize="@dimen/sp10" />
 
                 <LinearLayout
@@ -67,23 +67,22 @@
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/wrapper_email"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp80"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp80"
                             android:textColorHint="@color/white"
                             android:theme="@style/EditTextWrapper">
 
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/edt_email"
-                                android:textAppearance="@style/TextAppearance_open_sans_semibold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:drawableRight="@drawable/ic_email"
                                 android:drawablePadding="@dimen/dp16"
                                 android:hint="@string/email"
-
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"
-                                android:textColor="@android:color/white"
+                                android:textAppearance="@style/TextAppearance_open_sans_semibold"
+                                android:textColor="@color/white_par"
                                 android:textSize="@dimen/sp16" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,13 +97,13 @@
                                 android:id="@+id/edt_password"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textAppearance="@style/TextAppearance_open_sans_semibold"
                                 android:drawableRight="@drawable/ic_lock"
                                 android:drawablePadding="@dimen/dp16"
                                 android:hint="@string/password"
                                 android:inputType="textPassword"
                                 android:maxLines="1"
-                                android:textColor="@android:color/white"
+                                android:textAppearance="@style/TextAppearance_open_sans_semibold"
+                                android:textColor="@color/white_par"
                                 android:textSize="16sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -141,14 +140,14 @@
                             android:layout_marginTop="@dimen/dp15"
                             android:text="@string/forgot_password"
                             android:textAlignment="center"
-                            android:textColor="@color/white"
+                            android:textColor="@color/white_par"
                             android:textSize="@dimen/sp16" />
 
                     <LinearLayout
                             android:id="@+id/bottom_space"
-                            android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" />
 
                 </LinearLayout>
 

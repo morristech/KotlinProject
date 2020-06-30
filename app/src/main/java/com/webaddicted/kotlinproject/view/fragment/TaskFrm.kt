@@ -1,5 +1,6 @@
 package com.webaddicted.kotlinproject.view.fragment
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
@@ -117,6 +118,7 @@ class TaskFrm : BaseFragment() {
         mBinding.toolbar.imgBack.gone()
         mBinding.toolbar.imgProfile.visible()
         mBinding.toolbar.imgSort.visible()
+        mBinding.toolbar.imgTheme.visible()
         mBinding.toolbar.imgProfile.setImageDrawable(
             ResourcesCompat.getDrawable(
                 resources,
@@ -130,18 +132,13 @@ class TaskFrm : BaseFragment() {
         clickListener()
         sortList(SortListType.ASCENDING)
         showSearchView = ShowSearchView()
-        val currentMode = AppCompatDelegate.getDefaultNightMode()
-        if (currentMode == AppCompatDelegate.MODE_NIGHT_YES)
-            activity?.showToast("Night Mode")
-        else if (currentMode == AppCompatDelegate.MODE_NIGHT_NO)
-            activity?.showToast("Day Mode")
     }
 
     private fun clickListener() {
         mBinding.toolbar.imgProfile.setOnClickListener(this)
         mBinding.toolbar.imgSearchBack.setOnClickListener(this)
         mBinding.toolbar.imgSort.setOnClickListener(this)
-//        mBinding.btnMobileNo.setOnClickListener(this)
+        mBinding.toolbar.imgTheme.setOnClickListener(this)
         mBinding.toolbar.editTextSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
             }
@@ -173,6 +170,7 @@ class TaskFrm : BaseFragment() {
 //                startActivity(intent)
 //            }
             R.id.img_sort -> showPopupMenu(mBinding.toolbar.imgSort)
+            R.id.img_theme -> appDarkTheme()
         }
     }
 
@@ -250,7 +248,7 @@ class TaskFrm : BaseFragment() {
             "Work Manager" -> navigateScreen(WorkManagerFrm.TAG)
             "Landing Page" -> navigateScreen(LandingPageFrm.TAG)
             "Call Logs" -> navigateScreen(CallLogFrm.TAG)
-            "Car Animation"-> navigateScreen(CarAnimFrm.TAG)
+            "Car Animation" -> navigateScreen(CarAnimFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -412,5 +410,15 @@ class TaskFrm : BaseFragment() {
     private fun startJobDispatcher() {
         ScheduledJobService.scheduleJob(activity)
         GlobalUtility.showToast(getString(R.string.job_schedule_successfully))
+    }
+
+    private fun appDarkTheme() {
+        val mode =
+            if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+                Configuration.UI_MODE_NIGHT_NO
+            ) AppCompatDelegate.MODE_NIGHT_YES
+            else AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY
+        // Change UI Mode
+        AppCompatDelegate.setDefaultNightMode(mode)
     }
 }

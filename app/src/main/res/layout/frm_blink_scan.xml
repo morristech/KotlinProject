@@ -29,6 +29,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/dp80"
                     android:background="@drawable/edt_round_corner"
+                        android:backgroundTint="@color/black"
                     android:orientation="vertical">
 
                     <ImageView
@@ -43,6 +44,7 @@
                         android:layout_centerInParent="true"
                         android:text="@string/scan_dl"
                         android:textSize="14sp"
+                            android:textColor="@color/black"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -52,6 +54,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/dp80"
                     android:background="@drawable/edt_round_corner"
+                        android:backgroundTint="@color/black"
                     android:orientation="vertical">
 
                     <ImageView
@@ -67,7 +70,8 @@
                         android:layout_centerInParent="true"
                         android:text="@string/capture_selfie"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
                 </RelativeLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

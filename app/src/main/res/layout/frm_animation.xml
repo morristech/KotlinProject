@@ -263,8 +263,7 @@
                         style="@style/Button"
                         android:layout_marginTop="@dimen/dp15"
                         android:text="@string/left_right"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/sp22" />
+                        android:textSize="@dimen/sp15" />
 
                 <Button
                         android:id="@+id/btn_top_tob_bottom"
@@ -302,6 +301,7 @@
                         android:id="@+id/btn_expend"
                         style="@style/Button"
                         android:layout_marginTop="@dimen/dp15"
+                        android:layout_marginBottom="@dimen/dp15"
                         android:text="@string/expend" />
                 <com.webaddicted.kotlinproject.global.customview.expendlayout.ExpandableLayout
                         android:id="@+id/expandable_layout"

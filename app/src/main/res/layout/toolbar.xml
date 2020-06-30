@@ -68,7 +68,14 @@
                                 android:src="@drawable/ic_profile"
                                 android:visibility="gone"
                                 android:tint="@color/gray_CDCDCD" />
-
+                        <ImageView
+                                android:id="@+id/img_theme"
+                                android:layout_width="@dimen/dp25"
+                                android:layout_height="@dimen/dp25"
+                                android:src="@drawable/ic_lightbulb"
+                                android:visibility="gone"
+                                android:layout_marginLeft="@dimen/dp5"
+                                android:tint="@color/gray_CDCDCD" />
                         <ImageView
                                 android:id="@+id/img_sort"
                                 android:layout_width="@dimen/dp25"
@@ -113,7 +120,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@color/white"
+                                android:background="@color/white_par"
                                 android:focusable="true"
                                 android:gravity="center_vertical"
                                 android:hint="@string/search"

@@ -8,6 +8,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            card_view:cardBackgroundColor="@color/white"
             card_view:cardCornerRadius="8dp"
             card_view:cardElevation="3dp">
 
@@ -43,13 +44,15 @@
                             android:lineSpacingExtra="3dp"
                             android:padding="2dp"
                             android:text="contactName"
-                            android:textColor="#000000"
+                            android:textColor="@color/black"
                             android:textSize="16sp"/>
 
                     <CheckBox
                             android:id="@+id/cb"
                             android:layout_width="0dp"
+                            android:outlineSpotShadowColor="@color/black"
                             android:layout_height="wrap_content"
+                            android:textColorHighlight="@color/black"
                             android:layout_weight="0.2" />
 
                 </LinearLayout>
@@ -60,6 +63,7 @@
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra="3dp"
                         android:padding="2dp"
+                        android:textColor="@color/gray_818181"
                         android:text="contactNumber"
                         android:textSize="15sp" />
 
@@ -69,6 +73,7 @@
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra="3dp"
                         android:padding="2dp"
+                        android:textColor="@color/gray_818181"
                         android:text="contactNumber"
                         android:textSize="15sp" />
 
@@ -78,6 +83,7 @@
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra="3dp"
                         android:padding="2dp"
+                        android:textColor="@color/gray_818181"
                         android:text="contactNumber"
                         android:textSize="15sp" />
             </LinearLayout>

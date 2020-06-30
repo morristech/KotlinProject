@@ -6,14 +6,20 @@
 <!--    <color name="app_color">#825f3d</color>-->
 
 <!--    e31d24-->
-    <!--    4584DB-->
+<!--    4584DB-->
 <!--    1dbf73-->
     <color name="colorPrimary">#1dbf73</color>
     <color name="colorPrimaryDark">#1dbf73</color>
     <color name="colorAccent">#1dbf73</color>
     <color name="app_color">#1dbf73</color>
+
+    <color name="white_par">@android:color/white</color>
+    <color name="black_par">@android:color/black</color>
     <color name="white">@android:color/white</color>
     <color name="black">@android:color/black</color>
+
+    <color name="white_back">@android:color/white</color>
+
     <color name="red">#ffff0000</color>
 
     <color name="green">#00de4a</color>
