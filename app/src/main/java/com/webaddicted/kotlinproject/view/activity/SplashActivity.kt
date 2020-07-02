@@ -108,8 +108,8 @@ class SplashActivity : BaseActivity() {
      */
     private fun navigateToNext() {
         Handler().postDelayed({
-            HomeActivity.newIntent(this)
-//            LanguageActivity.newIntent(this)
+//            HomeActivity.newIntent(this)
+            LanguageActivity.newIntent(this)
             finish()
         }, AppConstant.SPLASH_DELAY)
     }

@@ -55,6 +55,12 @@ This repository provides the following components that are common to our open so
 15) Sms retriever Api 
 16) MVVM(model, view, viewModel)
 17) Android Dark theme
+
+
+<img src="screenshot/darktheme/splash.jpg" width="205">    <img src="screenshot/fcm_home/calendar.jpg" width="205">
+<img src="screenshot/darktheme/onboarding.jpg" width="205">    <img src="screenshot/darktheme/home.jpg" width="205">
+
+
 18) Webview (Click/ file access)
 19) Retrofit
 20) Custom Dialog
