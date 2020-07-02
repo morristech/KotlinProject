@@ -84,7 +84,6 @@
                                 android:hint="@string/first_name"
                                 app:helperText="@string/enter_first_name"
                                 android:textColorHint="@color/gray_818181"
-                                 app:hintTextColor="@color/gray_818181"
                                 app:helperTextEnabled="true">
 
                             <com.google.android.material.textfield.TextInputEditText
@@ -99,7 +98,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp8"
                                 android:hint="@string/password"
-                                app:hintTextColor="@color/gray_818181"
+                                android:textColorHint="@color/gray_818181"
                                 app:endIconMode="password_toggle"
                                 app:errorEnabled="true"
                                 app:helperText="@string/password"
@@ -119,7 +118,7 @@
                                 android:layout_marginTop="@dimen/dp8"
                                 android:hint="@string/enter_first_name"
                                 app:errorEnabled="true"
-                                app:hintTextColor="@color/gray_818181"
+                                android:textColorHint="@color/gray_818181"
                                 app:helperText="@string/enter_first_name"
                                 app:helperTextEnabled="true">
 
@@ -140,7 +139,7 @@
                                 android:layout_marginTop="@dimen/dp8"
                                 android:enabled="false"
                                 android:hint="@string/enter_last_name"
-                                app:hintTextColor="@color/gray_818181"
+                                android:textColorHint="@color/gray_818181"
                                 app:helperText="@string/enter_last_name"
                                 app:helperTextEnabled="true">
 
@@ -159,7 +158,7 @@
                                 android:layout_height="@dimen/dp45"
                                 android:layout_marginTop="@dimen/dp8"
                                 android:layout_marginBottom="@dimen/dp10"
-                                app:hintTextColor="@color/gray_818181"
+                                android:textColorHint="@color/gray_818181"
                                 android:background="@drawable/edt_round_corner"
                                 android:hint="@string/enter_first_name"
                                 android:paddingLeft="@dimen/dp10" />
