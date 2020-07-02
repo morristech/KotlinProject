@@ -83,10 +83,14 @@
                                 android:layout_height="wrap_content"
                                 android:hint="@string/first_name"
                                 app:helperText="@string/enter_first_name"
+                                android:textColorHint="@color/gray_818181"
+                                 app:hintTextColor="@color/gray_818181"
                                 app:helperTextEnabled="true">
 
                             <com.google.android.material.textfield.TextInputEditText
                                     android:layout_width="match_parent"
+                                    android:textColorHint="@color/gray_818181"
+                                    android:textColor="@color/black"
                                     android:layout_height="wrap_content" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,6 +99,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp8"
                                 android:hint="@string/password"
+                                app:hintTextColor="@color/gray_818181"
                                 app:endIconMode="password_toggle"
                                 app:errorEnabled="true"
                                 app:helperText="@string/password"
@@ -103,6 +108,8 @@
                             <com.google.android.material.textfield.TextInputEditText
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:textColorHint="@color/gray_818181"
+                                    android:textColor="@color/black"
                                     android:inputType="textPassword" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,6 +119,7 @@
                                 android:layout_marginTop="@dimen/dp8"
                                 android:hint="@string/enter_first_name"
                                 app:errorEnabled="true"
+                                app:hintTextColor="@color/gray_818181"
                                 app:helperText="@string/enter_first_name"
                                 app:helperTextEnabled="true">
 
@@ -120,6 +128,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:clickable="false"
+                                    android:textColorHint="@color/gray_818181"
+                                    android:textColor="@color/black"
                                     android:focusableInTouchMode="false"
                                     android:longClickable="false" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -130,13 +140,15 @@
                                 android:layout_marginTop="@dimen/dp8"
                                 android:enabled="false"
                                 android:hint="@string/enter_last_name"
-
+                                app:hintTextColor="@color/gray_818181"
                                 app:helperText="@string/enter_last_name"
                                 app:helperTextEnabled="true">
 
                             <com.google.android.material.textfield.TextInputEditText
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp50"
+                                    android:textColorHint="@color/gray_818181"
+                                    android:textColor="@color/black"
                                     android:background="@drawable/rectangle_unfill"
                                     android:paddingLeft="@dimen/dp10" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -147,6 +159,7 @@
                                 android:layout_height="@dimen/dp45"
                                 android:layout_marginTop="@dimen/dp8"
                                 android:layout_marginBottom="@dimen/dp10"
+                                app:hintTextColor="@color/gray_818181"
                                 android:background="@drawable/edt_round_corner"
                                 android:hint="@string/enter_first_name"
                                 android:paddingLeft="@dimen/dp10" />
@@ -156,8 +169,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp10"
+                                android:textColorHint="@color/gray_818181"
+                                android:textColor="@color/black"
                                 android:drawablePadding="@dimen/dp4"
                                 android:ems="10"
+                                app:hintTextColor="@color/gray_818181"
                                 android:hint="Select country"
                                 android:textAppearance="@style/TextAppearance_open_sans_semibold" />
 
@@ -167,6 +183,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp10"
                                 android:ems="10"
+                                android:textColorHint="@color/gray_818181"
+                                android:textColor="@color/black"
                                 android:hint="Select multiple country"
                                 android:textAppearance="@style/TextAppearance_open_sans_semibold" />
                     </LinearLayout>
@@ -367,7 +385,7 @@
                                 android:layout_marginTop="@dimen/dp8"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/man"
-                                app:civ_border_color="@color/app_color"
+                                app:civ_border_color="@color/app_color_par"
                                 app:civ_border_width="5dp" />
 
                         <com.airbnb.lottie.LottieAnimationView
@@ -433,6 +451,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp18"
+                                android:shadowColor="@color/gray_818181"
                                 android:layout_marginBottom="@dimen/dp5"
                                 android:switchTextAppearance="@style/switch_text_appearance"
                                 android:textOff="OFF"
@@ -444,7 +463,7 @@
                                 android:layout_marginTop="@dimen/dp18"
                                 android:padding="@dimen/dp8"
                                 android:text="Click Me"
-                                android:textColor="@color/app_color"
+                                android:textColor="@color/app_color_par"
                                 android:textSize="@dimen/sp18" />
 
                     </LinearLayout>
@@ -527,6 +546,7 @@
                         <TextView
                                 android:id="@+id/txt_progress"
                                 style="@style/TextView_Regular"
+
                                 android:layout_marginTop="@dimen/dp8"
                                 android:text="" />
 
@@ -605,7 +625,7 @@
                                     android:layout_centerInParent="true"
                                     android:gravity="center"
                                     android:text="25%"
-                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textColor="@color/black"
                                     android:textSize="24sp" />
                         </RelativeLayout>
 

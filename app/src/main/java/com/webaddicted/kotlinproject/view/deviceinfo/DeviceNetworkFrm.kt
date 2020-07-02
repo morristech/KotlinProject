@@ -1,6 +1,7 @@
 package com.webaddicted.kotlinproject.view.deviceinfo
 
 import android.content.Context
+import android.content.res.Configuration
 import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.text.Html
@@ -34,13 +35,18 @@ class DeviceNetworkFrm : BaseFragment() {
     }
 
     private fun getNetworkInfo() {
+        var txtColor = "";
+        if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+            Configuration.UI_MODE_NIGHT_NO
+        ) txtColor = "#000000"
+        else txtColor = "#FFFFFF"
         var networkInfo: String
         networkInfo = if (activity?.isNetworkAvailable()!!) {
-            "<font color=\"#000000\">Connection Status : </font> Connected<br>" +
-                    "<font color=\"#000000\">IP Address : </font> ${GlobalUtility.getIPAddress(true)}<br>"
+            "<font color=\"$txtColor\">Connection Status : </font> Connected<br>" +
+                    "<font color=\"$txtColor\">IP Address : </font> ${GlobalUtility.getIPAddress(true)}<br>"
         } else {
-            "<font color=\"#000000\">Connection Status : </font> Not Connected<br>" +
-                    "<font color=\"#000000\">IP Address : </font> Unavailable<br>"
+            "<font color=\"$txtColor\">Connection Status : </font> Not Connected<br>" +
+                    "<font color=\"$txtColor\">IP Address : </font> Unavailable<br>"
         }
 
         when {
@@ -49,30 +55,30 @@ class DeviceNetworkFrm : BaseFragment() {
                     activity?.applicationContext?.getSystemService(Context.WIFI_SERVICE) as WifiManager
                 val wifiInfo = wifiManager.connectionInfo
                 networkInfo =
-                    networkInfo + "<font color=\"#000000\">Data Type : </font>" + resources.getString(R.string.wifi) + "<br>" +
-                            "<font color=\"#000000\">Network Type : </font>" + resources.getString(R.string.wifi) + "<br>" +
-                            "<font color=\"#000000\">SSID : </font>${wifiInfo.ssid}<br>" +
-                            "<font color=\"#000000\">Link Speed : </font>${wifiInfo.ssid}<br>" +
-                            "<font color=\"#000000\">MAC Address : </font>${GlobalUtility.getMACAddress(
+                    networkInfo + "<font color=\"$txtColor\">Data Type : </font>" + resources.getString(R.string.wifi) + "<br>" +
+                            "<font color=\"$txtColor\">Network Type : </font>" + resources.getString(R.string.wifi) + "<br>" +
+                            "<font color=\"$txtColor\">SSID : </font>${wifiInfo.ssid}<br>" +
+                            "<font color=\"$txtColor\">Link Speed : </font>${wifiInfo.ssid}<br>" +
+                            "<font color=\"$txtColor\">MAC Address : </font>${GlobalUtility.getMACAddress(
                                 "wlan0"
                             )}<br>" +
-                            "<font color=\"#000000\">Link Speed : </font>${wifiInfo.linkSpeed} Mbps<br>"
+                            "<font color=\"$txtColor\">Link Speed : </font>${wifiInfo.linkSpeed} Mbps<br>"
             }
             GlobalUtility.isWifiConnected(activity!!) == activity?.getString(R.string.network) -> {
                 networkInfo =
-                    networkInfo + "<font color=\"#000000\">Data Type : </font>" + resources.getString(R.string.network) + "<br>" +
-                            "<font color=\"#000000\">Network Type : </font>" + resources.getString(R.string.network) + "<br>" +
-                            "<font color=\"#000000\">SSID : </font> Not Available<br>" +
-                            "<font color=\"#000000\">Link Speed : </font> Not Available<br>" +
-                            "<font color=\"#000000\">MAC Address : </font>${GlobalUtility.getMACAddress(
+                    networkInfo + "<font color=\"$txtColor\">Data Type : </font>" + resources.getString(R.string.network) + "<br>" +
+                            "<font color=\"$txtColor\">Network Type : </font>" + resources.getString(R.string.network) + "<br>" +
+                            "<font color=\"$txtColor\">SSID : </font> Not Available<br>" +
+                            "<font color=\"$txtColor\">Link Speed : </font> Not Available<br>" +
+                            "<font color=\"$txtColor\">MAC Address : </font>${GlobalUtility.getMACAddress(
                                 "eth0"
                             )}<br>" +
-                            "<font color=\"#000000\">Link Speed : </font> Not Available<br>"
+                            "<font color=\"$txtColor\">Link Speed : </font> Not Available<br>"
             }
             else -> {
                 networkInfo =
-                    networkInfo + "<font color=\"#000000\">Data Type : </font> Not Available<br>" +
-                            "<font color=\"#000000\">Network Type : </font> Not Available<br>"
+                    networkInfo + "<font color=\"$txtColor\">Data Type : </font> Not Available<br>" +
+                            "<font color=\"$txtColor\">Network Type : </font> Not Available<br>"
             }
         }
         mBinding.txtNetworkInfo.text = Html.fromHtml(networkInfo)

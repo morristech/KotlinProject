@@ -37,7 +37,7 @@
                     android:background="@drawable/rectangle_fill"
                     android:gravity="center"
                     android:text="@string/rear_camera"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white_par" />
 
             <TextView
                     android:id="@+id/txt_front_camera"

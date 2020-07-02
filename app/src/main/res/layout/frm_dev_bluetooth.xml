@@ -11,6 +11,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                app:cardBackgroundColor="@color/white"
                 android:layout_margin="@dimen/dp5"
                 android:layout_marginTop="@dimen/dp20"
                 app:cardCornerRadius="4dp">
@@ -39,25 +40,24 @@
                         android:id="@+id/txt_bt_name"
                         style="@style/txt_black_normal"
                         android:layout_marginTop="@dimen/dp10"
-                        android:textColor="@color/black" />
-
+/>
                 <TextView
                         android:id="@+id/txt_bt_address"
                         style="@style/txt_black_normal"
                         android:layout_marginTop="@dimen/dp10"
-                        android:textColor="@color/black" />
+                        />
 
                 <TextView
                         android:id="@+id/txt_bt_scan_mode"
                         style="@style/txt_black_normal"
                         android:layout_marginTop="@dimen/dp10"
-                        android:textColor="@color/black" />
+                        />
 
                 <TextView
                         android:id="@+id/txt_bt_discover"
                         style="@style/txt_black_normal"
                         android:layout_marginTop="@dimen/dp10"
-                        android:textColor="@color/black" />
+                        />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

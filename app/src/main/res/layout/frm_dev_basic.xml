@@ -13,13 +13,13 @@
                 android:layout_height="@dimen/dp50"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dp15"
-                android:tint="@color/app_color"
+                android:tint="@color/app_color_par"
                 android:src="@drawable/ic_phone" />
 
         <TextView
                 android:id="@+id/txt_device_name"
                 style="@style/txt_black_normal_bold"
-                android:textColor="@color/app_color"
+                android:textColor="@color/app_color_par"
                 android:layout_gravity="center_horizontal"
                 android:text="dsdsdsddd" />
 

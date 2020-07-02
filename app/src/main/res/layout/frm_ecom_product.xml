@@ -35,6 +35,7 @@
                             android:layout_width="@dimen/dp18"
                             android:layout_height="@dimen/dp18"
                             android:layout_marginLeft="@dimen/dp8"
+                            android:tint="@color/black"
                             android:src="@drawable/ic_back" />
 
                     <TextView
@@ -56,6 +57,7 @@
                         <ImageView
                                 android:layout_width="@dimen/dp18"
                                 android:layout_height="@dimen/dp18"
+                                android:tint="@color/black"
                                 android:layout_gravity="center"
                                 android:src="@drawable/cart" />
 

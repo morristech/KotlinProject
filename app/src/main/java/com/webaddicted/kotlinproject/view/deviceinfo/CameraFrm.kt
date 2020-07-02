@@ -124,11 +124,11 @@ class CameraFrm : BaseFragment() {
 
     private fun tabSelector(textview1: TextView, textview2: TextView) {
         /*** Set text color */
-        textview1.setTextColor(ContextCompat.getColor(activity!!, R.color.white))
-        textview2.setTextColor(ContextCompat.getColor(activity!!, R.color.black))
+        textview1.setTextColor(ContextCompat.getColor(activity!!, R.color.white_par))
+        textview2.setTextColor(ContextCompat.getColor(activity!!, R.color.black_par))
 
         /*** Background color */
-        textview1.setBackgroundColor(ContextCompat.getColor(activity!!, R.color.app_color))
+        textview1.setBackgroundColor(ContextCompat.getColor(activity!!, R.color.app_color_par))
         textview2.setBackgroundColor(ContextCompat.getColor(activity!!, R.color.transprant))
 
         /*** Set background drawable */

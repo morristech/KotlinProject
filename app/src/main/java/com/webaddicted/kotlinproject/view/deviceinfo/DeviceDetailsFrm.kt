@@ -2,6 +2,7 @@ package com.webaddicted.kotlinproject.view.deviceinfo
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -37,6 +38,11 @@ class DeviceDetailsFrm : BaseFragment() {
 
 
     private fun getDeviceInfo() {
+        var txtColor = "#FFFFFF"
+        if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+            Configuration.UI_MODE_NIGHT_NO
+        ) txtColor = "#000000"
+        else txtColor = "#FFFFFF"
         mBinding.txtDeviceName.text = Build.BRAND
         mBinding.txtDeviceId.text = Build.MODEL
         @SuppressLint("HardwareIds") val androidID =
@@ -51,15 +57,15 @@ class DeviceDetailsFrm : BaseFragment() {
         display.getMetrics(metrics)
         val width = metrics.widthPixels
         val height = metrics.heightPixels
-        val deviceInfo = "<font color=\"#000000\">Manufacturer : </font>${Build.MANUFACTURER}<br>" +
-                "<font color=\"#000000\">Hardware : </font>${Build.HARDWARE}<br>" +
-                "<font color=\"#000000\">Board : </font>${Build.BOARD}<br>" +
-                "<font color=\"#000000\">Serial : </font>${Build.SERIAL}<br>" +
-                "<font color=\"#000000\">Android Id : </font>${androidID}<br>" +
-                "<font color=\"#000000\">ScreenResolution : </font>$width * $height Pixels<br>" +
-                "<font color=\"#000000\">BootLoader : </font>${Build.BOOTLOADER}<br>" +
-                "<font color=\"#000000\">Host : </font>${Build.HOST}<br>" +
-                "<font color=\"#000000\">User : </font>${Build.USER}<br>"
+        val deviceInfo = "<font color=\"$txtColor\">Manufacturer : </font>${Build.MANUFACTURER}<br>" +
+                "<font color=\"$txtColor\">Hardware : </font>${Build.HARDWARE}<br>" +
+                "<font color=\"$txtColor\">Board : </font>${Build.BOARD}<br>" +
+                "<font color=\"$txtColor\">Serial : </font>${Build.SERIAL}<br>" +
+                "<font color=\"$txtColor\">Android Id : </font>${androidID}<br>" +
+                "<font color=\"$txtColor\">ScreenResolution : </font>$width * $height Pixels<br>" +
+                "<font color=\"$txtColor\">BootLoader : </font>${Build.BOOTLOADER}<br>" +
+                "<font color=\"$txtColor\">Host : </font>${Build.HOST}<br>" +
+                "<font color=\"$txtColor\">User : </font>${Build.USER}<br>"
         mBinding.txtDeviceInfo.text = Html.fromHtml(deviceInfo)
     }
 }

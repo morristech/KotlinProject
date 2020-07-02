@@ -71,7 +71,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp15"
                         android:text="Resend OTP"
-                        android:textColor="@color/app_color"
+                        android:textColor="@color/app_color_par"
                         android:textStyle="normal" />
 
                 <Button

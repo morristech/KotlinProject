@@ -1,5 +1,6 @@
 package com.webaddicted.kotlinproject.view.deviceinfo
 
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -32,15 +33,20 @@ class OSFrm : BaseFragment() {
     }
 
     private fun getOSInfo() {
+        var txtColor = "";
+        if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+            Configuration.UI_MODE_NIGHT_NO
+        ) txtColor = "#000000"
+        else txtColor = "#FFFFFF"
         val CVersion = Build.VERSION.SDK_INT
         var osInfo = ""
-        osInfo =   "<font color=\"#000000\">Version : </font>${Build.VERSION.RELEASE}<br>" +
-                "<font color=\"#000000\">Version Name : </font>${Build.VERSION_CODES::class.java.fields[Build.VERSION.SDK_INT].name}<br>" +
-                "<font color=\"#000000\">Api Level : </font>${Build.VERSION.SDK_INT.toString()}<br>" +
-                "<font color=\"#000000\">BuildId : </font>${Build.ID}<br>" +
-                "<font color=\"#000000\">Build Time : </font>${GlobalUtility.getDate(Build.TIME)}<br>" +
-                "<font color=\"#000000\">Fingerprint : </font>${Build.FINGERPRINT}<br>" +
-                "<font color=\"#000000\">Hardware : </font>${Build.HARDWARE}<br>"
+        osInfo =   "<font color=\"$txtColor\">Version : </font>${Build.VERSION.RELEASE}<br>" +
+                "<font color=\"$txtColor\">Version Name : </font>${Build.VERSION_CODES::class.java.fields[Build.VERSION.SDK_INT].name}<br>" +
+                "<font color=\"$txtColor\">Api Level : </font>${Build.VERSION.SDK_INT.toString()}<br>" +
+                "<font color=\"$txtColor\">BuildId : </font>${Build.ID}<br>" +
+                "<font color=\"$txtColor\">Build Time : </font>${GlobalUtility.getDate(Build.TIME)}<br>" +
+                "<font color=\"$txtColor\">Fingerprint : </font>${Build.FINGERPRINT}<br>" +
+                "<font color=\"$txtColor\">Hardware : </font>${Build.HARDWARE}<br>"
         mBinding.txtOsInfo.setText(Html.fromHtml(osInfo))
         when (CVersion) {
             11 -> {

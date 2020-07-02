@@ -12,7 +12,7 @@
     <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#1dbf73</color>
     <color name="app_color">#212121</color>
-
+    <color name="app_color_par">#1dbf73</color>
     <color name="white_par">@android:color/white</color>
     <color name="black_par">@android:color/black</color>
     <color name="white">#000000</color>

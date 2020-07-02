@@ -45,7 +45,7 @@
                             android:layout_width="116dp"
                             android:layout_height="116dp"
                             android:src="@drawable/ic_user"
-                            app:civ_border_color="@color/app_color"
+                            app:civ_border_color="@color/app_color_par"
                             app:civ_border_width="@dimen/dp3" />
 
                     <ImageView
@@ -59,10 +59,10 @@
                             android:layout_marginStart="89dp"
                             android:layout_marginLeft="89dp"
                             android:background="@drawable/circle_gray"
-                            android:backgroundTint="@color/app_color"
+                            android:backgroundTint="@color/app_color_par"
                             android:padding="@dimen/dp5"
                             android:src="@android:drawable/ic_menu_camera"
-                            android:tint="@color/white" />
+                            android:tint="@color/white_par" />
                 </RelativeLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -155,7 +155,7 @@
                         android:paddingLeft="@dimen/dp20"
                         android:paddingRight="@dimen/dp20"
                         android:text="@string/login"
-                        android:textColor="@color/app_color" />
+                        android:textColor="@color/app_color_par" />
 
                 <View
                         android:layout_width="@dimen/dp110"
@@ -163,7 +163,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp5"
                         android:layout_marginBottom="@dimen/dp30"
-                        android:background="@color/app_color" />
+                        android:background="@color/app_color_par" />
 
                 <LinearLayout
                         android:id="@+id/bottom_space"

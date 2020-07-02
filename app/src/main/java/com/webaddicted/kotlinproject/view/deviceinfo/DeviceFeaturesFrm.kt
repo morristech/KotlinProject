@@ -2,10 +2,12 @@ package com.webaddicted.kotlinproject.view.deviceinfo
 
 import android.content.Context
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.Html
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmDevFeatureBinding
@@ -33,120 +35,125 @@ class DeviceFeaturesFrm : BaseFragment() {
     }
 
     private fun getDeviceFeatures() {
+        var txtColor = "";
+        if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+            Configuration.UI_MODE_NIGHT_NO
+        ) txtColor = "#000000"
+        else txtColor = "#FFFFFF"
         val connManager =
             activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
         val packageManager = activity?.packageManager
         val featureInfo =
-            """<font color="#000000">Wifi : </font>${getAvailability(mWifi.isAvailable)}<br><font color="#000000">WIFI Direct : </font>${getAvailability(
+            """<font color="$txtColor">Wifi : </font>${getAvailability(mWifi.isAvailable)}<br><font color="$txtColor">WIFI Direct : </font>${getAvailability(
                 packageManager?.hasSystemFeature(PackageManager.FEATURE_WIFI_DIRECT)!!
-            )}<br><font color="#000000">Bluetooth : </font>${getAvailability(
+            )}<br><font color="$txtColor">Bluetooth : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_BLUETOOTH
                 )
-            )}<br><font color="#000000">Bluetooth LE : </font>${getAvailability(
+            )}<br><font color="$txtColor">Bluetooth LE : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_BLUETOOTH_LE
                 )
-            )}<br><font color="#000000">GPS : </font>${getAvailability(
+            )}<br><font color="$txtColor">GPS : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_LOCATION_GPS
                 )
-            )}<br><font color="#000000">Camera Flash : </font>${getAvailability(
+            )}<br><font color="$txtColor">Camera Flash : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_CAMERA_FLASH
                 )
-            )}<br><font color="#000000">Camera Front : </font>${getAvailability(
+            )}<br><font color="$txtColor">Camera Front : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_CAMERA_FRONT
                 )
-            )}<br><font color="#000000">Microphone : </font>${getAvailability(
+            )}<br><font color="$txtColor">Microphone : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_MICROPHONE
                 )
-            )}<br><font color="#000000">NFC : </font>${getAvailability(
+            )}<br><font color="$txtColor">NFC : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_NFC
                 )
-            )}<br><font color="#000000">USB Host : </font>${getAvailability(
+            )}<br><font color="$txtColor">USB Host : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_USB_HOST
                 )
-            )}<br><font color="#000000">USB Accessory : </font>${getAvailability(
+            )}<br><font color="$txtColor">USB Accessory : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_USB_ACCESSORY
                 )
-            )}<br><font color="#000000">Multitouch : </font>${getAvailability(
+            )}<br><font color="$txtColor">Multitouch : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH
                 )
-            )}<br><font color="#000000">Audio low-latency : </font>${getAvailability(
+            )}<br><font color="$txtColor">Audio low-latency : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_AUDIO_LOW_LATENCY
                 )
-            )}<br><font color="#000000">Audio Output : </font>${getAvailability(
+            )}<br><font color="$txtColor">Audio Output : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_AUDIO_OUTPUT
                 )
-            )}<br><font color="#000000">Professional Audio : </font>${getAvailability(
+            )}<br><font color="$txtColor">Professional Audio : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_AUDIO_PRO
                 )
-            )}<br><font color="#000000">Consumer IR : </font>${getAvailability(
+            )}<br><font color="$txtColor">Consumer IR : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_CONSUMER_IR
                 )
-            )}<br><font color="#000000">Gamepad Support : </font>${getAvailability(
+            )}<br><font color="$txtColor">Gamepad Support : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_GAMEPAD
                 )
-            )}<br><font color="#000000">HIFI Sensor : </font>${getAvailability(
+            )}<br><font color="$txtColor">HIFI Sensor : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_HIFI_SENSORS
                 )
-            )}<br><font color="#000000">Printing : </font>${getAvailability(
+            )}<br><font color="$txtColor">Printing : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_PRINTING
                 )
-            )}<br><font color="#000000">CDMA : </font>${getAvailability(
+            )}<br><font color="$txtColor">CDMA : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_TELEPHONY_CDMA
                 )
-            )}<br><font color="#000000">GSM : </font>${getAvailability(
+            )}<br><font color="$txtColor">GSM : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_TELEPHONY_GSM
                 )
-            )}<br><font color="#000000">Finger-print : </font>${getAvailability(
+            )}<br><font color="$txtColor">Finger-print : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_FINGERPRINT
                 )
-            )}<br><font color="#000000">App Widgets : </font>${getAvailability(
+            )}<br><font color="$txtColor">App Widgets : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_APP_WIDGETS
                 )
-            )}<br><font color="#000000">SIP : </font>${getAvailability(
+            )}<br><font color="$txtColor">SIP : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_SIP
                 )
-            )}<br><font color="#000000">SIP based VOIP : </font>${getAvailability(
+            )}<br><font color="$txtColor">SIP based VOIP : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_SIP_VOIP
                 )
-            )}<br><font color="#000000">Microphone : </font>${getAvailability(
+            )}<br><font color="$txtColor">Microphone : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_MICROPHONE
                 )
-            )}<br><font color="#000000">Microphone : </font>${getAvailability(
+            )}<br><font color="$txtColor">Microphone : </font>${getAvailability(
                 packageManager.hasSystemFeature(PackageManager.FEATURE_MICROPHONE)
-            )}<br><font color="#000000">Microphone : </font>${getAvailability(
+            )}<br><font color="$txtColor">Microphone : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_MICROPHONE
                 )
-            )}<br><font color="#000000">Microphone : </font>${getAvailability(
+            )}<br><font color="$txtColor">Microphone : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_MICROPHONE
                 )
-            )}<br><font color="#000000">Microphone : </font>${getAvailability(
+            )}<br><font color="$txtColor">Microphone : </font>${getAvailability(
                 packageManager.hasSystemFeature(
                     PackageManager.FEATURE_MICROPHONE
                 )

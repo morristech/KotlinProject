@@ -52,6 +52,8 @@
                         android:layout_marginTop="0dp"
                         android:layout_weight="1"
                         android:hint="@string/mobile_no"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray_818181"
                         android:inputType="number"
                         android:maxLength="10"
                         android:textSize="@dimen/sp13" />
@@ -61,7 +63,7 @@
                         android:layout_height="@dimen/dp25"
                         android:layout_marginRight="52.3dp"
                         android:src="@drawable/ic_phone"
-                        android:tint="@color/app_color" />
+                        android:tint="@color/app_color_par" />
 
             </LinearLayout>
 

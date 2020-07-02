@@ -61,6 +61,8 @@
                                 android:layout_marginTop="0dp"
                                 android:layout_weight="1"
                                 android:hint="@string/otp"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/gray_818181"
                                 android:inputType="number"
                                 android:maxLength="6"
                                 android:textSize="@dimen/sp13" />
@@ -70,7 +72,7 @@
                                 android:layout_height="@dimen/dp25"
                                 android:layout_marginRight="52.3dp"
                                 android:src="@drawable/ic_phone"
-                                android:tint="@color/app_color" />
+                                android:tint="@color/app_color_par" />
 
                     </LinearLayout>
 
@@ -90,7 +92,7 @@
                             android:layout_marginTop="@dimen/dp21"
                             android:gravity="center"
                             android:text="@string/edit_mobile_no"
-                            android:textColor="@color/app_color"
+                            android:textColor="@color/app_color_par"
                             android:textSize="@dimen/sp11" />
 
                     <ImageView
@@ -132,7 +134,7 @@
                                     android:layout_gravity="center_horizontal"
                                     android:layout_marginTop="@dimen/dp34"
                                     android:text="@string/we_are_verifying"
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/white_par"
                                     android:textSize="12.5dp" />
 
                             <LinearLayout

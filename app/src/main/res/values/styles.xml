@@ -156,13 +156,13 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:button">@drawable/selector_checkbox</item>
-        <item name="android:buttonTint">@color/app_color</item>
+        <item name="android:buttonTint">@color/app_color_par</item>
         <item name="android:checked">false</item>
         <item name="android:paddingLeft">@dimen/dp15</item>
         <item name="android:paddingRight">@dimen/dp15</item>
         <item name="android:textAppearance">@style/TextAppearance_open_sans_semibold</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/app_color</item>
+        <item name="android:textColor">@color/app_color_par</item>
     </style>
 
     <style name="ButtonStroke">
@@ -201,7 +201,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:textColor">@color/app_color</item>
+        <item name="android:textColor">@color/app_color_par</item>
         <item name="android:textSize">@dimen/sp16</item>
         <item name="android:textAppearance">@style/TextAppearance_open_sans_semibold</item>
     </style>
@@ -210,7 +210,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:textColor">@color/app_color</item>
+        <item name="android:textColor">@color/app_color_par</item>
         <item name="android:textSize">@dimen/sp18</item>
         <item name="android:textAppearance">@style/TextAppearance_open_sans_semibold</item>
         <item name="android:textStyle">bold</item>

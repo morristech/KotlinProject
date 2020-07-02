@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.ActivityManager
 import android.content.Context
+import android.content.res.Configuration
 import android.os.*
 import android.text.Html
 import android.view.View
@@ -21,6 +22,7 @@ import java.util.*
 class StorageFrm : BaseFragment() {
     private lateinit var mBinding: FrmDevStorageBinding
     private val df = DecimalFormat("#")
+    var txtColor = ""
     companion object {
         val TAG = StorageFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): StorageFrm {
@@ -36,6 +38,11 @@ class StorageFrm : BaseFragment() {
 
     override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDevStorageBinding
+        if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+            Configuration.UI_MODE_NIGHT_NO
+        ) txtColor = "#000000"
+        else txtColor = "#FFFFFF"
+
         val handler = Handler()
         val runnable = object : Runnable {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -60,13 +67,13 @@ class StorageFrm : BaseFragment() {
         val freeInternalValue = getAvailableInternalMemorySize()
         val usedInternalValue = totalInternalValue - freeInternalValue
         ramUsedInt =
-            "<font color=\"#000000\">${resources.getString(R.string.used_memory)} : </font>${formatSize(
+            "<font color=\"$txtColor\">${resources.getString(R.string.used_memory)} : </font>${formatSize(
                 usedInternalValue
             )}<br>" +
-                    "<font color=\"#000000\">${resources.getString(R.string.free)} : </font>${formatSize(
+                    "<font color=\"$txtColor\">${resources.getString(R.string.free)} : </font>${formatSize(
                         freeInternalValue
                     )}<br>" +
-                    "<font color=\"#000000\">${resources.getString(R.string.total)} : </font>${formatSize(
+                    "<font color=\"$txtColor\">${resources.getString(R.string.total)} : </font>${formatSize(
                         totalInternalValue
                     )}<br>"
         mBinding.tvUsedIntmemory.text = Html.fromHtml(ramUsedInt)
@@ -83,13 +90,13 @@ class StorageFrm : BaseFragment() {
             val freeExternalValue = getAvailableExternalMemorySize(dirs)
             val usedExternalValue = totalExternalValue - freeExternalValue
             ramUsedExt =
-                "<font color=\"#000000\">${resources.getString(R.string.used_memory)} : </font>${formatSize(
+                "<font color=\"$txtColor\">${resources.getString(R.string.used_memory)} : </font>${formatSize(
                     usedInternalValue
                 )}<br>" +
-                        "<font color=\"#000000\">${resources.getString(R.string.free)} : </font>${formatSize(
+                        "<font color=\"$txtColor\">${resources.getString(R.string.free)} : </font>${formatSize(
                             freeInternalValue
                         )}<br>" +
-                        "<font color=\"#000000\">${resources.getString(R.string.total)} : </font>${formatSize(
+                        "<font color=\"$txtColor\">${resources.getString(R.string.total)} : </font>${formatSize(
                             totalInternalValue
                         )}<br>"
             mBinding.tvUsedExtmemory.text = Html.fromHtml(ramUsedExt)
@@ -113,13 +120,13 @@ class StorageFrm : BaseFragment() {
         val usedRamValue = totalRamValue - freeRamValue
 
         ramUsed =
-            "<font color=\"#000000\">${resources.getString(R.string.used_memory)} : </font>${formatSize(
+            "<font color=\"$txtColor\">${resources.getString(R.string.used_memory)} : </font>${formatSize(
                 usedRamValue
             )}<br>" +
-                    "<font color=\"#000000\">${resources.getString(R.string.free)} : </font>${formatSize(
+                    "<font color=\"$txtColor\">${resources.getString(R.string.free)} : </font>${formatSize(
                         freeRamValue
                     )}<br>" +
-                    "<font color=\"#000000\">${resources.getString(R.string.total)} : </font>${formatSize(
+                    "<font color=\"$txtColor\">${resources.getString(R.string.total)} : </font>${formatSize(
                         totalRamValue
                     )}<br>"
         mBinding.tvUsedMemory.text = Html.fromHtml(ramUsed)
