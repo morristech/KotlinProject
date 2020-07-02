@@ -57,7 +57,7 @@ This repository provides the following components that are common to our open so
 17) Android Dark theme
 
 
-<img src="screenshot/darktheme/splash.jpg" width="205">    <img src="screenshot/fcm_home/calendar.jpg" width="205">
+<img src="screenshot/darktheme/splash.jpg" width="205">    <img src="screenshot/darktheme/fcm_home.jpg" width="205">
 <img src="screenshot/darktheme/onboarding.jpg" width="205">    <img src="screenshot/darktheme/home.jpg" width="205">
 
 
