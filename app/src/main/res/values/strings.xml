@@ -408,6 +408,7 @@
     <string name="start_forground_service">Start Forground Service</string>
     <string name="stop_forground_service">Stop Forground Service</string>
     <string name="whats_app_type_noti">Whats app type notification</string>
+    <string name="fire_topic_notification">Fcm topic notification</string>
 
 
 </resources>

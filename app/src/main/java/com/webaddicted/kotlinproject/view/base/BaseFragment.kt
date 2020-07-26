@@ -84,6 +84,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener,
                     ValidationHelper.showSnackBar(view, response.errorMessage!!)
                 else activity?.showToast(getString(R.string.something_went_wrong))
             }
+            else -> { showApiLoader()}
         }
     }
 

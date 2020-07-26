@@ -3,29 +3,29 @@ package com.webaddicted.kotlinproject.view.fcmkit
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 import com.webaddicted.kotlinproject.R
+import com.webaddicted.kotlinproject.apiutils.ApiConstant
+import com.webaddicted.kotlinproject.apiutils.ApiResponse
 import com.webaddicted.kotlinproject.databinding.FrmFcmEmailAuthBinding
-import com.webaddicted.kotlinproject.global.common.GlobalUtility
-import com.webaddicted.kotlinproject.global.common.Lg
-import com.webaddicted.kotlinproject.global.common.ValidationHelper
-import com.webaddicted.kotlinproject.global.common.gone
+import com.webaddicted.kotlinproject.global.common.*
+import com.webaddicted.kotlinproject.model.bean.common.FcmNotifBean
+import com.webaddicted.kotlinproject.model.bean.common.NotiRespo
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.webaddicted.kotlinproject.view.fragment.ZoomImageFrm
 import com.webaddicted.kotlinproject.viewModel.fcmkit.FcmFoodViewModel
-import kotlinx.coroutines.*
-import okhttp3.*
-import org.json.JSONException
-import org.json.JSONObject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FcmEmailAuthFrm : BaseFragment() {
+    private var newToken: String = ""
     private lateinit var fireAuth: FirebaseAuth
     private lateinit var mBinding: FrmFcmEmailAuthBinding
-    private val viewModel: FcmFoodViewModel by viewModel()
+    private val mViewModel: FcmFoodViewModel by viewModel()
 
     companion object {
         val TAG = FcmEmailAuthFrm::class.java.simpleName
@@ -50,6 +50,15 @@ class FcmEmailAuthFrm : BaseFragment() {
         mBinding.toolbar.imgNavRight.gone()
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.email_auth)
         fireAuth = FirebaseAuth.getInstance()
+        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
+            newToken = it.token
+        }
+//        addOnSuccessListener(
+//            this
+//        ) { instanceIdResult: InstanceIdResult ->
+//          newToken = instanceIdResult.token
+//            Log.e("TAG", "token   :   $newToken")
+//        }
     }
 
     private fun clickListener() {
@@ -59,6 +68,7 @@ class FcmEmailAuthFrm : BaseFragment() {
         mBinding.btnForgotPass.setOnClickListener(this)
         mBinding.btnUpdate.setOnClickListener(this)
         mBinding.btnFirePush.setOnClickListener(this)
+        mBinding.btnTopicNotific.setOnClickListener(this)
 
     }
 
@@ -70,26 +80,22 @@ class FcmEmailAuthFrm : BaseFragment() {
             R.id.btn_signup -> emailSignup()
             R.id.btn_forgot_pass -> emailForgotPass()
             R.id.btn_update -> emailUpdate()
-            R.id.btn_fire_push -> {
-                GlobalScope.launch(Dispatchers.Main + Job()) {
-                    withContext(Dispatchers.Default) {
-                        val result = firePushNoti()
-                        try {
-                            val resultJson = JSONObject(result)
-                            val success: Int
-                            val failure: Int
-                            success = resultJson.getInt("success")
-                            failure = resultJson.getInt("failure")
-                            Log.d(TAG, "onResponse: onPostExecute: $success")
-                            GlobalUtility.showToast("Notification send successfully.\nMessage Success: $success \nMessage Failed: $failure")
-                        } catch (e: JSONException) {
-                            e.printStackTrace()
-                            GlobalUtility.showToast("Message Failed, Unknown error occurred.\n${e.message}")
-                        }
-                    }
-                }
-            }
+            R.id.btn_fire_push -> callPushNotificationApi(false)
+            R.id.btn_topic_notific -> subscribeTopicFirst()
         }
+    }
+
+    private fun subscribeTopicFirst() {
+        FirebaseMessaging.getInstance().subscribeToTopic(ApiConstant.FCM_TOPIC_NAME)
+            .addOnCompleteListener { task ->
+                var msg = "getString(R.string.msg_subscribed)"
+                if (!task.isSuccessful) {
+                    msg = "getString(R.string.msg_subscribe_failed)"
+                    GlobalUtility.showToast(msg)
+                return@addOnCompleteListener
+                }
+            callPushNotificationApi(true)
+            }
     }
 
     private fun emailLogin() {
@@ -157,48 +163,40 @@ class FcmEmailAuthFrm : BaseFragment() {
         if (frm != null) navigateAddFragment(R.id.container, frm, true)
     }
 
-
-    private fun firePushNoti(): String? {
-        try {
-            val root = JSONObject()
-            val notification = JSONObject()
-            notification.put("body", "body")
-            notification.put("title", "title")
-            //                    notification.put("icon", icon);
-            val data = JSONObject()
-            data.put("message", "message")
-            root.put("notification", notification)
-            root.put("data", data)
-//            root.put("registration_ids", "recipients")
-            val FCM_MESSAGE_URL = "https://fcm.googleapis.com/fcm/send"
-            val JSON =
-                MediaType.parse("application/json; charset=utf-8")
-
-            val body: RequestBody = RequestBody.create(JSON, root.toString())
-            val request =
-                Request.Builder()
-//                    .url(FCM_MESSAGE_URL)
-                    .url("https://fcm.googleapis.com/fcm/send")
-                    .post(body)
-                    .addHeader(
-                        "Authorization",
-                        "key=" + "AAAAsi55X5Y:APA91bGoXntyJcBoW8evgk8DuZNDfhb6m7iu4Vs8Uf-cW2IqjlcM0GOu6DzqOZxbJkQdnXvq9E3pmdi9CieSBA9A0vU4un9ja6_KiFT9r8k9pk3QZIxxe7wLRJEqErxa1sS8O_ZMyjOK"//server key
-                    )
-                    .build()
-            val response: Response = OkHttpClient().newCall(request).execute()
-            return response.body()?.string()
-            Lg.d(TAG, "Noti Respo : ${response.body()?.string()}")
-        } catch (ex: Exception) {
-            ex.printStackTrace()
-            return ex.message
-        }
-    }
-
     fun openImg(image: String?) {
         val bundle = Bundle()
         bundle.putString(ZoomImageFrm.IMAGE_PATH, image)
         bundle.putBoolean(ZoomImageFrm.IS_LOCAL_FILE, false)
         navigateScreen(ZoomImageFrm.TAG, bundle)
     }
+
+    private fun callPushNotificationApi(isFromTopicNoti: Boolean) {
+        if(isFromTopicNoti)newToken = "/topics/${ApiConstant.FCM_TOPIC_NAME}"
+        val fcmNotifBean = FcmNotifBean()
+        fcmNotifBean.to = newToken
+        val dataNoti = FcmNotifBean.DataNoti()
+        dataNoti.title = getString(R.string.app_name)
+        dataNoti.message = "Test Demo\n"+getString(R.string.dummyText)
+        fcmNotifBean.data = dataNoti
+        mViewModel.getFcmNoti().observe(this, channelObserver)
+        mViewModel.notiApi(fcmNotifBean)
+    }
+
+    private val channelObserver: Observer<ApiResponse<NotiRespo>> by lazy {
+        Observer { response: ApiResponse<NotiRespo> -> handleLoginResponse(response) }
+    }
+
+    private fun handleLoginResponse(response: ApiResponse<NotiRespo>) {
+        apiResponseHandler(mBinding.parent, response)
+        when (response.status) {
+            ApiResponse.Status.SUCCESS -> {
+                hideApiLoader()
+                if (response.data?.success == 1)
+                    GlobalUtility.showToast("message successfully sent")
+                else GlobalUtility.showToast(getString(R.string.something_went_wrong)+response.toString())
+            }
+        }
+    }
+
 }
 

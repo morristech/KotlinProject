@@ -12,7 +12,7 @@ class ApiConstant {
         const val PHONE_AUTH_TIMEOUT: Long = 119
 
         /*********API BASE URL************/
-        const val BASE_URL = "https://api.github.com/"
+        const val BASE_URL = "https://fcm.googleapis.com/"
         const val API_TIME_OUT: Long = 6000
 
         //        START FIREBASE CHILD
@@ -31,6 +31,7 @@ class ApiConstant {
         const val FCM_USERS_PASSWORD = "password"
         const val FCM_USERS_FCM_TOKEN= "fcmToken"
         //        END FIREBASE KEY
-
+        const val SERVER_KEY= "AAAAsi55X5Y:APA91bGoXntyJcBoW8evgk8DuZNDfhb6m7iu4Vs8Uf-cW2IqjlcM0GOu6DzqOZxbJkQdnXvq9E3pmdi9CieSBA9A0vU4un9ja6_KiFT9r8k9pk3QZIxxe7wLRJEqErxa1sS8O_ZMyjOK"
+        const val FCM_TOPIC_NAME: String = "weather"
     }
 }

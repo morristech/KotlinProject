@@ -49,10 +49,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 //            mSound = remoteMessage!!.getData().get("sound")
 //            showNotification(this, mNotificationData)
 //        } else {
-            mNotificationData =   NotificationData().apply {
-                id = 1
-                type = getString(R.string.dummyText)
-            }
+        mNotificationData = NotificationData().apply {
+            id = 1
+            type = getString(R.string.dummyText)
+            title = remoteMessage.getData().get("title")!!
+            msg = remoteMessage.getData().get("message")!!
+        }
             showNotification(this, mNotificationData)
 //        }
 
@@ -80,10 +82,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 )
             )
             notificationBuilder.setBadgeIconType(R.mipmap.ic_launcher_round)
-            notificationBuilder.setContentTitle(context.getString(R.string.app_name))
+            notificationBuilder.setContentTitle(mNotificationData?.title)
 //            if (mAlert != null) {
-                notificationBuilder.setContentText(mNotificationData?.type)
-                notificationBuilder.setStyle(NotificationCompat.BigTextStyle().bigText(mNotificationData?.type))
+                notificationBuilder.setContentText(mNotificationData?.msg)
+                notificationBuilder.setStyle(NotificationCompat.BigTextStyle().bigText(mNotificationData?.msg))
 //            }
             notificationBuilder.setAutoCancel(true)
             notificationBuilder.setSound(defaultSoundUri)

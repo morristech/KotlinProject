@@ -3,6 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
+            android:id="@+id/parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
@@ -118,7 +119,13 @@
                         android:paddingLeft="@dimen/dp25"
                         android:paddingRight="25dp"
                         android:text="@string/fire_push_noti" />
-
+                <Button
+                    android:id="@+id/btn_topic_notific"
+                    style="@style/Button"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:paddingLeft="@dimen/dp25"
+                    android:paddingRight="25dp"
+                    android:text="@string/fire_topic_notification" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
