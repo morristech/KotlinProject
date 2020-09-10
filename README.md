@@ -191,24 +191,20 @@ This repository provides the following components that are common to our open so
 
 ### UI Design Library
 
-[Awesome UI Design](https://github.com/thanhtoan1196/awesome-android-ui)
-
-[Awesome Android](https://github.com/vimalcvs/Awesome-Android-UI#UI)
-
-[Awesome UI](https://github.com/XPGSnail/awesome-android-ui)
+   * [Awesome UI Design](https://github.com/thanhtoan1196/awesome-android-ui)
+   * [Awesome Android](https://github.com/vimalcvs/Awesome-Android-UI#UI)
+   * [Awesome UI](https://github.com/XPGSnail/awesome-android-ui)
 
 
 ### Coding library
 
-[Awesome Code](https://github.com/JStumpp/awesome-android)
-
-
+   * [Awesome Code](https://github.com/JStumpp/awesome-android)
 
 
 ### Illustrations Icons
 
-[Illustrations Icons](https://icons8.com/illustrations)
-
+   * [icons8](https://icons8.com/illustrations)
+   * [undraw](https://undraw.co/illustrations)
 
 
 
