@@ -201,7 +201,7 @@ This repository provides the following components that are common to our open so
    * [Awesome Code](https://github.com/JStumpp/awesome-android)
 
 
-### Illustrations Icons
+### Image Resources
 
    * [icons8](https://icons8.com/illustrations)
    * [undraw](https://undraw.co/illustrations)
