@@ -6,6 +6,8 @@
 ![GitHub stars](https://img.shields.io/github/stars/webaddicted/KotlinProject?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/webaddicted/KotlinProject?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/webaddicted/KotlinProject?style=social)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9d71713560374c938dba8a476ce8debf)](https://www.codacy.com/app/webaddicted/KotlinProject)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/9d71713560374c938dba8a476ce8debf)](https://www.codacy.com/app/webaddicted/KotlinProject)
 
 # Kotlin Project with all latest feature
 
