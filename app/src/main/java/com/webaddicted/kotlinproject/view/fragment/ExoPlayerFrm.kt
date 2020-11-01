@@ -6,10 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import com.google.android.exoplayer2.DefaultLoadControl
-import com.google.android.exoplayer2.DefaultRenderersFactory
-import com.google.android.exoplayer2.ExoPlayerFactory
-import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.dash.DashChunkSource
@@ -113,6 +110,16 @@ class ExoPlayerFrm : BaseFragment() {
         val mediaSource =
             buildMediaSource(Uri.parse(getString(R.string.media_url_mp4)))
         player?.prepare(mediaSource, true, false)
+        player?.addListener(object : Player.DefaultEventListener() {
+            override fun onPlayerStateChanged(playWhenReady: Boolean,playbackState: Int) {
+                when (playbackState) {
+                    Player.STATE_IDLE -> {}
+                    Player.STATE_BUFFERING -> {}
+                    Player.STATE_READY -> {}
+                    Player.STATE_ENDED -> {}
+                }
+            }
+        })
     }
 
     private fun releasePlayer() {
