@@ -6,6 +6,8 @@
 ![GitHub stars](https://img.shields.io/github/stars/webaddicted/KotlinProject?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/webaddicted/KotlinProject?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/webaddicted/KotlinProject?style=social)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9d71713560374c938dba8a476ce8debf)](https://www.codacy.com/app/webaddicted/KotlinProject)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/9d71713560374c938dba8a476ce8debf)](https://www.codacy.com/app/webaddicted/KotlinProject)
 
 # Kotlin Project with all latest feature
 
@@ -191,22 +193,24 @@ This repository provides the following components that are common to our open so
 
 ### UI Design Library
 
-[Awesome UI Design](https://github.com/thanhtoan1196/awesome-android-ui)
-
-[Awesome Android](https://github.com/vimalcvs/Awesome-Android-UI#UI)
-
-[Awesome UI](https://github.com/XPGSnail/awesome-android-ui)
+   * [Awesome UI Design](https://github.com/thanhtoan1196/awesome-android-ui)
+   * [Awesome Android](https://github.com/vimalcvs/Awesome-Android-UI#UI)
+   * [Awesome UI](https://github.com/XPGSnail/awesome-android-ui)
 
 
 ### Coding library
 
-[Awesome Code](https://github.com/JStumpp/awesome-android)
+   * [Awesome Code](https://github.com/JStumpp/awesome-android)
 
 
+### Image Resources
 
+   * [icons8](https://icons8.com/illustrations)
+   * [undraw](https://undraw.co/illustrations)
 
-
-
+### Convert Video into GIF
+  
+  * [Video to GIF](https://hnet.com/video-to-gif)
 
 ## LICENSE
 ```
