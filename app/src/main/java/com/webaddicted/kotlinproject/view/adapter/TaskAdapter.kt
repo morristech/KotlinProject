@@ -1,5 +1,7 @@
 package com.webaddicted.kotlinproject.view.adapter
 
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
@@ -52,6 +54,9 @@ class TaskAdapter(private var taskFrm: TaskFrm, private var mTaskList: ArrayList
                 }
                 mRowBinding.txtName.text = sb
             } else mRowBinding.txtName.text = title
+            val rnd = Random()
+            val color = Color.argb(225, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
+            (mRowBinding.txtInitial.background as GradientDrawable).setColor(color)
             mRowBinding.txtInitial.text = title?.get(0).toString()
             onClickListener(mRowBinding, mRowBinding.card, position)
         }
