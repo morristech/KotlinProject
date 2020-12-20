@@ -210,6 +210,7 @@ This repository provides the following components that are common to our open so
 ### Convert Video into GIF
   
   * [Video to GIF](https://hnet.com/video-to-gif)
+  * [Video to GIF](https://www.onlineconverter.com/convert/1120808c544270b9245fd5659ddda6e4e0)
   * [Tinypng Compress Image](https://tinypng.com/)
   * [Resize Image](https://resizeimage.net/)
   * [Logo Creator](https://www.freelogoservices.com/)
