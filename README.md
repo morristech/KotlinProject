@@ -213,7 +213,7 @@ This repository provides the following components that are common to our open so
   * [Tinypng Compress Image](https://tinypng.com/)
   * [Resize Image](https://resizeimage.net/)
   * [Logo Creator](https://www.freelogoservices.com/)
-  
+  * [Png Image Crop](https://onlinepngtools.com/crop-png)
   
   
 ## LICENSE
