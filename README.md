@@ -216,6 +216,7 @@ This repository provides the following components that are common to our open so
   * [Logo Creator](https://www.freelogoservices.com/)
   * [Png Image Crop](https://onlinepngtools.com/crop-png)
   * [Image Create For PlayStore](https://www.appstorescreenshot.com/)
+  * [Merge Image Horizontally](https://www.filesmerge.com/merge-images)
   
 ## LICENSE
 ```
