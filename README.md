@@ -210,26 +210,23 @@ This repository provides the following components that are common to our open so
 ### Convert Video into GIF
   
   * [Video to GIF](https://hnet.com/video-to-gif)
-  * [Compress Image](https://tinypng.com/)
-  
+  * [Video to GIF](https://www.onlineconverter.com/convert/1120808c544270b9245fd5659ddda6e4e0)
+  * [Tinypng Compress Image](https://tinypng.com/)
+  * [Resize Image](https://resizeimage.net/)
+  * [Logo Creator](https://www.freelogoservices.com/)
+  * [Png Image Crop](https://onlinepngtools.com/crop-png)
+  * [Image Create For PlayStore](https://www.appstorescreenshot.com/)
+  * [Merge Image Horizontally](https://www.filesmerge.com/merge-images)
   
 ## LICENSE
 ```
-Apache License
 
-Copyright (c) 2020 Deepak Sharma (webaddicted)
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
 
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+             TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
 ```
 
