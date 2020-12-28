@@ -99,7 +99,7 @@ class BarcodeFrm : BaseFragment() {
         mBinding.webview.settings.useWideViewPort = true
 //        mBinding.webview.setWebViewClient(ourViewClient())
         try {
-            mBinding.webview.loadUrl(content)
+            content?.let { mBinding.webview.loadUrl(it) }
         } catch (e: Exception) {
             e.printStackTrace()
         }

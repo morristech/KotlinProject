@@ -7,12 +7,10 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.AsyncTask
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import androidx.core.content.FileProvider
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmShareBinding
@@ -202,7 +200,7 @@ class ShareDataFrm : BaseFragment() {
          * Downloading file in background thread
          */
 //        override  fun doInBackground(vararg f_url: String): String {
-        override fun doInBackground(vararg f_url: String?): String? {
+        override fun doInBackground(vararg f_url: String?): String {
             var count: Long?
             try {
                 val url = URL(strUrl)
@@ -239,14 +237,14 @@ class ShareDataFrm : BaseFragment() {
                 input.close()
                 return "Downloaded at: $folder$fileName"
             } catch (e: Exception) {
-                Log.e("Error: ", e.message)
+                e.message?.let { Log.e("Error: ", it) }
             }
             return "Something went wrong"
         }
 
         override fun onProgressUpdate(vararg values: String?) {
             super.onProgressUpdate(*values)
-            progressDialog?.setProgress(values[0]?.toInt()!!)
+            progressDialog?.progress = values[0]?.toInt()!!
         }
 
         override fun onPostExecute(message: String?) {

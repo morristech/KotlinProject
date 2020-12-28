@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.webkit.*
@@ -81,12 +80,12 @@ class WebViewActivity : BaseActivity() {
     }
 
     private fun normalWebView(webView: WebView) {
-        webView.settings.setJavaScriptEnabled(true)
-        webView.settings.setLoadWithOverviewMode(true)
-        webView.settings.setUseWideViewPort(true)
-        webView.setScrollbarFadingEnabled(true)
-        webView.setVerticalScrollBarEnabled(false)
-        webView.setWebViewClient(myTestBrowser())
+        webView.settings.javaScriptEnabled = true
+        webView.settings.loadWithOverviewMode = true
+        webView.settings.useWideViewPort = true
+        webView.isScrollbarFadingEnabled = true
+        webView.isVerticalScrollBarEnabled = false
+        webView.webViewClient = myTestBrowser()
         try {
             webView.loadUrl(url)
         } catch (e: Exception) {
@@ -98,20 +97,20 @@ class WebViewActivity : BaseActivity() {
     private fun webInterface(webView: WebView) {
         mBinding.toolbar.imgBack.visibility = View.VISIBLE
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.webview_title)
-        webView.settings.setLoadsImagesAutomatically(true);
+        webView.settings.loadsImagesAutomatically = true
 //        webView.settings.setUserAgentString("android");
-        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        webView.settings.setJavaScriptEnabled(true)
-        webView.settings.setLoadWithOverviewMode(true)
-        webView.settings.setUseWideViewPort(true)
-        webView.setScrollbarFadingEnabled(true)
-        webView.setVerticalScrollBarEnabled(false)
+        webView.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
+        webView.settings.javaScriptEnabled = true
+        webView.settings.loadWithOverviewMode = true
+        webView.settings.useWideViewPort = true
+        webView.isScrollbarFadingEnabled = true
+        webView.isVerticalScrollBarEnabled = false
         webView.addJavascriptInterface(
             WebAppInterface(
                 this
             ), "android"
         )
-        webView.setWebViewClient(myTestBrowser())
+        webView.webViewClient = myTestBrowser()
         val str = "<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<body>\n" +
@@ -134,12 +133,12 @@ class WebViewActivity : BaseActivity() {
         }
 
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-            mBinding.progressBar.setVisibility(View.VISIBLE)
+            mBinding.progressBar.visibility = View.VISIBLE
             super.onPageStarted(view, url, favicon)
         }
 
         override fun onPageFinished(view: WebView?, url: String?) {
-            mBinding.progressBar.setVisibility(View.GONE)
+            mBinding.progressBar.visibility = View.GONE
             super.onPageFinished(view, url)
         }
     }
@@ -176,13 +175,13 @@ class WebViewActivity : BaseActivity() {
             webView.isScrollbarFadingEnabled = true
             webView.isVerticalScrollBarEnabled = false
             webView.settings.userAgentString = "android"
-            webView.getSettings().setAppCacheEnabled(false)
-            webView.getSettings().domStorageEnabled = true
+            webView.settings.setAppCacheEnabled(false)
+            webView.settings.domStorageEnabled = true
             webView.clearCache(true)
-            webView.getSettings().setPluginState(WebSettings.PluginState.ON);
-            webView.getSettings().setSupportZoom(true);
-            webView.getSettings().allowFileAccess = (true);
-            webView.getSettings().allowContentAccess = (true);
+            webView.settings.pluginState = WebSettings.PluginState.ON
+            webView.settings.setSupportZoom(true)
+            webView.settings.allowFileAccess = (true)
+            webView.settings.allowContentAccess = (true)
             if (Build.VERSION.SDK_INT >= 19) {
                 webView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
             } else if (Build.VERSION.SDK_INT >= 11 && Build.VERSION.SDK_INT < 19) {
@@ -191,7 +190,7 @@ class WebViewActivity : BaseActivity() {
 //            webView.getSettings().Access = (true);
             webView.webChromeClient = WebChromeClientTest(activity)
             webView.webViewClient = myTestBrowser()
-            webView.loadUrl(contentUrl)
+            contentUrl?.let { webView.loadUrl(it) }
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -205,7 +204,7 @@ class WebViewActivity : BaseActivity() {
         try {
             if (resultCode == 0) {
                 Lg.d(TAG, "when user cancel then reset web chrome client")
-                mBinding.webview?.webChromeClient = WebChromeClientTest(this)
+                mBinding.webview.webChromeClient = WebChromeClientTest(this)
                 mUploadMessage?.onReceiveValue(arrayOf(Uri.parse("")))
                 return
             }

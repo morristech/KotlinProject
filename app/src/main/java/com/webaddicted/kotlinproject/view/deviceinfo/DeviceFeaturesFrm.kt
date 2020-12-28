@@ -45,7 +45,7 @@ class DeviceFeaturesFrm : BaseFragment() {
         val mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
         val packageManager = activity?.packageManager
         val featureInfo =
-            """<font color="$txtColor">Wifi : </font>${getAvailability(mWifi.isAvailable)}<br><font color="$txtColor">WIFI Direct : </font>${getAvailability(
+            """<font color="$txtColor">Wifi : </font>${getAvailability(mWifi!!.isAvailable)}<br><font color="$txtColor">WIFI Direct : </font>${getAvailability(
                 packageManager?.hasSystemFeature(PackageManager.FEATURE_WIFI_DIRECT)!!
             )}<br><font color="$txtColor">Bluetooth : </font>${getAvailability(
                 packageManager.hasSystemFeature(
