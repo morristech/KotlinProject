@@ -1,16 +1,20 @@
 package com.webaddicted.kotlinproject.view.activity
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.google.firebase.iid.FirebaseInstanceId
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityCommonBinding
 import com.webaddicted.kotlinproject.global.common.Lg
+import com.webaddicted.kotlinproject.global.common.PermissionHelper
 import com.webaddicted.kotlinproject.view.base.BaseActivity
 import com.webaddicted.kotlinproject.view.fragment.TaskFrm
+import kotlinx.coroutines.*
 
 /**
  * Created by Deepak Sharma on 01/07/19.
@@ -40,6 +44,7 @@ class HomeActivity : BaseActivity() {
         mBinding = binding as ActivityCommonBinding
         Lg.d(TAG, "ok token - "+FirebaseInstanceId.getInstance().token)
         navigateScreen(TaskFrm.TAG)
+//        checkCameraPermission()
     }
 
     /**
@@ -54,4 +59,54 @@ class HomeActivity : BaseActivity() {
         }
         if (frm != null) navigateFragment(R.id.container, frm, false)
     }
+    private fun checkCameraPermission() {
+        val multiplePermission = ArrayList<String>()
+        multiplePermission.add(Manifest.permission.CAMERA)
+        PermissionHelper.requestMultiplePermission(
+            this,
+            multiplePermission,
+            object : PermissionHelper.Companion.PermissionListener {
+                override fun onPermissionGranted(mCustomPermission: List<String>) {
+                    GlobalScope.launch(Dispatchers.Main + Job()) {
+                        val appList = withContext(Dispatchers.Default) {
+//                            fetchCameraCharacteristics(cameraManager, id)
+                        }
+//                        mAdapter.notifyAdapter(appList)
+                    }
+                }
+
+                override fun onPermissionDenied(mCustomPermission: List<String>) {
+
+                }
+            })
+    }
+
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        Log.d("TAG","Test - onCreate")
+//    }
+//    override fun onStart() {
+//        super.onStart()
+//        Log.d("TAG","Test - onStart")
+//    }
+//
+//    override fun onResume() {
+//        super.onResume()
+//        Log.d("TAG","Test - onResume")
+//    }
+//
+//    override fun onPause() {
+//        super.onPause()
+//        Log.d("TAG","Test - onPause")
+//    }
+//
+//    override fun onStop() {
+//        super.onStop()
+//        Log.d("TAG","Test - onStop")
+//    }
+//
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        Log.d("TAG","Test - onDestroy")
+//    }
 }
