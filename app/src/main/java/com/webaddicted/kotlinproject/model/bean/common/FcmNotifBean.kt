@@ -9,13 +9,15 @@ import java.io.Serializable
  */
 class FcmNotifBean {
     @SerializedName("to")
-    var to: String = "";
+    var to: String = ""
+
     @SerializedName("data")
     var data =DataNoti()
 
     open class DataNoti : Serializable {
         @SerializedName("title")
-        var title: String = "";
+        var title: String = ""
+
         @SerializedName("message")
         var message: String = ""
     }

@@ -42,21 +42,21 @@ class CircleGameAdapter(private var frm:BaseFragment,private var mFilterBean: Ar
         return R.layout.row_circle
     }
 
-    override fun onBindTo(mBinding: ViewDataBinding, position: Int) {
-        if (mBinding is RowCircleBinding) {
+    override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
+        if (rowBinding is RowCircleBinding) {
             slideAnmimation = AnimationUtils.loadAnimation(mContext, R.anim.bounce_game)
             slideAnmimations = AnimationUtils.loadAnimation(mContext, R.anim.bounce_game)
-            mBinding.imgFirst.animation = slideAnmimation
+            rowBinding.imgFirst.animation = slideAnmimation
             //            mBinding.imgSecond.startAnimation(slideAnmimation);
-            mBinding.imgThird.animation = slideAnmimation
+            rowBinding.imgThird.animation = slideAnmimation
             //            mBinding.imgFourth.startAnimation(slideAnmimation);
             Handler().postDelayed({
-                mBinding.imgSecond.animation = slideAnmimations
-                mBinding.imgFourth.animation = slideAnmimations
+                rowBinding.imgSecond.animation = slideAnmimations
+                rowBinding.imgFourth.animation = slideAnmimations
             }, 1000)
-            checkView(mBinding, position)
-            clickEvent(mBinding, position)
-            setImage(mBinding, position)
+            checkView(rowBinding, position)
+            clickEvent(rowBinding, position)
+            setImage(rowBinding, position)
         }
     }
 

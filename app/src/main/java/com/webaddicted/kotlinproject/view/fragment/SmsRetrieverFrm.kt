@@ -44,12 +44,12 @@ class SmsRetrieverFrm : BaseFragment() {
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.sms_retriever_title)
         SMSReceiver.requestData(object : SMSReceiver.OTPReceiveListener {
             override fun onOTPReceived(otp: String) {
-                mBinding.txtOtpIs.setText(getString(R.string.otp_code_is)+" : "+otp)
+                mBinding.txtOtpIs.text = getString(R.string.otp_code_is)+" : "+otp
                 mBinding.pinview.value = (otp)
             }
 
             override fun onOTPReceivedError(error: String) {
-                mBinding.txtOtpIs.setText(error)
+                mBinding.txtOtpIs.text = error
             }
 
         })
@@ -80,7 +80,7 @@ class SmsRetrieverFrm : BaseFragment() {
             val appSignatureHashHelper = AppSignatureHashHelper(activity)
             // This code requires one time to get Hash keys do comment and share key
             Log.d(TAG, "Apps Hash Key: " + appSignatureHashHelper.appSignatures.get(0))
-            mBinding.txtHashCode.setText("Apps Hash Key : " + appSignatureHashHelper.appSignatures.get(0))
+            mBinding.txtHashCode.text = "Apps Hash Key : " + appSignatureHashHelper.appSignatures.get(0)
             val client = activity?.let { SmsRetriever.getClient(it) }
 
             val task = client?.startSmsRetriever()

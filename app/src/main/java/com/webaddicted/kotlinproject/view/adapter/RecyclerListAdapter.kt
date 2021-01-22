@@ -39,26 +39,26 @@ class RecyclerListAdapter(
         else VIEW_TYPES.NORMAL
     }
 
-    override fun onBindTo(mRowBinding: ViewDataBinding, position: Int) {
-        when (mRowBinding) {
+    override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
+        when (rowBinding) {
             is RowRecyclerListBinding -> {
                 val source = dataList?.get(position)
-                mRowBinding.imgInitial.showImage(
+                rowBinding.imgInitial.showImage(
                     source,
                     getPlaceHolder(0)
                 )
-                onClickListener(mRowBinding,mRowBinding.imgInitial, position)
+                onClickListener(rowBinding,rowBinding.imgInitial, position)
             }
             is RowGridBinding -> {
                 val source = dataList?.get(position)
-                mRowBinding.img.showImage(
+                rowBinding.img.showImage(
                     source,
                     getPlaceHolder(0)
                 )
-                onClickListener(mRowBinding,mRowBinding.img, position)
+                onClickListener(rowBinding,rowBinding.img, position)
             }
             is RowTextListBinding -> {
-                val mRowBinding = mRowBinding as RowTextListBinding
+                val mRowBinding = rowBinding
             }
         }
     }

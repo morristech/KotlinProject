@@ -157,7 +157,7 @@ class FcmSocialLoginFrm : BaseFragment(), OnSocialLoginListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 hideApiLoader()
                 dbRef.removeEventListener(this)
-                if (dataSnapshot?.value != null) {
+                if (dataSnapshot.value != null) {
                     for (noteDataSnapshot in dataSnapshot.children) {
                         val note = noteDataSnapshot.getValue(FcmSocialLoginRespoBean::class.java)
                         viewModel.setFcmFoodUserInfo(note!!)

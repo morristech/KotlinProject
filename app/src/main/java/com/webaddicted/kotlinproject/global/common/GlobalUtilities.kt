@@ -153,9 +153,9 @@ class GlobalUtility {
                     Calendar.getInstance().get(Calendar.MONTH),
                     Calendar.getInstance().get(Calendar.DATE)
                 )
-            var calendar = Calendar.getInstance();
-            calendar.add(Calendar.YEAR, -16);
-            datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+            var calendar = Calendar.getInstance()
+            calendar.add(Calendar.YEAR, -16)
+            datePickerDialog.datePicker.maxDate = calendar.timeInMillis
             datePickerDialog.show()
         }
 
@@ -268,7 +268,7 @@ class GlobalUtility {
             if (activity != null) {
                 val imm =
                     activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm?.toggleSoftInput(
+                imm.toggleSoftInput(
                     InputMethodManager.SHOW_FORCED,
                     InputMethodManager.HIDE_IMPLICIT_ONLY
                 )
@@ -387,9 +387,9 @@ class GlobalUtility {
             Locale.setDefault(locale)
             val config = Configuration()
             config.locale = locale
-            context.getResources().updateConfiguration(
+            context.resources.updateConfiguration(
                 config,
-                context.getResources().getDisplayMetrics()
+                context.resources.displayMetrics
             )
         }
 
@@ -508,7 +508,7 @@ class GlobalUtility {
         }
 
         fun captureScreen(activity: Activity) {
-            val v: View = activity.getWindow().getDecorView().getRootView()
+            val v: View = activity.window.decorView.rootView
             v.isDrawingCacheEnabled = true
             val bmp: Bitmap = Bitmap.createBitmap(v.drawingCache)
             v.isDrawingCacheEnabled = false
@@ -535,7 +535,7 @@ class GlobalUtility {
             val activeNetwork = cm.activeNetworkInfo
             if (activeNetwork != null) { // connected to the internet
                 if (activeNetwork.type == ConnectivityManager.TYPE_WIFI) { // connected to wifi
-                    return activity.getResources()
+                    return activity.resources
                         .getString(R.string.wifi)
                 } else if (activeNetwork.type == ConnectivityManager.TYPE_MOBILE) { // connected to the mobile provider's data plan
                     return activity.resources.getString(R.string.network)
@@ -604,7 +604,7 @@ class GlobalUtility {
 
         fun pxToDp(mainActivity: Activity, px: Int): Int {
             val displayMetrics: DisplayMetrics =
-                mainActivity.getResources().getDisplayMetrics()
+                mainActivity.resources.displayMetrics
             return Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
         }
 
@@ -669,7 +669,7 @@ class GlobalUtility {
         fun getDeviceIMEI(activity: Activity): String? {
 //            var tm = activity.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
 //            return tm.deviceId
-            return Settings.Secure.getString(activity.getContentResolver(), Settings.Secure.ANDROID_ID).toString();
+            return Settings.Secure.getString(activity.contentResolver, Settings.Secure.ANDROID_ID).toString()
 //            return "868494034542635"
         }
     }

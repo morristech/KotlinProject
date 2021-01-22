@@ -15,7 +15,6 @@ import java.io.File
  */
 class ExoPlayerAdapter(private var list: java.util.ArrayList<ExoPlayerBean>) : BaseAdapter() {
     override fun getListSize(): Int {
-        if (list == null) return 0
         return list.size
     }
 

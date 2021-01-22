@@ -66,6 +66,6 @@ class DeviceDetailsFrm : BaseFragment() {
                 "<font color=\"$txtColor\">BootLoader : </font>${Build.BOOTLOADER}<br>" +
                 "<font color=\"$txtColor\">Host : </font>${Build.HOST}<br>" +
                 "<font color=\"$txtColor\">User : </font>${Build.USER}<br>"
-        mBinding.txtDeviceInfo.text = Html.fromHtml(deviceInfo)
+        mBinding.txtDeviceInfo.text = Html.fromHtml(deviceInfo, Html.FROM_HTML_MODE_LEGACY)
     }
 }

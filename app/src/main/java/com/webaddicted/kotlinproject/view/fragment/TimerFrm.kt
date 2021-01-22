@@ -50,7 +50,7 @@ class TimerFrm : BaseFragment() {
         }
         initCountDown()
         updateUi()
-        mBinding.txtCdTimer.setText("05:30")
+        mBinding.txtCdTimer.text = "05:30"
     }
 
     private fun initCountDown() {
@@ -58,16 +58,14 @@ class TimerFrm : BaseFragment() {
             override fun onTick(millisUntilFinished: Long) {
                 val minutes = millisUntilFinished / 1000 / 60
                 val seconds = millisUntilFinished / 1000 % 60
-                mBinding.txtCdTimer.setText(
-                    String.format(
-                        "%02d",
-                        minutes
-                    ) + ":" + String.format("%02d", seconds)
-                )
+                mBinding.txtCdTimer.text = String.format(
+                    "%02d",
+                    minutes
+                ) + ":" + String.format("%02d", seconds)
             }
 
             override fun onFinish() {
-                mBinding.txtCdTimer.setText("00:00")
+                mBinding.txtCdTimer.text = "00:00"
             }
         }
     }
@@ -117,9 +115,9 @@ class TimerFrm : BaseFragment() {
             R.id.btn_cd_reset -> {
                 initCountDown()
                 countDownTime.cancel()
-                mBinding.txtCdTimer.setText("05:30")
+                mBinding.txtCdTimer.text = "05:30"
             }
-            R.id.btn_cd_stop -> countDownTime.cancel();
+            R.id.btn_cd_stop -> countDownTime.cancel()
         }
     }
 

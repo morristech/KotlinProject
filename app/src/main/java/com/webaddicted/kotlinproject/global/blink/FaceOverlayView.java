@@ -34,7 +34,7 @@ public class FaceOverlayView extends View {
     private double leftopenRatio = 1;
 //    private static int blinkCount = 0;
 
-    private FaceDetector detector = new FaceDetector.Builder(getContext())
+    private final FaceDetector detector = new FaceDetector.Builder(getContext())
             .setTrackingEnabled(false)
             .setLandmarkType(FaceDetector.ALL_LANDMARKS)
             .setClassificationType(FaceDetector.ALL_CLASSIFICATIONS)

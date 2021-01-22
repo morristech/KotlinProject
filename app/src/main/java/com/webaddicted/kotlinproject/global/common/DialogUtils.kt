@@ -167,7 +167,7 @@ class DialogUtil {
             builder.setNegativeButton(btnCancel) { dialog, which -> alertDialogListener.cancelClick() }
             builder.setNeutralButton(btnRetry) { dialogInterface, i -> alertDialogListener.okRetry() }
             val dialogs = builder.create()
-            dialogs.getWindow()!!.getAttributes().windowAnimations = dialogAnimation
+            dialogs.window!!.attributes.windowAnimations = dialogAnimation
             dialogs.show()
             return dialogs
         }
@@ -188,7 +188,7 @@ class DialogUtil {
             builder.setPositiveButton(btnOk) { dialog, which -> alertDialogListener.okClick() }
             builder.setNegativeButton(btnCancel) { dialog, which -> alertDialogListener.cancelClick() }
             val dialogs = builder.create()
-            dialogs.getWindow()!!.getAttributes().windowAnimations = dialogAnimation
+            dialogs.window!!.attributes.windowAnimations = dialogAnimation
             dialogs.show()
             return dialogs
         }
@@ -207,7 +207,7 @@ class DialogUtil {
             builder.setMessage(messgae)
             builder.setPositiveButton(btnOk, btnListener)
             val dialogs = builder.create()
-            dialogs.getWindow()!!.getAttributes().windowAnimations = dialogAnimation
+            dialogs.window!!.attributes.windowAnimations = dialogAnimation
             dialogs.show()
             return dialogs
         }

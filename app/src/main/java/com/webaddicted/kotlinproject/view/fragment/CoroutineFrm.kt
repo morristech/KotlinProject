@@ -132,7 +132,7 @@ class CoroutineFrm : BaseFragment() {
             }
             textView.text = mBinding.txtExceptionHandler.text.toString() + "\nStep 6 :- out function"
         }
-        textView.text = "${textView.text.toString()} \nOut of launch "
+        textView.text = "${textView.text} \nOut of launch "
     }
 
     private fun launchLifecycleAware() {
@@ -144,9 +144,9 @@ class CoroutineFrm : BaseFragment() {
     }
 
     suspend fun loadData(txtLaunch: TextView): String {
-        txtLaunch.setText(txtLaunch.text.toString() + "\nStep 3")
+        txtLaunch.text = txtLaunch.text.toString() + "\nStep 3"
         delay(TimeUnit.SECONDS.toMillis(3)) // imitate long running operation
-        txtLaunch.setText(txtLaunch.text.toString() + "\nStep 4")
+        txtLaunch.text = txtLaunch.text.toString() + "\nStep 4"
         return "Data is available: ${Random().nextInt()}"
     }
 

@@ -11,7 +11,7 @@ import com.webaddicted.kotlinproject.view.base.BaseAdapter
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class EcomProductCatAdapter() : BaseAdapter() {
+class EcomProductCatAdapter : BaseAdapter() {
     override fun getListSize(): Int {
 //        if (list == null) return 0
         return 25//list?.size!!
@@ -22,13 +22,13 @@ class EcomProductCatAdapter() : BaseAdapter() {
         return R.layout.row_product_cat
     }
 
-    override fun onBindTo(mRowBinding: ViewDataBinding, position: Int) {
-        if (mRowBinding is RowProductCatBinding) {
-            mRowBinding.imgProduct.setImageResource(R.drawable.iphnx)
-            mRowBinding.offer.text = "\u20B9 63,999"
-            mRowBinding.offer.paintFlags = mRowBinding.offer.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-            if ((position == 0) or (position == 1)) mRowBinding.text.visible()
-            else mRowBinding.text.gone()
+    override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
+        if (rowBinding is RowProductCatBinding) {
+            rowBinding.imgProduct.setImageResource(R.drawable.iphnx)
+            rowBinding.offer.text = "\u20B9 63,999"
+            rowBinding.offer.paintFlags = rowBinding.offer.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            if ((position == 0) or (position == 1)) rowBinding.text.visible()
+            else rowBinding.text.gone()
         }
     }
 

@@ -45,7 +45,7 @@ public class CalendarProperties {
 
     private Drawable mPreviousButtonSrc, mForwardButtonSrc;
 
-    private Calendar mFirstPageCalendarDate = DateUtils.getCalendar();
+    private final Calendar mFirstPageCalendarDate = DateUtils.getCalendar();
     private Calendar mCalendar, mMinimumDate, mMaximumDate;
 
     private OnDayClickListener mOnDayClickListener;
@@ -60,7 +60,7 @@ public class CalendarProperties {
     private List<Calendar> mHighlightedDays = new ArrayList<>();
     private List<SelectedDay> mSelectedDays = new ArrayList<>();
 
-    private Context mContext;
+    private final Context mContext;
 
     public CalendarProperties(Context context) {
         mContext = context;

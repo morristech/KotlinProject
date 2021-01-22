@@ -42,9 +42,9 @@ class SpeechTextActivity : BaseActivity() {
 
     private fun init() {
         mTextToSpeechListener =
-            TextToSpeech(this) { status -> mTextToSpeechListener?.setLanguage(Locale.UK) }
+            TextToSpeech(this) { mTextToSpeechListener?.language = Locale.UK }
         mBinding.toolbar.imgBack.visible()
-        mBinding.toolbar.txtToolbarTitle?.text = resources.getString(R.string.speech_to_text)
+        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.speech_to_text)
     }
 
     private fun clickListener() {
@@ -55,7 +55,7 @@ class SpeechTextActivity : BaseActivity() {
 
     override fun onClick(v: View) {
         super.onClick(v)
-        when (v.getId()) {
+        when (v.id) {
             R.id.img_back -> onBackPressed()
             R.id.btn_text_to_speech -> {
                 val edtText = mBinding.edtText.text.toString()
@@ -92,7 +92,7 @@ class SpeechTextActivity : BaseActivity() {
                     val resultSpeech = data!!
                         .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                     if (resultSpeech != null && resultSpeech.size > 0) {
-                        mBinding.txtSpeechToText.setText(resultSpeech.get(0))
+                        mBinding.txtSpeechToText.text = resultSpeech.get(0)
                     }
                 }
             }

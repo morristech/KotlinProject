@@ -135,7 +135,7 @@ class FcmSignupFrm : BaseFragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 hideApiLoader()
                 dbRef.removeEventListener(this)
-                if (dataSnapshot?.value == null) {
+                if (dataSnapshot.value == null) {
                     if (socialLoginRespo != null) {
                         socialLoginRespo?.dob = mBinding.edtDob.text.toString()
                         socialLoginRespo?.password = mBinding.edtPwd.text.toString()

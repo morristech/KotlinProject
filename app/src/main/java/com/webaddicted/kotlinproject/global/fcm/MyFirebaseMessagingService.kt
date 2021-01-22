@@ -30,10 +30,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         private val TAG = MyFirebaseMessagingService::class.java.simpleName
     }
 
-    override fun onNewToken(token: String) {
-        super.onNewToken(token)
-    }
-
     /**
      * This method is invoked whenever the device receives the push notification
      * @param remoteMessage
@@ -52,8 +48,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         mNotificationData = NotificationData().apply {
             id = 1
             type = getString(R.string.dummyText)
-            title = remoteMessage.getData().get("title")!!
-            msg = remoteMessage.getData().get("message")!!
+            title = remoteMessage.data.get("title")!!
+            msg = remoteMessage.data.get("message")!!
         }
             showNotification(this, mNotificationData)
 //        }

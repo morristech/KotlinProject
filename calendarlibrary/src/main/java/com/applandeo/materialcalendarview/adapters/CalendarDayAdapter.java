@@ -34,12 +34,12 @@ import androidx.core.content.ContextCompat;
  */
 
 class CalendarDayAdapter extends ArrayAdapter<Date> {
-    private CalendarPageAdapter mCalendarPageAdapter;
-    private LayoutInflater mLayoutInflater;
-    private int mPageMonth;
-    private Calendar mToday = DateUtils.getCalendar();
+    private final CalendarPageAdapter mCalendarPageAdapter;
+    private final LayoutInflater mLayoutInflater;
+    private final int mPageMonth;
+    private final Calendar mToday = DateUtils.getCalendar();
 
-    private CalendarProperties mCalendarProperties;
+    private final CalendarProperties mCalendarProperties;
 
     CalendarDayAdapter(CalendarPageAdapter calendarPageAdapter, Context context, CalendarProperties calendarProperties,
                        ArrayList<Date> dates, int pageMonth) {

@@ -239,7 +239,7 @@ class Pinview @JvmOverloads constructor(
         }
         // Bring up the keyboard
         val firstEditText = editTextList[0]
-        firstEditText?.postDelayed({ openKeyboard() }, 200)
+        firstEditText.postDelayed({ openKeyboard() }, 200)
         updateEnabledState()
     }
 
@@ -333,7 +333,7 @@ class Pinview @JvmOverloads constructor(
     fun requestPinEntryFocus(): View? {
         val currentTag = Math.max(0, indexOfCurrentFocus)
         val currentEditText = editTextList[currentTag]
-        currentEditText?.requestFocus()
+        currentEditText.requestFocus()
         openKeyboard()
         return currentEditText
     }
@@ -570,7 +570,7 @@ class Pinview @JvmOverloads constructor(
 
     fun showCursor(status: Boolean) {
         mCursorVisible = status
-        if (editTextList == null || editTextList.isEmpty()) {
+        if (editTextList.isEmpty()) {
             return
         }
         for (edt in editTextList) {
@@ -580,7 +580,7 @@ class Pinview @JvmOverloads constructor(
 
     fun setTextSize(textSize: Int) {
         mTextSize = textSize
-        if (editTextList == null || editTextList.isEmpty()) {
+        if (editTextList.isEmpty()) {
             return
         }
         for (edt in editTextList) {
@@ -590,7 +590,7 @@ class Pinview @JvmOverloads constructor(
 
     fun setCursorColor(@ColorInt color: Int) {
 
-        if (editTextList == null || editTextList.isEmpty()) {
+        if (editTextList.isEmpty()) {
             return
         }
         for (edt in editTextList) {
@@ -600,7 +600,7 @@ class Pinview @JvmOverloads constructor(
 
     fun setTextColor(@ColorInt color: Int) {
 
-        if (editTextList == null || editTextList.isEmpty()) {
+        if (editTextList.isEmpty()) {
             return
         }
         for (edt in editTextList) {
@@ -610,7 +610,7 @@ class Pinview @JvmOverloads constructor(
 
     fun setCursorShape(@DrawableRes shape: Int) {
 
-        if (editTextList == null || editTextList.isEmpty()) {
+        if (editTextList.isEmpty()) {
             return
         }
         for (edt in editTextList) {
@@ -639,7 +639,7 @@ class Pinview @JvmOverloads constructor(
             // Get the drawable and set a color filter
             val drawable = ContextCompat.getDrawable(view.context, drawableResId)
             if (drawable != null) {
-                drawable!!.setColorFilter(color, PorterDuff.Mode.SRC_IN)
+                drawable.setColorFilter(color, PorterDuff.Mode.SRC_IN)
             }
             val drawables = drawable?.let { arrayOf<Drawable>(it, drawable) }
 

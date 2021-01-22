@@ -24,18 +24,18 @@ class LocationAdapter(private var mTaskList: ArrayList<LocationBean>?) : BaseAda
         return R.layout.row_location
     }
 
-    override fun onBindTo(mRowBinding: ViewDataBinding, position: Int) {
-        if (mRowBinding is RowLocationBinding) {
+    override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
+        if (rowBinding is RowLocationBinding) {
             val source = mTaskList?.get(position)
             if (source?.addre?.length!! > 0) {
-                mRowBinding.txtAddress.text = source.addre
-                mRowBinding.txtAddress.visible()
-            } else mRowBinding.txtAddress.gone()
-            mRowBinding.txtLat.text = "Latitude : ${source.lat}"
-            mRowBinding.txtLong.text = "Longitude : ${source.lon}"
+                rowBinding.txtAddress.text = source.addre
+                rowBinding.txtAddress.visible()
+            } else rowBinding.txtAddress.gone()
+            rowBinding.txtLat.text = "Latitude : ${source.lat}"
+            rowBinding.txtLong.text = "Longitude : ${source.lon}"
             val rnd = Random()
             val color: Int = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
-            mRowBinding.card.setBackgroundColor(color)
+            rowBinding.card.setBackgroundColor(color)
         }
     }
 

@@ -27,10 +27,10 @@ import static com.applandeo.materialcalendarview.utils.CalendarProperties.CALEND
 
 public class CalendarPageAdapter extends PagerAdapter {
 
-    private Context mContext;
+    private final Context mContext;
     private CalendarGridView mCalendarGridView;
 
-    private CalendarProperties mCalendarProperties;
+    private final CalendarProperties mCalendarProperties;
 
     private int mPageMonth;
 

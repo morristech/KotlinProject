@@ -34,20 +34,18 @@ class ForegroundService : Service() {
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        if (intent != null) {
-            val action = intent.action
-            if (action != null) when (action) {
-                ACTION_START_FOREGROUND_SERVICE -> {
-                    startForegroundService()
-                    GlobalUtility.showToast("Foreground service is started.")
-                }
-                ACTION_STOP_FOREGROUND_SERVICE -> {
-                    stopForegroundService()
-                    GlobalUtility.showToast("Foreground service is stopped.")
-                }
-                ACTION_PLAY -> GlobalUtility.showToast("You click Play button.")
-                ACTION_PAUSE -> GlobalUtility.showToast("You click Pause button.")
+        val action = intent.action
+        if (action != null) when (action) {
+            ACTION_START_FOREGROUND_SERVICE -> {
+                startForegroundService()
+                GlobalUtility.showToast("Foreground service is started.")
             }
+            ACTION_STOP_FOREGROUND_SERVICE -> {
+                stopForegroundService()
+                GlobalUtility.showToast("Foreground service is stopped.")
+            }
+            ACTION_PLAY -> GlobalUtility.showToast("You click Play button.")
+            ACTION_PAUSE -> GlobalUtility.showToast("You click Pause button.")
         }
         return super.onStartCommand(intent, flags, startId)
     }

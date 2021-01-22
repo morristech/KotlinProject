@@ -39,7 +39,7 @@ class BottomSheetFrm : BaseFragment() {
     private fun init() {
         mBinding.toolbar.imgBack.visible()
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.bottom_sheet)
-         sheetBehavior = BottomSheetBehavior.from(mBinding.includeBottomSheet.bottomSheet);
+         sheetBehavior = BottomSheetBehavior.from(mBinding.includeBottomSheet.bottomSheet)
         sheetBehavior.setBottomSheetCallback(object : BottomSheetCallback() {
             override fun onStateChanged(
                 @NonNull bottomSheet: View,

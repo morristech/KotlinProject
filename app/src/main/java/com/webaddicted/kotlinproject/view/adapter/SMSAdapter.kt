@@ -32,27 +32,27 @@ class SMSAdapter(private var list: java.util.ArrayList<SMSBean>?) : BaseAdapter(
             when {
                 source.smsType.equals("1") -> {
                     rowBinding.txtType.text =
-                        Html.fromHtml("<font color=\"#ff090b\">Inbox</font>")
+                        Html.fromHtml("<font color=\"#ff090b\">Inbox</font>", Html.FROM_HTML_MODE_LEGACY)
                     rowBinding.card.setCardBackgroundColor(mContext.getColor(R.color.inbox))
                 }
                 source.smsType.equals("0") -> {
                     rowBinding.txtType.text =
-                        Html.fromHtml("<font color=\"#CDCDCD\">Sent</font>")
+                        Html.fromHtml("<font color=\"#CDCDCD\">Sent</font>", Html.FROM_HTML_MODE_LEGACY)
                     rowBinding.card.setCardBackgroundColor(mContext.getColor(R.color.sent))
                 }
                 else -> rowBinding.txtType.text =
-                    Html.fromHtml("<font color=\"#CDCDCD\">undefine</font>")
+                    Html.fromHtml("<font color=\"#CDCDCD\">undefine</font>", Html.FROM_HTML_MODE_LEGACY)
             }
             if (source.smsType.equals("0"))
                 rowBinding.txtRead.text =
-                    Html.fromHtml("<font color=\"#ff090b\">Read : UNREAD</font>")
+                    Html.fromHtml("<font color=\"#ff090b\">Read : UNREAD</font>", Html.FROM_HTML_MODE_LEGACY)
             else rowBinding.txtRead.text =
-                Html.fromHtml("<font color=\"#CDCDCD\">Read : READ</font>")
+                Html.fromHtml("<font color=\"#CDCDCD\">Read : READ</font>", Html.FROM_HTML_MODE_LEGACY)
             if (source.smsSeen.equals("0"))
                 rowBinding.txtSeen.text =
-                    Html.fromHtml("<font color=\"#ff090b\">Seen : UNSEEN</font>")
+                    Html.fromHtml("<font color=\"#ff090b\">Seen : UNSEEN</font>", Html.FROM_HTML_MODE_LEGACY)
             else rowBinding.txtSeen.text =
-                Html.fromHtml("<font color=\"#CDCDCD\">Seen : SEEN</font>")
+                Html.fromHtml("<font color=\"#CDCDCD\">Seen : SEEN</font>", Html.FROM_HTML_MODE_LEGACY)
         }
     }
 

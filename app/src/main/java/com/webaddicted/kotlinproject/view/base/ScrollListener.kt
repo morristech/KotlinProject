@@ -37,12 +37,12 @@ abstract class ScrollListener : RecyclerView.OnScrollListener {
 
     constructor(layoutMgr: RecyclerView.LayoutManager){
         if (layoutMgr is LinearLayoutManager){
-            this.mLayoutManager = layoutMgr as LinearLayoutManager
+            this.mLayoutManager = layoutMgr
         }else if (layoutMgr is GridLayoutManager){
-            this.mLayoutManager = layoutMgr as GridLayoutManager
+            this.mLayoutManager = layoutMgr
             visibleThreshold = visibleThreshold * layoutMgr.spanCount
         }else if (layoutMgr is StaggeredGridLayoutManager){
-            this.mLayoutManager = layoutMgr as  StaggeredGridLayoutManager
+            this.mLayoutManager = layoutMgr
             visibleThreshold = visibleThreshold * layoutMgr.spanCount
         }
     }

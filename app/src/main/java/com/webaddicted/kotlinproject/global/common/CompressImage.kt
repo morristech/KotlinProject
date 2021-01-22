@@ -30,7 +30,7 @@ class CompressImage {
 
             }
 
-        public fun compressImage(context: Activity, imageUri: String): File {
+        fun compressImage(context: Activity, imageUri: String): File {
             mContext = context
             //        String filePath = getRealPathFromURI(imageUri);
             var scaledBitmap: Bitmap? = null

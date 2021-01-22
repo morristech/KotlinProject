@@ -133,9 +133,9 @@ class DialogFrm : BaseFragment() {
             activity!!,
             R.layout.dialog_custom
         ) as DialogCustomBinding
-        dialog.setContentView(dialogBinding.getRoot())
-        dialogBinding.txtTitle.setText(getString(R.string.app_name))
-        dialogBinding.txtMessage.setText(resources.getString(R.string.dummyText))
+        dialog.setContentView(dialogBinding.root)
+        dialogBinding.txtTitle.text = getString(R.string.app_name)
+        dialogBinding.txtMessage.text = resources.getString(R.string.dummyText)
         dialogBinding.btnOk.setOnClickListener({ v ->
             GlobalUtility.showToast(resources.getString(R.string.ok))
             dialog.dismiss()

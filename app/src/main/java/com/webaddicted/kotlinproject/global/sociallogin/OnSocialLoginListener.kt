@@ -6,7 +6,7 @@ import com.webaddicted.kotlinproject.global.sociallogin.model.SocialLoginRespons
  * Created by Deepak Sharma(webaddicted) on 29/03/2020
  */
 
-open interface OnSocialLoginListener {
+interface OnSocialLoginListener {
     fun onSocialLoginSuccess(loginResponse: SocialLoginResponse?)
     fun onSocialLoginSuccess(success: String?)
     fun onSocialLoginFailure(failure: String?)

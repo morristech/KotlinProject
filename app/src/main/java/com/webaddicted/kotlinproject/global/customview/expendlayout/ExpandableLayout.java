@@ -293,7 +293,7 @@ public class ExpandableLayout extends FrameLayout {
     }
 
     private class ExpansionListener implements Animator.AnimatorListener {
-        private int targetExpansion;
+        private final int targetExpansion;
         private boolean canceled;
 
         public ExpansionListener(int targetExpansion) {

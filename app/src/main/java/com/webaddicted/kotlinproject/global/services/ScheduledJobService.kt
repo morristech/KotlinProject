@@ -63,7 +63,7 @@ class ScheduledJobService : JobService() {
         } catch (exp: Exception) {
             exp.printStackTrace()
         }
-        Thread(Runnable { codeYouWantToRun(params) }).start()
+        Thread { codeYouWantToRun() }.start()
         return true
     }
 
@@ -71,7 +71,7 @@ class ScheduledJobService : JobService() {
         return false
     }
 
-    private fun codeYouWantToRun(parameters: JobParameters?) {
+    private fun codeYouWantToRun() {
         try {
             Lg.d(TAG, "completeJob: " + "jobStarted")
             //This task takes 2 seconds to complete.

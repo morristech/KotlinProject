@@ -81,7 +81,7 @@ class ExoPlayerRecyclerView : RecyclerView {
     private fun init(contexts: Context) {
         this.contextss = contexts.applicationContext
         val display = (Objects.requireNonNull(
-            getContext().getSystemService(Context.WINDOW_SERVICE)
+            context.getSystemService(Context.WINDOW_SERVICE)
         ) as WindowManager).defaultDisplay
         val point = Point()
         display.getSize(point)
@@ -124,13 +124,6 @@ class ExoPlayerRecyclerView : RecyclerView {
                 }
             }
 
-            override fun onScrolled(
-                recyclerView: RecyclerView,
-                dx: Int,
-                dy: Int
-            ) {
-                super.onScrolled(recyclerView, dx, dy)
-            }
         })
         addOnChildAttachStateChangeListener(object : OnChildAttachStateChangeListener {
             override fun onChildViewAttachedToWindow(view: View) {}

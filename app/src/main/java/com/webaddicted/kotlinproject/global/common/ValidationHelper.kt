@@ -118,10 +118,7 @@ class ValidationHelper {
          */
         fun isAlphaEnable(v: View?): Boolean {
             return if (v != null) {
-                if (v.alpha < 1)
-                    true
-                else
-                    false
+                v.alpha < 1
             } else false
         }
 
@@ -187,9 +184,7 @@ class ValidationHelper {
                 Pattern.CASE_INSENSITIVE
             ) // pattern=/^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])+/;
             val m = p.matcher(source)
-            return if (m.matches() && source.trim { it <= ' ' }.length > 0) {
-                true
-            } else false
+            return m.matches() && source.trim { it <= ' ' }.length > 0
 
         }
 
@@ -322,7 +317,7 @@ class ValidationHelper {
         fun showSnackBar(parentLayout: View, msg: String) {
             val snackBar = Snackbar.make(parentLayout, msg, Snackbar.LENGTH_SHORT)
             snackBar.setActionTextColor(Color.WHITE)
-            val view = snackBar.getView()
+            val view = snackBar.view
             val tv = view.findViewById(R.id.snackbar_text) as TextView
             tv.setTextColor(Color.WHITE)
             snackBar.show()
@@ -330,7 +325,7 @@ class ValidationHelper {
         }
 
         fun hasMinimumLength(source: String, length: Int): Boolean {
-            return if (source.trim { it <= ' ' }.length >= length) true else false
+            return source.trim { it <= ' ' }.length >= length
         }
 
         fun hasMinimumLength(editText: EditText, length: Int, message: String): Boolean {
@@ -409,19 +404,19 @@ class ValidationHelper {
             val lowerCasePatten = Pattern.compile("[a-z ]")
             val digitCasePatten = Pattern.compile("[0-9 ]")
             if (!UpperCasePatten.matcher(password).find()) {
-                layoutPassword.setError(layoutPassword.getContext().getResources().getString(R.string.error_uppercase_pattern))
+                layoutPassword.error = layoutPassword.context.resources.getString(R.string.error_uppercase_pattern)
                 return false
             } else if (!lowerCasePatten.matcher(password).find()) {
-                layoutPassword.setError(layoutPassword.getContext().getResources().getString(R.string.error_lowercase_pattern))
+                layoutPassword.error = layoutPassword.context.resources.getString(R.string.error_lowercase_pattern)
                 return false
             } else if (!digitCasePatten.matcher(password).find()) {
-                layoutPassword.setError(layoutPassword.getContext().getResources().getString(R.string.error_digit_pattern))
+                layoutPassword.error = layoutPassword.context.resources.getString(R.string.error_digit_pattern)
                 return false
             } else if (password.length < 8) {
-                layoutPassword.setError(errorMsg)
+                layoutPassword.error = errorMsg
                 return false
             }
-            layoutPassword.setError(null)
+            layoutPassword.error = null
             return true
 
         }
@@ -436,9 +431,9 @@ class ValidationHelper {
          */
         fun validateName(edtName: TextInputEditText, wrapperName: TextInputLayout): Boolean {
             if (ValidationHelper.isBlank(edtName)) {
-                wrapperName.setError(edtName.getContext().getResources().getString(R.string.enter_first_name))
+                wrapperName.error = edtName.context.resources.getString(R.string.enter_first_name)
             } else {
-                wrapperName.setError(null)
+                wrapperName.error = null
                 return true
             }
             return false
@@ -454,11 +449,11 @@ class ValidationHelper {
          */
         fun validateEmail(edtEmailId: TextInputEditText, wrapperEmailId: TextInputLayout): Boolean {
             if (ValidationHelper.isBlank(edtEmailId)) {
-                wrapperEmailId.setError(edtEmailId.getContext().getResources().getString(R.string.enter_your_email))
-            } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmailId.getText().toString()).matches()) {
-                wrapperEmailId.setError(edtEmailId.getContext().getResources().getString(R.string.error_enter_valid_email))
+                wrapperEmailId.error = edtEmailId.context.resources.getString(R.string.enter_your_email)
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmailId.text.toString()).matches()) {
+                wrapperEmailId.error = edtEmailId.context.resources.getString(R.string.error_enter_valid_email)
             } else {
-                wrapperEmailId.setError(null)
+                wrapperEmailId.error = null
                 return true
             }
             return false
@@ -476,13 +471,13 @@ class ValidationHelper {
             childEmail: String
         ): Boolean {
             if (ValidationHelper.isBlank(edtEmailId)) {
-                inputLayout.setError(edtEmailId.getContext().getResources().getString(R.string.enter_your_email))
-            } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmailId.getText().toString()).matches()) {
-                inputLayout.setError(edtEmailId.getContext().getResources().getString(R.string.error_enter_valid_email))
-            } else if (edtEmailId.getText().toString().trim().equals(childEmail.trim { it <= ' ' })) {
-                inputLayout.setError(edtEmailId.getContext().getResources().getString(R.string.error_email_must_be_different))
+                inputLayout.error = edtEmailId.context.resources.getString(R.string.enter_your_email)
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmailId.text.toString()).matches()) {
+                inputLayout.error = edtEmailId.context.resources.getString(R.string.error_enter_valid_email)
+            } else if (edtEmailId.text.toString().trim().equals(childEmail.trim { it <= ' ' })) {
+                inputLayout.error = edtEmailId.context.resources.getString(R.string.error_email_must_be_different)
             } else {
-                inputLayout.setError(null)
+                inputLayout.error = null
                 return true
             }
             return false
@@ -497,9 +492,9 @@ class ValidationHelper {
          */
         fun validateDob(edtDob: TextInputEditText, wrapperDob: TextInputLayout): Boolean {
             if (ValidationHelper.isBlank(edtDob)) {
-                wrapperDob.setError(edtDob.getContext().getResources().getString(R.string.enter_dob))
+                wrapperDob.error = edtDob.context.resources.getString(R.string.enter_dob)
             } else {
-                wrapperDob.setError(null)
+                wrapperDob.error = null
                 return true
             }
             return false
@@ -517,9 +512,9 @@ class ValidationHelper {
             wrapperCountry: TextInputLayout
         ): Boolean {
             if (ValidationHelper.isBlank(edtCountry)) {
-                wrapperCountry.setError(edtCountry.getContext().getResources().getString(R.string.enter_country))
+                wrapperCountry.error = edtCountry.context.resources.getString(R.string.enter_country)
             } else {
-                wrapperCountry.setError(null)
+                wrapperCountry.error = null
                 return true
             }
             return false
@@ -534,15 +529,15 @@ class ValidationHelper {
          */
         fun validatePwd(edtPassword: TextInputEditText, wrapperPsw: TextInputLayout): Boolean {
             if (isBlank(edtPassword)) {
-                wrapperPsw.setError(edtPassword.getContext().getResources().getString(R.string.enter_passowrd))
+                wrapperPsw.error = edtPassword.context.resources.getString(R.string.enter_passowrd)
             } else if (!isValidPassword(
                     wrapperPsw,
-                    edtPassword.getText().toString(),
-                    edtPassword.getContext().getResources().getString(R.string.password_length)
+                    edtPassword.text.toString(),
+                    edtPassword.context.resources.getString(R.string.password_length)
                 )
             ) {
             } else {
-                wrapperPsw.setError(null)
+                wrapperPsw.error = null
                 return true
             }
             return false
@@ -562,17 +557,17 @@ class ValidationHelper {
             password: String
         ): Boolean {
             if (isBlank(confirmPassword)) {
-                wrapperConPsw.setError(confirmPassword.getContext().getResources().getString(R.string.enter_passowrd))
+                wrapperConPsw.error = confirmPassword.context.resources.getString(R.string.enter_passowrd)
             } else if (!isValidPassword(
                     wrapperConPsw,
-                    confirmPassword.getText().toString(),
-                    confirmPassword.getContext().getResources().getString(R.string.confirm_pwd_length)
+                    confirmPassword.text.toString(),
+                    confirmPassword.context.resources.getString(R.string.confirm_pwd_length)
                 )
             ) {
-            } else if (!confirmPassword.getText().toString().equals(password)) {
-                wrapperConPsw.setError(confirmPassword.getContext().getResources().getString(R.string.error_passowrd_not_match))
+            } else if (!confirmPassword.text.toString().equals(password)) {
+                wrapperConPsw.error = confirmPassword.context.resources.getString(R.string.error_passowrd_not_match)
             } else {
-                wrapperConPsw.setError(null)
+                wrapperConPsw.error = null
                 return true
             }
             return false
@@ -591,17 +586,17 @@ class ValidationHelper {
             oldPassword: String
         ): Boolean {
             if (isBlank(textInput)) {
-                wrapperNewPwd.setError(textInput.getContext().getResources().getString(R.string.enter_passowrd))
+                wrapperNewPwd.error = textInput.context.resources.getString(R.string.enter_passowrd)
             } else if (!isValidPassword(
                     wrapperNewPwd,
-                    textInput.getText().toString(),
-                    textInput.getContext().getResources().getString(R.string.confirm_pwd_length)
+                    textInput.text.toString(),
+                    textInput.context.resources.getString(R.string.confirm_pwd_length)
                 )
             ) {
-            } else if (textInput.getText().toString().trim().equals(oldPassword.trim { it <= ' ' })) {
-                wrapperNewPwd.setError(textInput.getContext().getResources().getString(R.string.error_password_different))
+            } else if (textInput.text.toString().trim().equals(oldPassword.trim { it <= ' ' })) {
+                wrapperNewPwd.error = textInput.context.resources.getString(R.string.error_password_different)
             } else {
-                wrapperNewPwd.setError(null)
+                wrapperNewPwd.error = null
                 return true
             }
             return false
@@ -612,9 +607,9 @@ class ValidationHelper {
             wrapperReferralCode: TextInputLayout
         ): Boolean {
             if (ValidationHelper.isBlank(edtReferralCode)) {
-                wrapperReferralCode.setError(edtReferralCode.getContext().getResources().getString(R.string.error_referral_code))
+                wrapperReferralCode.error = edtReferralCode.context.resources.getString(R.string.error_referral_code)
             } else {
-                wrapperReferralCode.setError(null)
+                wrapperReferralCode.error = null
                 return true
             }
             return false
@@ -626,9 +621,9 @@ class ValidationHelper {
             enter_subject: String
         ): Boolean {
             if (ValidationHelper.isBlank(textInput)) {
-                wrapper.setError(enter_subject)
+                wrapper.error = enter_subject
             } else {
-                wrapper.setError(null)
+                wrapper.error = null
                 return true
             }
             return false
@@ -636,33 +631,33 @@ class ValidationHelper {
 
         fun validateMobileNo(textInput: TextInputEditText, wrapper: TextInputLayout): Boolean {
             if (isBlank(textInput)) {
-                    wrapper.setError(textInput.getContext().getResources().getString(R.string.enter_mobile_no))
+                wrapper.error = textInput.context.resources.getString(R.string.enter_mobile_no)
             } else if (textInput.text.toString().trim().length != 10) {
-                    wrapper.setError(textInput.getContext().getResources().getString(R.string.enter_valid_mobile_no))
+                wrapper.error = textInput.context.resources.getString(R.string.enter_valid_mobile_no)
             } else {
-                    wrapper.setError(null)
+                wrapper.error = null
                 return true
             }
             return false
         }
         fun validateMobileNo(textInput: TextInputEditText): Boolean {
             if (isBlank(textInput)) {
-                textInput.setError(textInput.getContext().getResources().getString(R.string.enter_mobile_no))
+                textInput.error = textInput.context.resources.getString(R.string.enter_mobile_no)
             } else if (textInput.text.toString().trim().length != 10) {
-                textInput.setError(textInput.getContext().getResources().getString(R.string.enter_valid_mobile_no))
+                textInput.error = textInput.context.resources.getString(R.string.enter_valid_mobile_no)
             } else {
-                textInput.setError(null)
+                textInput.error = null
                 return true
             }
             return false
         }
         fun validateOTPCode(textInput: TextInputEditText, wrapperCode: TextInputLayout): Boolean {
             if (isBlank(textInput)) {
-                 wrapperCode.setError(textInput.getContext().getResources().getString(R.string.error_valid_code))
-            } else if (!(textInput.getText().toString().length === 6)) {
-                wrapperCode.setError(textInput.getContext().getResources().getString(R.string.error_six_digit_code))
+                wrapperCode.error = textInput.context.resources.getString(R.string.error_valid_code)
+            } else if (!(textInput.text.toString().length === 6)) {
+                wrapperCode.error = textInput.context.resources.getString(R.string.error_six_digit_code)
             } else {
-                wrapperCode.setError(null)
+                wrapperCode.error = null
                 return true
             }
             return false
@@ -670,11 +665,11 @@ class ValidationHelper {
 
         fun validateCode(textInput: TextInputEditText): Boolean {
             if (isBlank(textInput)) {
-                textInput.setError(textInput.getContext().getResources().getString(R.string.error_valid_code))
-            } else if (!(textInput.getText().toString().length === 6)) {
-                textInput.setError(textInput.getContext().getResources().getString(R.string.error_six_digit_code))
+                textInput.error = textInput.context.resources.getString(R.string.error_valid_code)
+            } else if (!(textInput.text.toString().length === 6)) {
+                textInput.error = textInput.context.resources.getString(R.string.error_six_digit_code)
             } else {
-                textInput.setError(null)
+                textInput.error = null
                 return true
             }
             return false

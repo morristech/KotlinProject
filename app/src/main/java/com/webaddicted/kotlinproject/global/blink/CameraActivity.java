@@ -111,7 +111,6 @@ public final class CameraActivity extends Activity {
     public static final String EXTRA_USE_CARDIO_LOGO = "io.card.payment.useCardIOLogo";
 
     /**
-     * Parcelable extra containing {@link CreditCard}. The data intent returned to your {@link Activity}'s
      * {@link Activity#onActivityResult(int, int, Intent)} will contain this extra if the resultCode is
      * {@link #RESULT_CARD_INFO}.
      */
@@ -241,7 +240,6 @@ public final class CameraActivity extends Activity {
      * {@link #EXTRA_SUPPRESS_MANUAL_ENTRY} is set and scanning is not available.
      * <br><br>
      * This error can be avoided in normal situations by checking
-     * {@link #canReadCardWithCamera()}.
      */
     public static final int RESULT_SCAN_NOT_AVAILABLE = lastResult++;
 
@@ -345,7 +343,7 @@ public final class CameraActivity extends Activity {
         thisActivity.finish();
     }
 
-    class MyGLSurfaceView extends GLSurfaceView {
+    static class MyGLSurfaceView extends GLSurfaceView {
 
         private final GameGLRenderer mRenderer;
 
@@ -668,7 +666,7 @@ public final class CameraActivity extends Activity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[],
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
         if (requestCode == PERMISSION_REQUEST_ID) {
             waitingForPermission = false;

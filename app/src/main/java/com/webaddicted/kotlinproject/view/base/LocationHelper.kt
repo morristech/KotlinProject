@@ -202,7 +202,7 @@ abstract class LocationHelper {
             }
         }
 
-        public fun stopLocationUpdates() {
+        fun stopLocationUpdates() {
             if (mGoogleApiClient != null && mGoogleApiClient!!.isConnected) {
                 LocationServices.FusedLocationApi.removeLocationUpdates(
                     mGoogleApiClient,

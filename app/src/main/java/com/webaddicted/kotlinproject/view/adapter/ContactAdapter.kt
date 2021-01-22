@@ -1,9 +1,6 @@
 package com.webaddicted.kotlinproject.view.adapter
 
-import android.graphics.Color
 import android.text.Html
-import android.text.Spannable
-import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
@@ -47,19 +44,19 @@ class ContactAdapter(private var list: ArrayList<ContactBean>?) : BaseAdapter() 
             if (source?.contactEmail != null && source.contactEmail.isNotEmpty()) {
                 rowBinding.txtEmail.visible()
                 source.contactEmail=source.contactEmail.replace("\n","<br/>")
-                rowBinding.txtEmail.text = Html.fromHtml("<font color=\"#000000\">Email Id</font></br/> \n${source.contactEmail}".trimIndent())
+                rowBinding.txtEmail.text = Html.fromHtml("<font color=\"#000000\">Email Id</font></br/> \n${source.contactEmail}".trimIndent(), Html.FROM_HTML_MODE_LEGACY)
             } else rowBinding.txtEmail.gone()
 
             if (source?.contactNumber != null && source.contactNumber.isNotEmpty()) {
                 rowBinding.txtNo.visible()
                 source.contactNumber = source.contactNumber.replace("\n","<br/>")
-                rowBinding.txtNo.text = Html.fromHtml("<font color=\"#000000\">Contact Number</font><br/> \n${source.contactNumber}".trimIndent())
+                rowBinding.txtNo.text = Html.fromHtml("<font color=\"#000000\">Contact Number</font><br/> \n${source.contactNumber}".trimIndent(), Html.FROM_HTML_MODE_LEGACY)
             } else rowBinding.txtNo.gone()
 
             if (source?.contactInfo != null && source.contactInfo.isNotEmpty()) {
                 rowBinding.txtOtherInfo.visible()
                 source.contactInfo =  source.contactInfo.replace("\n","<br/>")
-                rowBinding.txtOtherInfo.text = Html.fromHtml("<font color=\"#000000\">Other Details</font><br/> \n${source.contactInfo}".trimIndent())
+                rowBinding.txtOtherInfo.text = Html.fromHtml("<font color=\"#000000\">Other Details</font><br/> \n${source.contactInfo}".trimIndent(), Html.FROM_HTML_MODE_LEGACY)
             } else rowBinding.txtOtherInfo.gone()
 
             if (source?.checked === "0") {
@@ -87,13 +84,13 @@ class ContactAdapter(private var list: ArrayList<ContactBean>?) : BaseAdapter() 
         }
     }
 
-    override fun getClickEvent(rowBinding: ViewDataBinding, view: View?, position: Int) {
-        super.getClickEvent(rowBinding, view, position)
-        rowBinding as RowContactBinding
+    override fun getClickEvent(mRowBinding: ViewDataBinding, view: View?, position: Int) {
+        super.getClickEvent(mRowBinding, view, position)
+        mRowBinding as RowContactBinding
         val source = list?.get(position)
         when (view?.id) {
             R.id.cb -> {
-                if (rowBinding.cb.isChecked) {
+                if (mRowBinding.cb.isChecked) {
                     source?.checked = "1"
                     Lg.d(
                         "aaaaaaaaaaaaa",

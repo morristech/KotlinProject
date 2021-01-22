@@ -35,7 +35,7 @@ class DeviceFeaturesFrm : BaseFragment() {
     }
 
     private fun getDeviceFeatures() {
-        var txtColor = "";
+        var txtColor = ""
         if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
             Configuration.UI_MODE_NIGHT_NO
         ) txtColor = "#000000"
@@ -158,7 +158,7 @@ class DeviceFeaturesFrm : BaseFragment() {
                     PackageManager.FEATURE_MICROPHONE
                 )
             )}<br>"""
-        mBinding.txtDeviceFeature.text = Html.fromHtml(featureInfo)
+        mBinding.txtDeviceFeature.text = Html.fromHtml(featureInfo, Html.FROM_HTML_MODE_LEGACY)
     }
 
     private fun getAvailability(available: Boolean): String {

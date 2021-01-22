@@ -19,17 +19,17 @@ public class WaveView extends LinearLayout {
     protected static final int MIDDLE = 2;
     protected static final int LITTLE = 3;
 
-    private int mAboveWaveColor;
-    private int mBlowWaveColor;
+    private final int mAboveWaveColor;
+    private final int mBlowWaveColor;
     private int mProgress;
-    private int mWaveHeight;
-    private int mWaveMultiple;
-    private int mWaveHz;
+    private final int mWaveHeight;
+    private final int mWaveMultiple;
+    private final int mWaveHz;
 
     private int mWaveToTop;
 
-    private Wave mWave;
-    private Solid mSolid;
+    private final Wave mWave;
+    private final Solid mSolid;
 
     private final int DEFAULT_ABOVE_WAVE_COLOR = Color.WHITE;
     private final int DEFAULT_BLOW_WAVE_COLOR = Color.WHITE;

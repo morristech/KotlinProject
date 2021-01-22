@@ -18,7 +18,7 @@ import java.util.Calendar;
  */
 
 public class EventDay {
-    private Calendar mDay;
+    private final Calendar mDay;
     private Object mDrawable;
     private int mLabelColor;
     private boolean mIsDisabled;

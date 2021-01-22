@@ -33,11 +33,11 @@ class Wave extends View {
     private final float X_SPACE = 20;
     private final double PI2 = 2 * Math.PI;
 
-    private Path mAboveWavePath = new Path();
-    private Path mBlowWavePath = new Path();
+    private final Path mAboveWavePath = new Path();
+    private final Path mBlowWavePath = new Path();
 
-    private Paint mAboveWavePaint = new Paint();
-    private Paint mBlowWavePaint = new Paint();
+    private final Paint mAboveWavePaint = new Paint();
+    private final Paint mBlowWavePaint = new Paint();
 
     private int mAboveWaveColor;
     private int mBlowWaveColor;

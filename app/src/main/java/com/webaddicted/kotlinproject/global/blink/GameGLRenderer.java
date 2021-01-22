@@ -22,10 +22,10 @@ public class GameGLRenderer implements GLSurfaceView.Renderer {
     private final float[] mViewMatrix = new float[16];
     private final float[] mProjectionMatrix1 = new float[16];
     private final float[] mViewMatrix1 = new float[16];
-    private float[] mRotationMatrix = new float[16];
-    private float[] mRotationMatrix1 = new float[16];
-    private  float[] mModelMatrix = new float[16];
-    private float [] mModelMatrix1  = new float[16];
+    private final float[] mRotationMatrix = new float[16];
+    private final float[] mRotationMatrix1 = new float[16];
+    private final float[] mModelMatrix = new float[16];
+    private final float [] mModelMatrix1  = new float[16];
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
         // Set the background frame color
         GLES20.glClearColor(1.0f, 1.0f, 1.0f, 0.5f);

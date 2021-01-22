@@ -68,11 +68,11 @@ class BluetoothFrm : BaseFragment() {
     private fun getLocalBluetoothName() {
 
         mBinding.txtBtName.text =
-            getString(R.string.name) + "                                :     " + mBluetoothAdapter?.name
+            getString(R.string.name) + "                                :     " + mBluetoothAdapter.name
         mBinding.txtBtAddress.text =
-            getString(R.string.address) + "                             :     " + mBluetoothAdapter?.address
+            getString(R.string.address) + "                             :     " + mBluetoothAdapter.address
         mBinding.txtBtScanMode.text =
-            getString(R.string.scan_mode) + "                        :     " + mBluetoothAdapter?.scanMode.toString()
+            getString(R.string.scan_mode) + "                        :     " + mBluetoothAdapter.scanMode.toString()
 
         if (mBluetoothAdapter.isEnabled) {
             mBinding.txtBtState.text =

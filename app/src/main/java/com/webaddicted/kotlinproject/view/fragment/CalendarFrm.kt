@@ -38,11 +38,9 @@ class CalendarFrm : BaseFragment() {
         mBinding.calendarView.setDisabledDays(getDisabledDays())
         mBinding.calendarView.setFilledDays(getFilledDays())
         mBinding.calendarView.setOnDayClickListener({ eventDay ->
-            mBinding.txtClickData.setText(
-                "\n selected date -> " + eventDay.getCalendar().getTime().toString()
-                        + "\nis days Enable-> " + eventDay.isEnabled() +
-                        "\nis days Filled  -> " + eventDay.isFilled()
-            )
+            mBinding.txtClickData.text = ("\n selected date -> " + eventDay.calendar.time.toString()
+                    + "\nis days Enable-> " + eventDay.isEnabled +
+                    "\nis days Filled  -> " + eventDay.isFilled)
         })
     }
     private fun clickListener() {

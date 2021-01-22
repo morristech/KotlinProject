@@ -90,7 +90,7 @@ class OnBoardActivity : BaseActivity() {
 
     private fun showNextSlide() {
         val nextIndex = mBinding.viewPager.currentItem + 1
-        if (mBinding.viewPager != null && nextIndex < layouts.size)
+        if (nextIndex < layouts.size)
             mBinding.viewPager.currentItem = nextIndex
     }
 }

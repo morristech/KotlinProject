@@ -20,7 +20,7 @@ public class LogsManager {
     public static final int MISSED_CALLS = 874;
     public static final int ALL_CALLS = 814;
     private static final int READ_CALL_LOG = 47;
-    private Context context;
+    private final Context context;
 
 
     public LogsManager(Context context) {

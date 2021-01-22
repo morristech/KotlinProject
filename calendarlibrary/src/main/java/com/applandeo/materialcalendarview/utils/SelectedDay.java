@@ -13,7 +13,7 @@ import java.util.Calendar;
 
 public class SelectedDay {
     private View mView;
-    private Calendar mCalendar;
+    private final Calendar mCalendar;
 
     public SelectedDay(Calendar calendar) {
         mCalendar = calendar;

@@ -19,7 +19,6 @@ class LanguageAdapter(
 ) : BaseAdapter() {
     var selectedPos = -1
     override fun getListSize(): Int {
-        if (languageList == null) return 0
         return languageList.size
     }
 

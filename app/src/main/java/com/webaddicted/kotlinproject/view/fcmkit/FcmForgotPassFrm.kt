@@ -75,7 +75,7 @@ class FcmForgotPassFrm : BaseFragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 hideApiLoader()
                 dbRef.removeEventListener(this)
-                if (dataSnapshot?.value != null) {
+                if (dataSnapshot.value != null) {
                     var userInfoBean: FcmSocialLoginRespoBean? = null
                     for (noteDataSnapshot in dataSnapshot.children) {
                         userInfoBean =

@@ -76,7 +76,7 @@ class StorageFrm : BaseFragment() {
                     "<font color=\"$txtColor\">${resources.getString(R.string.total)} : </font>${formatSize(
                         totalInternalValue
                     )}<br>"
-        mBinding.tvUsedIntmemory.text = Html.fromHtml(ramUsedInt)
+        mBinding.tvUsedIntmemory.text = Html.fromHtml(ramUsedInt, Html.FROM_HTML_MODE_LEGACY)
         mBinding.donutInternalStorage.progress = calculatePercentage(
             usedInternalValue.toDouble(),
             totalInternalValue.toDouble()
@@ -99,7 +99,7 @@ class StorageFrm : BaseFragment() {
                         "<font color=\"$txtColor\">${resources.getString(R.string.total)} : </font>${formatSize(
                             totalInternalValue
                         )}<br>"
-            mBinding.tvUsedExtmemory.text = Html.fromHtml(ramUsedExt)
+            mBinding.tvUsedExtmemory.text = Html.fromHtml(ramUsedExt, Html.FROM_HTML_MODE_LEGACY)
             mBinding.donutExternalStorage.progress = df.format(
                 calculatePercentage(
                     usedExternalValue.toDouble(),
@@ -129,7 +129,7 @@ class StorageFrm : BaseFragment() {
                     "<font color=\"$txtColor\">${resources.getString(R.string.total)} : </font>${formatSize(
                         totalRamValue
                     )}<br>"
-        mBinding.tvUsedMemory.text = Html.fromHtml(ramUsed)
+        mBinding.tvUsedMemory.text = Html.fromHtml(ramUsed, Html.FROM_HTML_MODE_LEGACY)
         mBinding.donutRamUsage.progress =
             calculatePercentage(usedRamValue.toDouble(), totalRamValue.toDouble()).toFloat()
     }

@@ -49,7 +49,7 @@ class CallLogFrm : BaseFragment() {
     }
 
     private fun clickListener() {
-        mBinding.btnReadSms.setText("Read Call Log")
+        mBinding.btnReadSms.text = "Read Call Log"
         mBinding.toolbar.imgBack.setOnClickListener(this)
         mBinding.btnReadSms.setOnClickListener(this)
     }

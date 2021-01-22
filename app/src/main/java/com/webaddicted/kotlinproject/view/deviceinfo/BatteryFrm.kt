@@ -104,9 +104,9 @@ class BatteryFrm : BaseFragment() {
                 R.string.c_symbol
             )
         technology.let { mBinding.txtBatteryType.text = getString(R.string.battery_type) + it }
-        mBinding.txtVoltage.setText(getString(R.string.battery_voltage) + voltage.toString() + "mV")
+        mBinding.txtVoltage.text = getString(R.string.battery_voltage) + voltage.toString() + "mV"
         scale.let {
-            mBinding.txtBatteryScale.text = "${getString(R.string.battery_scale)}  ${it.toString()}"
+            mBinding.txtBatteryScale.text = "${getString(R.string.battery_scale)}  $it"
             mBinding.txtBatteryLevel.text = "$level%"
             when (health) {
                 1 -> mBinding.txtBatteryHealth.text =

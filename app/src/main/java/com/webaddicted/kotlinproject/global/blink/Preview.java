@@ -20,8 +20,8 @@ import android.view.ViewGroup;
 class Preview extends ViewGroup {
     private static final String TAG = Preview.class.getSimpleName();
 
-    private int mPreviewWidth;
-    private int mPreviewHeight;
+    private final int mPreviewWidth;
+    private final int mPreviewHeight;
 
     SurfaceView mSurfaceView;
 

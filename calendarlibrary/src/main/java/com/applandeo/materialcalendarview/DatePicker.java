@@ -21,7 +21,7 @@ import com.applandeo.materialcalendarview.utils.DateUtils;
 
 public class DatePicker {
     private final Context mContext;
-    private CalendarProperties mCalendarProperties;
+    private final CalendarProperties mCalendarProperties;
 
     private AppCompatButton mCancelButton;
     private AppCompatButton mOkButton;

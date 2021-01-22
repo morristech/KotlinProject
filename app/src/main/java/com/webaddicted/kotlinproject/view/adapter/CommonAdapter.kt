@@ -4,12 +4,11 @@ import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowTextListBinding
 import com.webaddicted.kotlinproject.view.base.BaseAdapter
-import java.util.*
 
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class CommonAdapter() : BaseAdapter() {
+class CommonAdapter : BaseAdapter() {
 
     override fun getListSize(): Int {
 //        if (mTaskList == null) return 0
@@ -21,8 +20,8 @@ class CommonAdapter() : BaseAdapter() {
         return R.layout.row_text_list
     }
 
-    override fun onBindTo(mRowBinding: ViewDataBinding, position: Int) {
-        if (mRowBinding is RowTextListBinding) {
+    override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
+        if (rowBinding is RowTextListBinding) {
         }
     }
 

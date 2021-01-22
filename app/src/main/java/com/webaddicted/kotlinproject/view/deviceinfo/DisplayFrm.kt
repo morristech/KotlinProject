@@ -44,7 +44,7 @@ class DisplayFrm : BaseFragment() {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private fun getDisplayInfo() {
-        var txtColor = "";
+        var txtColor = ""
         if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
             Configuration.UI_MODE_NIGHT_NO
         ) txtColor = "#000000"
@@ -111,7 +111,7 @@ class DisplayFrm : BaseFragment() {
         )}<br>"
         /*** Display name */
         screenInfo += "<font color=\"$txtColor\">Screen Name : </font>${display.name}<br>"
-        mBinding.txtScreenInfo.text = Html.fromHtml(screenInfo)
+        mBinding.txtScreenInfo.text = Html.fromHtml(screenInfo, Html.FROM_HTML_MODE_LEGACY)
 
         /*** Max GPU Texture size */
 
@@ -155,7 +155,7 @@ class DisplayFrm : BaseFragment() {
         displayInfo += "<font color=\"$txtColor\">Logical Density : </font>${dm.density}<br>"
         /*** Screen scaled density */
         displayInfo += "<font color=\"$txtColor\">Scaled Density : </font>${dm.scaledDensity}<br>"
-        mBinding.txtDisplayInfo.setText(Html.fromHtml(displayInfo))
+        mBinding.txtDisplayInfo.text = Html.fromHtml(displayInfo, Html.FROM_HTML_MODE_LEGACY)
 
         /*** Screen usable width and height */
         val size = Point()
@@ -168,7 +168,7 @@ class DisplayFrm : BaseFragment() {
             .plus(resources.getString(R.string.dp))}<br>"
         resoluationInfo += "<font color=\"$txtColor\">Display Independent Height : </font>${GlobalUtility.pxToDp(activity!!, dm.heightPixels).toString()
             .plus(resources.getString(R.string.dp))}<br>"
-        mBinding.txtResolInfo.text = Html.fromHtml(resoluationInfo)
+        mBinding.txtResolInfo.text = Html.fromHtml(resoluationInfo, Html.FROM_HTML_MODE_LEGACY)
     }
 
     private fun returnToDecimalPlaces(values: Double): String {

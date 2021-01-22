@@ -91,7 +91,7 @@ fun <T> getPlaceHolder(
     drawableTypeRequest: RequestBuilder<T>,
     imageLoaderType: String
 ): RequestBuilder<T> {
-    val imageLoadersArray = context.getResources().getStringArray(R.array.image_loader)
+    val imageLoadersArray = context.resources.getStringArray(R.array.image_loader)
     if (imageLoadersArray[0] == imageLoaderType) {
         drawableTypeRequest.error(R.drawable.logo)
         drawableTypeRequest.placeholder(R.drawable.logo)
@@ -136,13 +136,13 @@ fun Context.showToast(message: String) {
  * show internet connection toast
  */
 fun Context.showNoNetworkToast() {
-    showToast(getResources().getString(R.string.no_network_msg))
+    showToast(resources.getString(R.string.no_network_msg))
 }
 
 /**
  * show internet connection toast
  */
 fun Context.showSomwthingWrongToast() {
-    showToast(getResources().getString(R.string.something_went_wrong))
+    showToast(resources.getString(R.string.something_went_wrong))
 }
 

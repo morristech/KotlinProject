@@ -72,7 +72,7 @@ class SharedPrefFrm : BaseFragment() {
             isMarried = false
         }
         preferenceMgr.setUserInfo(prefUer)
-        mBinding.txtSavePreference.setText(getString(R.string.user_info_saved))
+        mBinding.txtSavePreference.text = getString(R.string.user_info_saved)
     }
 
     private fun getValuePref() {
@@ -82,7 +82,7 @@ class SharedPrefFrm : BaseFragment() {
                 "<font color='"+ContextCompat.getColor(context!!,R.color.black)+"'>Age : </font>" + userInfo.age + "<br>" +
                 "<font color='"+ContextCompat.getColor(context!!,R.color.black)+"'>Weight : </font>" + userInfo.weight + "<br>" +
                 "<font color='"+ContextCompat.getColor(context!!,R.color.black)+"'>Married : </font>" + userInfo.isMarried + "<br>"
-        mBinding.txtGetPreference.text = Html.fromHtml(userInfoString)
+        mBinding.txtGetPreference.text = Html.fromHtml(userInfoString, Html.FROM_HTML_MODE_LEGACY)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -101,7 +101,7 @@ class SharedPrefFrm : BaseFragment() {
 
     private fun clearPref() {
         preferenceMgr.clearPref()
-        mBinding.txtClearPreference.setText(getString(R.string.pref_cleared_successfully))
+        mBinding.txtClearPreference.text = getString(R.string.pref_cleared_successfully)
     }
 
 }

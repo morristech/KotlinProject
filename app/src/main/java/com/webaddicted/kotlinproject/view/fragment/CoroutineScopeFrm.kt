@@ -86,18 +86,18 @@ class CoroutineScopeFrm : ScopedFragment() {
 
 
     private fun launchAndroidScope(textView: TextView) {
-        textView.setText("Step 1 ")
+        textView.text = "Step 1 "
         launch{
-            textView.setText(textView.text.toString() + "\nStep 2")
+            textView.text = textView.text.toString() + "\nStep 2"
             var result = loadData(mBinding.txtAndroidScoped)
-            textView.setText(textView.text.toString() + "\nStep 5 :- result  :- $result")
+            textView.text = textView.text.toString() + "\nStep 5 :- result  :- $result"
         }
-        textView.setText(textView.text.toString() + "\nOut of launch ")
+        textView.text = textView.text.toString() + "\nOut of launch "
     }
     suspend fun loadData(txtLaunch: TextView): String {
-        txtLaunch.setText(txtLaunch.text.toString() + "\nStep 3")
+        txtLaunch.text = txtLaunch.text.toString() + "\nStep 3"
         delay(TimeUnit.SECONDS.toMillis(3)) // imitate long running operation
-        txtLaunch.setText(txtLaunch.text.toString() + "\nStep 4")
+        txtLaunch.text = txtLaunch.text.toString() + "\nStep 4"
         return "Data is available: ${Random().nextInt()}"
     }
 

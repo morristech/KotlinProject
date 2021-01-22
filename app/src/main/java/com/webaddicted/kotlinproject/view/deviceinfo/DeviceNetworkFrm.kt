@@ -35,7 +35,7 @@ class DeviceNetworkFrm : BaseFragment() {
     }
 
     private fun getNetworkInfo() {
-        var txtColor = "";
+        var txtColor = ""
         if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
             Configuration.UI_MODE_NIGHT_NO
         ) txtColor = "#000000"
@@ -81,6 +81,6 @@ class DeviceNetworkFrm : BaseFragment() {
                             "<font color=\"$txtColor\">Network Type : </font> Not Available<br>"
             }
         }
-        mBinding.txtNetworkInfo.text = Html.fromHtml(networkInfo)
+        mBinding.txtNetworkInfo.text = Html.fromHtml(networkInfo, Html.FROM_HTML_MODE_LEGACY)
     }
 }

@@ -35,7 +35,7 @@ class CircleFrm : BaseFragment() {
         mBinding = binding as FrmNewsBinding
         init()
         clickListener()
-        setAdapter();
+        setAdapter()
     }
 
     private fun init() {

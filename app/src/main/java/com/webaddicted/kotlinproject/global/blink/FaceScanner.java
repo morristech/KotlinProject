@@ -63,9 +63,9 @@ class FaceScanner implements Camera.PreviewCallback, Camera.AutoFocusCallback,
 
     // member data
     protected WeakReference<CameraActivity> mScanActivityRef;
-    private boolean mSuppressScan = false;
+    private final boolean mSuppressScan = false;
     private boolean mScanExpiry;
-    private int mUnblurDigits = DEFAULT_UNBLUR_DIGITS;
+    private final int mUnblurDigits = DEFAULT_UNBLUR_DIGITS;
 
     // read by CardIOActivity to set up Preview
     final int mPreviewWidth = 640;

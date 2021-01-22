@@ -16,7 +16,7 @@ public class Rectangle {
     // number of coordinates per vertex in this array
     final int COORDS_PER_VERTEX = 3;
     private final int mProgram;
-    float triangleCoords[] = {   // in counterclockwise order:
+    float[] triangleCoords = {   // in counterclockwise order:
             -0.5f, 0.5f, 0.0f,
             -0.5f, -0.5f, 0.0f,
             0.5f, 0.5f, 0.0f,
@@ -27,7 +27,7 @@ public class Rectangle {
     };
 
     // Set color with red, green, blue and alpha (opacity) values
-    float color[] = { 0.f, 0.76953125f, 0.22265625f, 1.0f };
+    float[] color = { 0.f, 0.76953125f, 0.22265625f, 1.0f };
 
     private final String vertexShaderCode =
             //"attribute vec4 vPosition;" +

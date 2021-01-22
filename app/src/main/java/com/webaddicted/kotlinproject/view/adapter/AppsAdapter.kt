@@ -23,13 +23,13 @@ class AppsAdapter(private var activity:Activity, private var appType:Int,private
         return R.layout.row_apps
     }
 
-    override fun onBindTo(mRowBinding: ViewDataBinding, position: Int) {
-        if (mRowBinding is RowAppsBinding) {
+    override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
+        if (rowBinding is RowAppsBinding) {
             val source = list?.get(position)
-            mRowBinding.tvAppName.text = source?.appLable
-            mRowBinding.tvAppPackageName.text = source?.packageName
-            mRowBinding.ivAppIcon.setImageDrawable(source?.appLogo)
-            onClickListener(mRowBinding, mRowBinding.cardview, position)
+            rowBinding.tvAppName.text = source?.appLable
+            rowBinding.tvAppPackageName.text = source?.packageName
+            rowBinding.ivAppIcon.setImageDrawable(source?.appLogo)
+            onClickListener(rowBinding, rowBinding.cardview, position)
         }
     }
 

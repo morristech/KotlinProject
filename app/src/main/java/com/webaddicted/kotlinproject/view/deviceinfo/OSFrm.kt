@@ -33,7 +33,7 @@ class OSFrm : BaseFragment() {
     }
 
     private fun getOSInfo() {
-        var txtColor = "";
+        var txtColor = ""
         if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
             Configuration.UI_MODE_NIGHT_NO
         ) txtColor = "#000000"
@@ -42,12 +42,12 @@ class OSFrm : BaseFragment() {
         var osInfo = ""
         osInfo =   "<font color=\"$txtColor\">Version : </font>${Build.VERSION.RELEASE}<br>" +
                 "<font color=\"$txtColor\">Version Name : </font>${Build.VERSION_CODES::class.java.fields[Build.VERSION.SDK_INT].name}<br>" +
-                "<font color=\"$txtColor\">Api Level : </font>${Build.VERSION.SDK_INT.toString()}<br>" +
+                "<font color=\"$txtColor\">Api Level : </font>${Build.VERSION.SDK_INT}<br>" +
                 "<font color=\"$txtColor\">BuildId : </font>${Build.ID}<br>" +
                 "<font color=\"$txtColor\">Build Time : </font>${GlobalUtility.getDate(Build.TIME)}<br>" +
                 "<font color=\"$txtColor\">Fingerprint : </font>${Build.FINGERPRINT}<br>" +
                 "<font color=\"$txtColor\">Hardware : </font>${Build.HARDWARE}<br>"
-        mBinding.txtOsInfo.setText(Html.fromHtml(osInfo))
+        mBinding.txtOsInfo.text = Html.fromHtml(osInfo, Html.FROM_HTML_MODE_LEGACY)
         when (CVersion) {
             11 -> {
                 mBinding.txtVersion.text =

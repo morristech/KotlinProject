@@ -1201,7 +1201,7 @@ public class ZoomImageView extends AppCompatImageView {
     }
 
     @TargetApi(VERSION_CODES.GINGERBREAD)
-    private class CompatScroller {
+    private static class CompatScroller {
         final OverScroller overScroller;
         final boolean isPreGingerbread;
         Scroller scroller;
@@ -1262,7 +1262,7 @@ public class ZoomImageView extends AppCompatImageView {
         }
     }
 
-    private class ZoomVariables {
+    private static class ZoomVariables {
         final float scale;
         final float focusX;
         final float focusY;

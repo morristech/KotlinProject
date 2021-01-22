@@ -18,7 +18,7 @@ class NormalService : Service() {
         // Let it continue running until it is stopped.
         player = MediaPlayer.create(this, Settings.System.DEFAULT_RINGTONE_URI)
         // This will play the ringtone continuously until we stop the service.
-        player?.setLooping(true)
+        player?.isLooping = true
         // It will start the player
         player?.start()
         Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show()

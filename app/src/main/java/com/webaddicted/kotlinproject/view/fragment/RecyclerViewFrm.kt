@@ -100,7 +100,7 @@ class RecyclerViewFrm : BaseFragment() {
         if (animPos >= 3) animPos = 0
         else animPos++
         val animation = loadLayoutAnimation(context, animArray[animPos])
-        mBinding.recyclerView.setLayoutAnimation(animation)
+        mBinding.recyclerView.layoutAnimation = animation
     }
 
     private fun setListAdapter(layoutMgr: RecyclerView.LayoutManager, layoutId: Int) {

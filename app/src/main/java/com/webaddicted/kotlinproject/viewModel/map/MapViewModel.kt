@@ -10,6 +10,6 @@ import com.webaddicted.kotlinproject.viewModel.base.BaseViewModel
  */
 class MapViewModel( private val projectRepository: NewsRepository) :BaseViewModel() {
 //  gteUpdated location
-    var locationUpdated = MutableLiveData<Location>();
+    var locationUpdated = MutableLiveData<Location>()
 
 }

@@ -104,7 +104,7 @@ class WorkManagerFrm : BaseFragment() {
         beginWith(workRequest)
             .then(workRequest1)
             .then(workRequest2)
-            .enqueue();
+            .enqueue()
     }
 
 }

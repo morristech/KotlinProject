@@ -95,7 +95,7 @@ class SmsFrm : BaseFragment() {
         val cr: ContentResolver = activity?.contentResolver!!
         val cursor: Cursor = cr.query(message, null, null, null, null)!!
         activity?.startManagingCursor(cursor)
-        val totalSMS: Int = cursor.getCount()
+        val totalSMS: Int = cursor.count
         if (cursor.moveToFirst()) {
             for (i in 0 until totalSMS) {
                 val number =

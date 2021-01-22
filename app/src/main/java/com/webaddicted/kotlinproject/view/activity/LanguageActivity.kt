@@ -44,15 +44,15 @@ class LanguageActivity : BaseActivity() {
         init()
         clickListener()
         languageObserver(0)
-        setAdapter();
+        setAdapter()
 
     }
 
     private fun init() {
-        setNavigationColor(ContextCompat.getColor(context!!,R.color.app_color))
-        mBinding.toolbar.imgProfile?.visibility = View.GONE
-        mBinding.toolbar.txtToolbarTitle?.text = resources.getString(R.string.select_language)
-        mLanguageList = setLanguageBean();
+        setNavigationColor(ContextCompat.getColor(context,R.color.app_color))
+        mBinding.toolbar.imgProfile.visibility = View.GONE
+        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.select_language)
+        mLanguageList = setLanguageBean()
     }
 
     private fun clickListener() {

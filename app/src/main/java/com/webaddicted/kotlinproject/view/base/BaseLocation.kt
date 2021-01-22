@@ -158,7 +158,7 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
 
     fun startGeoFencing(location: Location, fancyMarker: Marker?) {
         mFancyMarker = fancyMarker
-        createGeofences(location?.latitude, location?.longitude);
+        createGeofences(location.latitude, location.longitude)
         try {
             LocationServices.GeofencingApi.addGeofences(
                 mGoogleApiClient,
@@ -274,7 +274,7 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
     override fun onConnectionFailed(result: ConnectionResult) {
         Lg.i(
             TAG,
-            "login  Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode()
+            "login  Connection failed: ConnectionResult.getErrorCode() = " + result.errorCode
         )
         mGoogleApiClient!!.connect()
     }

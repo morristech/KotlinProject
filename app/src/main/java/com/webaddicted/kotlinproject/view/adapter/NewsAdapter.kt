@@ -20,13 +20,13 @@ class NewsAdapter(private var newsList: ArrayList<NewsChanelRespo.Source>?) : Ba
         return R.layout.row_channel_list
     }
 
-    override fun onBindTo(mRowBinding: ViewDataBinding, position: Int) {
-        if (mRowBinding is RowChannelListBinding) {
+    override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
+        if (rowBinding is RowChannelListBinding) {
             val source = newsList?.get(position)
-            mRowBinding.txtChannelName.text = source?.name
-            mRowBinding.txtChannelDesc.text = source?.description
+            rowBinding.txtChannelName.text = source?.name
+            rowBinding.txtChannelDesc.text = source?.description
             val stringBuilder = "https://besticon-demo.herokuapp.com/icon?url=" + source?.url + "&size=64..64..120"
-            mRowBinding.imgChannelImg.showImage(stringBuilder, getPlaceHolder(0))
+            rowBinding.imgChannelImg.showImage(stringBuilder, getPlaceHolder(0))
         }
     }
 
